@@ -9,72 +9,72 @@ using namespace std;
 
 
 
-//-----------------------------------¡¾È«¾Öº¯ÊıÉùÃ÷²¿·Ö¡¿--------------------------------------
-//		ÃèÊö£ºÈ«¾Öº¯ÊıµÄÉùÃ÷
+//-----------------------------------ã€å…¨å±€å‡½æ•°å£°æ˜éƒ¨åˆ†ã€‘--------------------------------------
+//		æè¿°ï¼šå…¨å±€å‡½æ•°çš„å£°æ˜
 //-----------------------------------------------------------------------------------------------
-static void ShowHelpText( );//Êä³ö°ïÖúÎÄ×Ö
+static void ShowHelpText( );//è¾“å‡ºå¸®åŠ©æ–‡å­—
 
 
-//-----------------------------------¡¾main( )º¯Êı¡¿--------------------------------------------
-//		ÃèÊö£º¿ØÖÆÌ¨Ó¦ÓÃ³ÌĞòµÄÈë¿Úº¯Êı£¬ÎÒÃÇµÄ³ÌĞò´ÓÕâÀï¿ªÊ¼Ö´ĞĞ
+//-----------------------------------ã€main( )å‡½æ•°ã€‘--------------------------------------------
+//		æè¿°ï¼šæ§åˆ¶å°åº”ç”¨ç¨‹åºçš„å…¥å£å‡½æ•°ï¼Œæˆ‘ä»¬çš„ç¨‹åºä»è¿™é‡Œå¼€å§‹æ‰§è¡Œ
 //-----------------------------------------------------------------------------------------------
 int main(  )
 {
-	//¡¾0¡¿¸Ä±äconsole×ÖÌåÑÕÉ«
+	//ã€0ã€‘æ”¹å˜consoleå­—ä½“é¢œè‰²
 	system("color 1F"); 
 
-	//¡¾0¡¿ÏÔÊ¾»¶Ó­ºÍ°ïÖúÎÄ×Ö
+	//ã€0ã€‘æ˜¾ç¤ºæ¬¢è¿å’Œå¸®åŠ©æ–‡å­—
 	ShowHelpText( );
 
-	//¡¾1¡¿ÔØÈëËØ²ÄÍ¼
+	//ã€1ã€‘è½½å…¥ç´ æå›¾
 	Mat srcImage1 = imread("1.jpg",1);
 	Mat srcImage2 = imread("2.jpg",1);
 	if( !srcImage1.data || !srcImage2.data )
-	{ printf("¶ÁÈ¡Í¼Æ¬´íÎó£¬ÇëÈ·¶¨Ä¿Â¼ÏÂÊÇ·ñÓĞimreadº¯ÊıÖ¸¶¨µÄÍ¼Æ¬´æÔÚ~£¡ \n"); return false; }  
+	{ printf("è¯»å–å›¾ç‰‡é”™è¯¯ï¼Œè¯·ç¡®å®šç›®å½•ä¸‹æ˜¯å¦æœ‰imreadå‡½æ•°æŒ‡å®šçš„å›¾ç‰‡å­˜åœ¨~ï¼ \n"); return false; }  
 
-	//¡¾2¡¿Ê¹ÓÃSURFËã×Ó¼ì²â¹Ø¼üµã
-	int minHessian = 700;//SURFËã·¨ÖĞµÄhessianãĞÖµ
-	SurfFeatureDetector detector( minHessian );//¶¨ÒåÒ»¸öSurfFeatureDetector£¨SURF£© ÌØÕ÷¼ì²âÀà¶ÔÏó  
-	std::vector<KeyPoint> keyPoint1, keyPoints2;//vectorÄ£°åÀà£¬´æ·ÅÈÎÒâÀàĞÍµÄ¶¯Ì¬Êı×é
+	//ã€2ã€‘ä½¿ç”¨SURFç®—å­æ£€æµ‹å…³é”®ç‚¹
+	int minHessian = 700;//SURFç®—æ³•ä¸­çš„hessiané˜ˆå€¼
+	SurfFeatureDetector detector( minHessian );//å®šä¹‰ä¸€ä¸ªSurfFeatureDetectorï¼ˆSURFï¼‰ ç‰¹å¾æ£€æµ‹ç±»å¯¹è±¡  
+	std::vector<KeyPoint> keyPoint1, keyPoints2;//vectoræ¨¡æ¿ç±»ï¼Œå­˜æ”¾ä»»æ„ç±»å‹çš„åŠ¨æ€æ•°ç»„
 
-	//¡¾3¡¿µ÷ÓÃdetectº¯Êı¼ì²â³öSURFÌØÕ÷¹Ø¼üµã£¬±£´æÔÚvectorÈİÆ÷ÖĞ
+	//ã€3ã€‘è°ƒç”¨detectå‡½æ•°æ£€æµ‹å‡ºSURFç‰¹å¾å…³é”®ç‚¹ï¼Œä¿å­˜åœ¨vectorå®¹å™¨ä¸­
 	detector.detect( srcImage1, keyPoint1 );
 	detector.detect( srcImage2, keyPoints2 );
 
-	//¡¾4¡¿¼ÆËãÃèÊö·û£¨ÌØÕ÷ÏòÁ¿£©
+	//ã€4ã€‘è®¡ç®—æè¿°ç¬¦ï¼ˆç‰¹å¾å‘é‡ï¼‰
 	SurfDescriptorExtractor extractor;
 	Mat descriptors1, descriptors2;
 	extractor.compute( srcImage1, keyPoint1, descriptors1 );
 	extractor.compute( srcImage2, keyPoints2, descriptors2 );
 
-	//¡¾5¡¿Ê¹ÓÃBruteForce½øĞĞÆ¥Åä
-	// ÊµÀı»¯Ò»¸öÆ¥ÅäÆ÷
+	//ã€5ã€‘ä½¿ç”¨BruteForceè¿›è¡ŒåŒ¹é…
+	// å®ä¾‹åŒ–ä¸€ä¸ªåŒ¹é…å™¨
 	BruteForceMatcher< L2<float> > matcher;
 	std::vector< DMatch > matches;
-	//Æ¥ÅäÁ½·ùÍ¼ÖĞµÄÃèÊö×Ó£¨descriptors£©
+	//åŒ¹é…ä¸¤å¹…å›¾ä¸­çš„æè¿°å­ï¼ˆdescriptorsï¼‰
 	matcher.match( descriptors1, descriptors2, matches );
 
-	//¡¾6¡¿»æÖÆ´ÓÁ½¸öÍ¼ÏñÖĞÆ¥Åä³öµÄ¹Ø¼üµã
+	//ã€6ã€‘ç»˜åˆ¶ä»ä¸¤ä¸ªå›¾åƒä¸­åŒ¹é…å‡ºçš„å…³é”®ç‚¹
 	Mat imgMatches;
-	drawMatches( srcImage1, keyPoint1, srcImage2, keyPoints2, matches, imgMatches );//½øĞĞ»æÖÆ
+	drawMatches( srcImage1, keyPoint1, srcImage2, keyPoints2, matches, imgMatches );//è¿›è¡Œç»˜åˆ¶
 
-	//¡¾7¡¿ÏÔÊ¾Ğ§¹ûÍ¼
-	imshow("Æ¥ÅäÍ¼", imgMatches );
+	//ã€7ã€‘æ˜¾ç¤ºæ•ˆæœå›¾
+	imshow("åŒ¹é…å›¾", imgMatches );
 
 	waitKey(0);
 	return 0;
 }
 
-//-----------------------------------¡¾ShowHelpText( )º¯Êı¡¿----------------------------------  
-//      ÃèÊö£ºÊä³öÒ»Ğ©°ïÖúĞÅÏ¢  
+//-----------------------------------ã€ShowHelpText( )å‡½æ•°ã€‘----------------------------------  
+//      æè¿°ï¼šè¾“å‡ºä¸€äº›å¸®åŠ©ä¿¡æ¯  
 //----------------------------------------------------------------------------------------------  
 static void ShowHelpText()  
 {  
-	//Êä³ö»¶Ó­ĞÅÏ¢ºÍOpenCV°æ±¾
-	printf("\n\n\t\t\t·Ç³£¸ĞĞ»¹ºÂò¡¶OpenCV3±à³ÌÈëÃÅ¡·Ò»Êé£¡\n");
-	printf("\n\n\t\t\t´ËÎª±¾ÊéOpenCV2°æµÄµÚ90¸öÅäÌ×Ê¾Àı³ÌĞò\n");
-	printf("\n\n\t\t\t   µ±Ç°Ê¹ÓÃµÄOpenCV°æ±¾Îª£º" CV_VERSION );
+	//è¾“å‡ºæ¬¢è¿ä¿¡æ¯å’ŒOpenCVç‰ˆæœ¬
+	printf("\n\n\t\t\téå¸¸æ„Ÿè°¢è´­ä¹°ã€ŠOpenCV3ç¼–ç¨‹å…¥é—¨ã€‹ä¸€ä¹¦ï¼\n");
+	printf("\n\n\t\t\tæ­¤ä¸ºæœ¬ä¹¦OpenCV2ç‰ˆçš„ç¬¬90ä¸ªé…å¥—ç¤ºä¾‹ç¨‹åº\n");
+	printf("\n\n\t\t\t   å½“å‰ä½¿ç”¨çš„OpenCVç‰ˆæœ¬ä¸ºï¼š" CV_VERSION );
 	printf("\n\n  ----------------------------------------------------------------------------\n");
-	//Êä³ö°ïÖúĞÅÏ¢  
-	printf(  "\n\n\n\t»¶Ó­À´µ½¡¾SURFÌØÕ÷ÃèÊö¡¿Ê¾Àı³ÌĞò\n\n");  
+	//è¾“å‡ºå¸®åŠ©ä¿¡æ¯  
+	printf(  "\n\n\n\tæ¬¢è¿æ¥åˆ°ã€SURFç‰¹å¾æè¿°ã€‘ç¤ºä¾‹ç¨‹åº\n\n");  
 }  

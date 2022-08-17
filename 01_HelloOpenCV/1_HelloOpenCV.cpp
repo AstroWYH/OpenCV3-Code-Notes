@@ -8,7 +8,7 @@
 //		2014年11月 Created by @浅墨_毛星云
 //		2014年11月 Revised by @浅墨_毛星云
 //------------------------------------------------------------------------------------------------
-#if 1
+
 #include <opencv2/opencv.hpp> //头文件
 #include <iostream>
 using namespace cv; //包含cv命名空间
@@ -24,28 +24,3 @@ int main()
     waitKey(6000);
     cout << "hello world" << endl;
 }
-
-#else
-
-#include <cstdio>
-#include <iostream>
-#include <opencv2/opencv.hpp>
-using namespace cv;
-using namespace std;
-
-int main() {
-    cout << "hi you" << endl;
-    Mat image;
-    image = imread("1.jpg");
-
-    if (!image.data) {
-    printf("No image data\n");
-    return -1;
-    }
-
-    namedWindow("Display Image", CV_WINDOW_AUTOSIZE);
-    imshow("Display Image", image);
-    waitKey(0);
-    return 0;
-}
-#endif

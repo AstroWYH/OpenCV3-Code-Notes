@@ -1,10 +1,10 @@
-//--------------------------------------¡¾³ÌÐòËµÃ÷¡¿-------------------------------------------
-//		³ÌÐòËµÃ÷£º¡¶OpenCV3±à³ÌÈëÃÅ¡·OpenCV2°æÊé±¾¸½ÔùÊ¾Àý³ÌÐò14
-//		³ÌÐòÃèÊö£ºÊÓÆµ½ØÍ¼
-//		²âÊÔËùÓÃ²Ù×÷ÏµÍ³£º Windows 7 64bit
-//		²âÊÔËùÓÃIDE°æ±¾£ºVisual Studio 2010
-//		²âÊÔËùÓÃOpenCV°æ±¾£º	2.4.9
-//		2014Äê11ÔÂ Revised by @Ç³Ä«_Ã«ÐÇÔÆ
+//--------------------------------------ã€ç¨‹åºè¯´æ˜Žã€‘-------------------------------------------
+//		ç¨‹åºè¯´æ˜Žï¼šã€ŠOpenCV3ç¼–ç¨‹å…¥é—¨ã€‹OpenCV2ç‰ˆä¹¦æœ¬é™„èµ ç¤ºä¾‹ç¨‹åº14
+//		ç¨‹åºæè¿°ï¼šè§†é¢‘æˆªå›¾
+//		æµ‹è¯•æ‰€ç”¨æ“ä½œç³»ç»Ÿï¼š Windows 7 64bit
+//		æµ‹è¯•æ‰€ç”¨IDEç‰ˆæœ¬ï¼šVisual Studio 2010
+//		æµ‹è¯•æ‰€ç”¨OpenCVç‰ˆæœ¬ï¼š	2.4.9
+//		2014å¹´11æœˆ Revised by @æµ…å¢¨_æ¯›æ˜Ÿäº‘
 //------------------------------------------------------------------------------------------------
 
 /*
@@ -19,8 +19,8 @@
  */
 
 
-//---------------------------------¡¾Í·ÎÄ¼þ¡¢ÃüÃû¿Õ¼ä°üº¬²¿·Ö¡¿----------------------------
-//		ÃèÊö£º°üº¬³ÌÐòËùÊ¹ÓÃµÄÍ·ÎÄ¼þºÍÃüÃû¿Õ¼ä
+//---------------------------------ã€å¤´æ–‡ä»¶ã€å‘½åç©ºé—´åŒ…å«éƒ¨åˆ†ã€‘----------------------------
+//		æè¿°ï¼šåŒ…å«ç¨‹åºæ‰€ä½¿ç”¨çš„å¤´æ–‡ä»¶å’Œå‘½åç©ºé—´
 //------------------------------------------------------------------------------------------------
 #include "opencv2/highgui/highgui.hpp"
 #include <opencv2/objdetect/objdetect.hpp>
@@ -33,15 +33,15 @@ using namespace std;
 
 
 
-//--------------------------------------¡¾process( )º¯Êý¡¿----------------------------------
-//		 ÃèÊö£º½øÐÐ´¦Àí
+//--------------------------------------ã€process( )å‡½æ•°ã€‘----------------------------------
+//		 æè¿°ï¼šè¿›è¡Œå¤„ç†
 //----------------------------------------------------------------------------------------------
 int process(VideoCapture& capture)
 {
     int n = 0;
     char filename[200];
     string window_name = "video | q or esc to quit";
-    cout << " \n\t°´ÏÂ¡¾Space¡¿¿Õ¸ñ¼ü¿ÉÒÔ½ØÍ¼£¬Í¼Æ¬½«´æ·ÅÔÚ¹¤³ÌÄ¿Â¼ÏÂ¡£\n\n\t¡¾Esc¡¿ºÍ¡¾q¡¿¼ü - ÍË³ö³ÌÐò¡£ " << endl;
+    cout << " \n\tæŒ‰ä¸‹ã€Spaceã€‘ç©ºæ ¼é”®å¯ä»¥æˆªå›¾ï¼Œå›¾ç‰‡å°†å­˜æ”¾åœ¨å·¥ç¨‹ç›®å½•ä¸‹ã€‚\n\n\tã€Escã€‘å’Œã€qã€‘é”® - é€€å‡ºç¨‹åºã€‚ " << endl;
     namedWindow(window_name, CV_WINDOW_KEEPRATIO); //resizable window;
     Mat frame;
     for (;;)
@@ -64,9 +64,9 @@ int process(VideoCapture& capture)
             case 27: //escape key
                 return 0;
             case ' ': //Save an image
-                sprintf(filename, "ÊÓÆµ½ØÍ¼%.3d.jpg", n++);
+                sprintf(filename, "è§†é¢‘æˆªå›¾%.3d.jpg", n++);
                 imwrite(filename, frame);
-                cout << "\n\t>±£´æÁË " << filename <<"ÎÄ¼þµ½¹¤³ÌÄ¿Â¼ÏÂ"<< endl;
+                cout << "\n\t>ä¿å­˜äº† " << filename <<"æ–‡ä»¶åˆ°å·¥ç¨‹ç›®å½•ä¸‹"<< endl;
                 break;
             default:
                 break;
@@ -76,14 +76,14 @@ int process(VideoCapture& capture)
 }
 
 
-//-----------------------------------¡¾main( )º¯Êý¡¿--------------------------------------------
-//		ÃèÊö£º¿ØÖÆÌ¨Ó¦ÓÃ³ÌÐòµÄÈë¿Úº¯Êý£¬ÎÒÃÇµÄ³ÌÐò´ÓÕâÀï¿ªÊ¼
+//-----------------------------------ã€main( )å‡½æ•°ã€‘--------------------------------------------
+//		æè¿°ï¼šæŽ§åˆ¶å°åº”ç”¨ç¨‹åºçš„å…¥å£å‡½æ•°ï¼Œæˆ‘ä»¬çš„ç¨‹åºä»Žè¿™é‡Œå¼€å§‹
 //-------------------------------------------------------------------------------------------------
 int main( )
 {
 
-    VideoCapture capture("1.avi"); //´ÓÎÄ¼þÔØÈëÊÓÆµ
-	//VideoCapture capture(0); //´ÓÉãÏñÍ·ÔØÈëÊÓÆµ
+    VideoCapture capture("1.avi"); //ä»Žæ–‡ä»¶è½½å…¥è§†é¢‘
+	//VideoCapture capture(0); //ä»Žæ‘„åƒå¤´è½½å…¥è§†é¢‘
     if (!capture.isOpened())
     {
         cerr << "Failed to open a video device or video file!\n" << endl;

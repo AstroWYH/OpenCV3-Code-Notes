@@ -5,15 +5,15 @@ using namespace cv;
 using namespace std;
 
 
-//-----------------------------------¡¾ºê¶¨Òå²¿·Ö¡¿-------------------------------------------- 
-//		ÃèÊö£º¶¨ÒåÒ»Ğ©¸¨Öúºê 
+//-----------------------------------ã€å®å®šä¹‰éƒ¨åˆ†ã€‘-------------------------------------------- 
+//		æè¿°ï¼šå®šä¹‰ä¸€äº›è¾…åŠ©å® 
 //------------------------------------------------------------------------------------------------ 
-#define WINDOW_NAME1 "¡¾Ô­Ê¼Í¼¡¿"					//Îª´°¿Ú±êÌâ¶¨ÒåµÄºê 
-#define WINDOW_NAME2 "¡¾Í¼ÏñÂÖÀª¡¿"        //Îª´°¿Ú±êÌâ¶¨ÒåµÄºê 
+#define WINDOW_NAME1 "ã€åŸå§‹å›¾ã€‘"					//ä¸ºçª—å£æ ‡é¢˜å®šä¹‰çš„å® 
+#define WINDOW_NAME2 "ã€å›¾åƒè½®å»“ã€‘"        //ä¸ºçª—å£æ ‡é¢˜å®šä¹‰çš„å® 
 
 
-//-----------------------------------¡¾È«¾Ö±äÁ¿ÉùÃ÷²¿·Ö¡¿--------------------------------------
-//		ÃèÊö£ºÈ«¾Ö±äÁ¿µÄÉùÃ÷
+//-----------------------------------ã€å…¨å±€å˜é‡å£°æ˜éƒ¨åˆ†ã€‘--------------------------------------
+//		æè¿°ï¼šå…¨å±€å˜é‡çš„å£°æ˜
 //-----------------------------------------------------------------------------------------------
 Mat g_srcImage; Mat g_grayImage;
 int g_nThresh = 100;
@@ -23,80 +23,80 @@ Mat g_cannyMat_output;
 vector<vector<Point> > g_vContours;
 vector<Vec4i> g_vHierarchy;
 
-//-----------------------------------¡¾È«¾Ö±äÁ¿ÉùÃ÷²¿·Ö¡¿--------------------------------------
-//		ÃèÊö£ºÈ«¾Ö±äÁ¿µÄÉùÃ÷
+//-----------------------------------ã€å…¨å±€å˜é‡å£°æ˜éƒ¨åˆ†ã€‘--------------------------------------
+//		æè¿°ï¼šå…¨å±€å˜é‡çš„å£°æ˜
 //-----------------------------------------------------------------------------------------------
 void on_ThreshChange(int, void* );
 static void ShowHelpText( );
 
-//-----------------------------------¡¾main( )º¯Êı¡¿--------------------------------------------
-//		ÃèÊö£º¿ØÖÆÌ¨Ó¦ÓÃ³ÌĞòµÄÈë¿Úº¯Êı£¬ÎÒÃÇµÄ³ÌĞò´ÓÕâÀï¿ªÊ¼Ö´ĞĞ
+//-----------------------------------ã€main( )å‡½æ•°ã€‘--------------------------------------------
+//		æè¿°ï¼šæ§åˆ¶å°åº”ç”¨ç¨‹åºçš„å…¥å£å‡½æ•°ï¼Œæˆ‘ä»¬çš„ç¨‹åºä»è¿™é‡Œå¼€å§‹æ‰§è¡Œ
 //-----------------------------------------------------------------------------------------------
 int main( int argc, char** argv )
 {
-	//¡¾0¡¿¸Ä±äconsole×ÖÌåÑÕÉ«
+	//ã€0ã€‘æ”¹å˜consoleå­—ä½“é¢œè‰²
 	system("color 9F"); 
 
 	ShowHelpText();
-	// ¶ÁÈëÔ­Í¼Ïñ, ·µ»Ø3Í¨µÀÍ¼ÏñÊı¾İ
+	// è¯»å…¥åŸå›¾åƒ, è¿”å›3é€šé“å›¾åƒæ•°æ®
 	g_srcImage = imread( "1.jpg", 1 );
 
-	// °ÑÔ­Í¼Ïñ×ª»¯³É»Ò¶ÈÍ¼Ïñ²¢½øĞĞÆ½»¬
+	// æŠŠåŸå›¾åƒè½¬åŒ–æˆç°åº¦å›¾åƒå¹¶è¿›è¡Œå¹³æ»‘
 	cvtColor( g_srcImage, g_grayImage, COLOR_BGR2GRAY );
 	blur( g_grayImage, g_grayImage, Size(3,3) );
 
-	// ´´½¨ĞÂ´°¿Ú
+	// åˆ›å»ºæ–°çª—å£
 	namedWindow( WINDOW_NAME1, WINDOW_AUTOSIZE );
 	imshow( WINDOW_NAME1, g_srcImage );
 
-	//´´½¨¹ö¶¯Ìõ²¢½øĞĞ³õÊ¼»¯
-	createTrackbar( " ãĞÖµ", WINDOW_NAME1, &g_nThresh, g_nMaxThresh, on_ThreshChange );
+	//åˆ›å»ºæ»šåŠ¨æ¡å¹¶è¿›è¡Œåˆå§‹åŒ–
+	createTrackbar( " é˜ˆå€¼", WINDOW_NAME1, &g_nThresh, g_nMaxThresh, on_ThreshChange );
 	on_ThreshChange( 0, 0 );
 
 	waitKey(0);
 	return(0);
 }
 
-//-----------------------------------¡¾on_ThreshChange( )º¯Êı¡¿-------------------------------
-//		ÃèÊö£º»Øµ÷º¯Êı
+//-----------------------------------ã€on_ThreshChange( )å‡½æ•°ã€‘-------------------------------
+//		æè¿°ï¼šå›è°ƒå‡½æ•°
 //-----------------------------------------------------------------------------------------------
 void on_ThreshChange(int, void* )
 {
-	// Ê¹ÓÃCanndy¼ì²â±ßÔµ
-	//1.	g_nThreshãĞÖµ
+	// ä½¿ç”¨Canndyæ£€æµ‹è¾¹ç¼˜
+	//1.	g_nThreshé˜ˆå€¼
 	Canny( g_grayImage, g_cannyMat_output, g_nThresh, g_nThresh*2, 3 );
 
-	// ÕÒµ½ÂÖÀª
+	// æ‰¾åˆ°è½®å»“
 	findContours( g_cannyMat_output, g_vContours, g_vHierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE, Point(0, 0) );
 
-	// ¼ÆËã¾Ø
+	// è®¡ç®—çŸ©
 	vector<Moments> mu(g_vContours.size() );
 	for(unsigned int i = 0; i < g_vContours.size(); i++ )
 	{ mu[i] = moments( g_vContours[i], false ); }
 
-	//  ¼ÆËãÖĞĞÄ¾Ø
+	//  è®¡ç®—ä¸­å¿ƒçŸ©
 	vector<Point2f> mc( g_vContours.size() );
 	for( unsigned int i = 0; i < g_vContours.size(); i++ )
 	{ mc[i] = Point2f( static_cast<float>(mu[i].m10/mu[i].m00), static_cast<float>(mu[i].m01/mu[i].m00 )); }
 
-	// »æÖÆÂÖÀª
+	// ç»˜åˆ¶è½®å»“
 	Mat drawing = Mat::zeros( g_cannyMat_output.size(), CV_8UC3 );
 	for( unsigned int i = 0; i< g_vContours.size(); i++ )
 	{
-		Scalar color = Scalar( g_rng.uniform(0, 255), g_rng.uniform(0,255), g_rng.uniform(0,255) );//Ëæ»úÉú³ÉÑÕÉ«Öµ
-		drawContours( drawing, g_vContours, i, color, 2, 8, g_vHierarchy, 0, Point() );//»æÖÆÍâ²ãºÍÄÚ²ãÂÖÀª
-		circle( drawing, mc[i], 4, color, -1, 8, 0 );;//»æÖÆÔ²
+		Scalar color = Scalar( g_rng.uniform(0, 255), g_rng.uniform(0,255), g_rng.uniform(0,255) );//éšæœºç”Ÿæˆé¢œè‰²å€¼
+		drawContours( drawing, g_vContours, i, color, 2, 8, g_vHierarchy, 0, Point() );//ç»˜åˆ¶å¤–å±‚å’Œå†…å±‚è½®å»“
+		circle( drawing, mc[i], 4, color, -1, 8, 0 );;//ç»˜åˆ¶åœ†
 	}
 
-	// ÏÔÊ¾µ½´°¿ÚÖĞ
+	// æ˜¾ç¤ºåˆ°çª—å£ä¸­
 	namedWindow( WINDOW_NAME2, WINDOW_AUTOSIZE );
 	imshow( WINDOW_NAME2, drawing );
 
-	// Í¨¹ım00¼ÆËãÂÖÀªÃæ»ı²¢ÇÒºÍOpenCVº¯Êı±È½Ï
-	printf("\t Êä³öÄÚÈİ: Ãæ»ıºÍÂÖÀª³¤¶È\n");
+	// é€šè¿‡m00è®¡ç®—è½®å»“é¢ç§¯å¹¶ä¸”å’ŒOpenCVå‡½æ•°æ¯”è¾ƒ
+	printf("\t è¾“å‡ºå†…å®¹: é¢ç§¯å’Œè½®å»“é•¿åº¦\n");
 	for(unsigned  int i = 0; i< g_vContours.size(); i++ )
 	{
-		printf(" >Í¨¹ım00¼ÆËã³öÂÖÀª[%d]µÄÃæ»ı: (M_00) = %.2f \n OpenCVº¯Êı¼ÆËã³öµÄÃæ»ı=%.2f , ³¤¶È: %.2f \n\n", 
+		printf(" >é€šè¿‡m00è®¡ç®—å‡ºè½®å»“[%d]çš„é¢ç§¯: (M_00) = %.2f \n OpenCVå‡½æ•°è®¡ç®—å‡ºçš„é¢ç§¯=%.2f , é•¿åº¦: %.2f \n\n", 
 			i, mu[i].m00, contourArea(g_vContours[i]), arcLength( g_vContours[i], true ) );
 		Scalar color = Scalar( g_rng.uniform(0, 255), g_rng.uniform(0,255), g_rng.uniform(0,255) );
 		drawContours( drawing, g_vContours, i, color, 2, 8, g_vHierarchy, 0, Point() );
@@ -105,14 +105,14 @@ void on_ThreshChange(int, void* )
 }
 
 
-//-----------------------------------¡¾ShowHelpText( )º¯Êı¡¿-----------------------------
-//		 ÃèÊö£ºÊä³öÒ»Ğ©°ïÖúĞÅÏ¢
+//-----------------------------------ã€ShowHelpText( )å‡½æ•°ã€‘-----------------------------
+//		 æè¿°ï¼šè¾“å‡ºä¸€äº›å¸®åŠ©ä¿¡æ¯
 //----------------------------------------------------------------------------------------------
 void ShowHelpText()
 {
-	//Êä³ö»¶Ó­ĞÅÏ¢ºÍOpenCV°æ±¾
-	printf("\n\n\t\t\t·Ç³£¸ĞĞ»¹ºÂò¡¶OpenCV3±à³ÌÈëÃÅ¡·Ò»Êé£¡\n");
-	printf("\n\n\t\t\t´ËÎª±¾ÊéOpenCV3°æµÄµÚ76¸öÅäÌ×Ê¾Àı³ÌĞò\n");
-	printf("\n\n\t\t\t   µ±Ç°Ê¹ÓÃµÄOpenCV°æ±¾Îª£º" CV_VERSION );
+	//è¾“å‡ºæ¬¢è¿ä¿¡æ¯å’ŒOpenCVç‰ˆæœ¬
+	printf("\n\n\t\t\téå¸¸æ„Ÿè°¢è´­ä¹°ã€ŠOpenCV3ç¼–ç¨‹å…¥é—¨ã€‹ä¸€ä¹¦ï¼\n");
+	printf("\n\n\t\t\tæ­¤ä¸ºæœ¬ä¹¦OpenCV3ç‰ˆçš„ç¬¬76ä¸ªé…å¥—ç¤ºä¾‹ç¨‹åº\n");
+	printf("\n\n\t\t\t   å½“å‰ä½¿ç”¨çš„OpenCVç‰ˆæœ¬ä¸ºï¼š" CV_VERSION );
 	printf("\n\n  ----------------------------------------------------------------------------\n");
 }

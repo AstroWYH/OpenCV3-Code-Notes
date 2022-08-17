@@ -1,17 +1,17 @@
-//--------------------------------------¡¾³ÌÐòËµÃ÷¡¿-------------------------------------------
-//		³ÌÐòËµÃ÷£º¡¶OpenCV3±à³ÌÈëÃÅ¡·OpenCV3°æÊé±¾ÅäÌ×Ê¾Àý³ÌÐò19
-//		³ÌÐòÃèÊö£º»ù´¡Í¼ÏñÈÝÆ÷MatÀàµÄÊ¹ÓÃ
-//		¿ª·¢²âÊÔËùÓÃ²Ù×÷ÏµÍ³£º Windows 7 64bit
-//		¿ª·¢²âÊÔËùÓÃIDE°æ±¾£ºVisual Studio 2010
-//		¿ª·¢²âÊÔËùÓÃOpenCV°æ±¾£º	3.0 beta
-//		2014Äê11ÔÂ Created by @Ç³Ä«_Ã«ÐÇÔÆ
-//		2014Äê12ÔÂ Revised by @Ç³Ä«_Ã«ÐÇÔÆ
+//--------------------------------------ã€ç¨‹åºè¯´æ˜Žã€‘-------------------------------------------
+//		ç¨‹åºè¯´æ˜Žï¼šã€ŠOpenCV3ç¼–ç¨‹å…¥é—¨ã€‹OpenCV3ç‰ˆä¹¦æœ¬é…å¥—ç¤ºä¾‹ç¨‹åº19
+//		ç¨‹åºæè¿°ï¼šåŸºç¡€å›¾åƒå®¹å™¨Matç±»çš„ä½¿ç”¨
+//		å¼€å‘æµ‹è¯•æ‰€ç”¨æ“ä½œç³»ç»Ÿï¼š Windows 7 64bit
+//		å¼€å‘æµ‹è¯•æ‰€ç”¨IDEç‰ˆæœ¬ï¼šVisual Studio 2010
+//		å¼€å‘æµ‹è¯•æ‰€ç”¨OpenCVç‰ˆæœ¬ï¼š	3.0 beta
+//		2014å¹´11æœˆ Created by @æµ…å¢¨_æ¯›æ˜Ÿäº‘
+//		2014å¹´12æœˆ Revised by @æµ…å¢¨_æ¯›æ˜Ÿäº‘
 //------------------------------------------------------------------------------------------------
 
 
 
-//---------------------------------¡¾Í·ÎÄ¼þ¡¢ÃüÃû¿Õ¼ä°üº¬²¿·Ö¡¿---------------------------
-//          ÃèÊö£º°üº¬³ÌÐòËùÊ¹ÓÃµÄÍ·ÎÄ¼þºÍÃüÃû¿Õ¼ä
+//---------------------------------ã€å¤´æ–‡ä»¶ã€å‘½åç©ºé—´åŒ…å«éƒ¨åˆ†ã€‘---------------------------
+//          æè¿°ï¼šåŒ…å«ç¨‹åºæ‰€ä½¿ç”¨çš„å¤´æ–‡ä»¶å’Œå‘½åç©ºé—´
 //-----------------------------------------------------------------------------------------------
 #include "opencv2/core/core.hpp"
 #include "opencv2/highgui/highgui.hpp"
@@ -21,25 +21,25 @@ using namespace cv;
 
 
 
-//-----------------------------¡¾ShowHelpText( )º¯Êý¡¿--------------------------------------
-//		ÃèÊö£ºÊä³ö°ïÖúÐÅÏ¢
+//-----------------------------ã€ShowHelpText( )å‡½æ•°ã€‘--------------------------------------
+//		æè¿°ï¼šè¾“å‡ºå¸®åŠ©ä¿¡æ¯
 //-------------------------------------------------------------------------------------------------
 static void ShowHelpText()
 {
-	//Êä³ö»¶Ó­ÐÅÏ¢ºÍOpenCV°æ±¾
-	printf("\n\n\t\t\t·Ç³£¸ÐÐ»¹ºÂò¡¶OpenCV3±à³ÌÈëÃÅ¡·Ò»Êé£¡\n");
-	printf("\n\n\t\t\t´ËÎª±¾ÊéOpenCV3°æµÄµÚ19¸öÅäÌ×Ê¾Àý³ÌÐò\n");
-	printf("\n\n\t\t\t   µ±Ç°Ê¹ÓÃµÄOpenCV°æ±¾Îª£º" CV_VERSION );
+	//è¾“å‡ºæ¬¢è¿Žä¿¡æ¯å’ŒOpenCVç‰ˆæœ¬
+	printf("\n\n\t\t\téžå¸¸æ„Ÿè°¢è´­ä¹°ã€ŠOpenCV3ç¼–ç¨‹å…¥é—¨ã€‹ä¸€ä¹¦ï¼\n");
+	printf("\n\n\t\t\tæ­¤ä¸ºæœ¬ä¹¦OpenCV3ç‰ˆçš„ç¬¬19ä¸ªé…å¥—ç¤ºä¾‹ç¨‹åº\n");
+	printf("\n\n\t\t\t   å½“å‰ä½¿ç”¨çš„OpenCVç‰ˆæœ¬ä¸ºï¼š" CV_VERSION );
 	printf("\n\n  ----------------------------------------------------------------------------\n");
 
-	//Êä³öÒ»Ð©°ïÖúÐÅÏ¢
-	printf("\n\n\n\t»¶Ó­À´µ½¡¾»ù±¾Í¼ÏñÈÝÆ÷-MatÀà¡¿Ê¾Àý³ÌÐò~\n\n"); 	
-	printf("\n\n\t³ÌÐòËµÃ÷£º\n\n\t´ËÊ¾Àý³ÌÐòÓÃÓÚÑÝÊ¾MatÀàµÄ¸ñÊ½»¯Êä³ö¹¦ÄÜ£¬Êä³ö·ç¸ñ¿ÉÎª£º");
-	printf("\n\n\n\t¡¾1¡¿OpenCVÄ¬ÈÏ·ç¸ñ");
-	printf("\n\n\t¡¾2¡¿Python·ç¸ñ");
-	printf("\n\n\t¡¾3¡¿¶ººÅ·Ö¸ô·ç¸ñ");
-	printf("\n\n\t¡¾4¡¿Numpy·ç¸ñ");
-	printf("\n\n\t¡¾5¡¿CÓïÑÔ·ç¸ñ\n\n");
+	//è¾“å‡ºä¸€äº›å¸®åŠ©ä¿¡æ¯
+	printf("\n\n\n\tæ¬¢è¿Žæ¥åˆ°ã€åŸºæœ¬å›¾åƒå®¹å™¨-Matç±»ã€‘ç¤ºä¾‹ç¨‹åº~\n\n"); 	
+	printf("\n\n\tç¨‹åºè¯´æ˜Žï¼š\n\n\tæ­¤ç¤ºä¾‹ç¨‹åºç”¨äºŽæ¼”ç¤ºMatç±»çš„æ ¼å¼åŒ–è¾“å‡ºåŠŸèƒ½ï¼Œè¾“å‡ºé£Žæ ¼å¯ä¸ºï¼š");
+	printf("\n\n\n\tã€1ã€‘OpenCVé»˜è®¤é£Žæ ¼");
+	printf("\n\n\tã€2ã€‘Pythoné£Žæ ¼");
+	printf("\n\n\tã€3ã€‘é€—å·åˆ†éš”é£Žæ ¼");
+	printf("\n\n\tã€4ã€‘Numpyé£Žæ ¼");
+	printf("\n\n\tã€5ã€‘Cè¯­è¨€é£Žæ ¼\n\n");
 	printf("\n  --------------------------------------------------------------------------\n");
 
 
@@ -47,15 +47,15 @@ static void ShowHelpText()
 }
 
 
-//--------------------------------------¡¾main( )º¯Êý¡¿-----------------------------------------
-//          ÃèÊö£º¿ØÖÆÌ¨Ó¦ÓÃ³ÌÐòµÄÈë¿Úº¯Êý£¬ÎÒÃÇµÄ³ÌÐò´ÓÕâÀï¿ªÊ¼Ö´ÐÐ
+//--------------------------------------ã€main( )å‡½æ•°ã€‘-----------------------------------------
+//          æè¿°ï¼šæŽ§åˆ¶å°åº”ç”¨ç¨‹åºçš„å…¥å£å‡½æ•°ï¼Œæˆ‘ä»¬çš„ç¨‹åºä»Žè¿™é‡Œå¼€å§‹æ‰§è¡Œ
 //-----------------------------------------------------------------------------------------------
 int main(int,char**)
 {
-	//¸Ä±ä¿ØÖÆÌ¨µÄÇ°¾°É«ºÍ±³¾°É«
+	//æ”¹å˜æŽ§åˆ¶å°çš„å‰æ™¯è‰²å’ŒèƒŒæ™¯è‰²
 	system("color 8F"); 
 
-	//ÏÔÊ¾°ïÖúÎÄ×Ö
+	//æ˜¾ç¤ºå¸®åŠ©æ–‡å­—
 	ShowHelpText();
 
 	Mat I = Mat::eye(4, 4, CV_64F);
@@ -65,40 +65,40 @@ int main(int,char**)
 	Mat r = Mat(10, 3, CV_8UC3);
 	randu(r, Scalar::all(0), Scalar::all(255));
 
-	//´Ë¶Î´úÂëµÄOpenCV2°æÎª£º
-	//cout << "r (OpenCVÄ¬ÈÏ·ç¸ñ) = " << r << ";" << endl << endl;
-	//cout << "r (Python·ç¸ñ) = " << format(r,"python") << ";" << endl << endl;
-	//cout << "r (Numpy·ç¸ñ) = " << format(r,"numpy") << ";" << endl << endl;
-	//cout << "r (¶ººÅ·Ö¸ô·ç¸ñ) = " << format(r,"csv") << ";" << endl<< endl;
-	//cout << "r (CÓïÑÔ·ç¸ñ) = " << format(r,"C") << ";" << endl << endl;
-	//´Ë¶Î´úÂëµÄOpenCV3°æÎª£º
-	cout << "r (OpenCVÄ¬ÈÏ·ç¸ñ) = " << r << ";" << endl << endl;
-	cout << "r (Python·ç¸ñ) = " << format(r, Formatter::FMT_PYTHON) << ";" << endl << endl;
-	cout << "r (Numpy·ç¸ñ) = " <<  format(r, Formatter::FMT_NUMPY )<< ";" << endl << endl;
-	cout << "r (¶ººÅ·Ö¸ô·ç¸ñ) = " << format(r, Formatter::FMT_CSV   )<< ";" << endl<< endl;
-	cout << "r (CÓïÑÔ·ç¸ñ) = " <<  format(r, Formatter::FMT_C     ) << ";" << endl << endl;
+	//æ­¤æ®µä»£ç çš„OpenCV2ç‰ˆä¸ºï¼š
+	//cout << "r (OpenCVé»˜è®¤é£Žæ ¼) = " << r << ";" << endl << endl;
+	//cout << "r (Pythoné£Žæ ¼) = " << format(r,"python") << ";" << endl << endl;
+	//cout << "r (Numpyé£Žæ ¼) = " << format(r,"numpy") << ";" << endl << endl;
+	//cout << "r (é€—å·åˆ†éš”é£Žæ ¼) = " << format(r,"csv") << ";" << endl<< endl;
+	//cout << "r (Cè¯­è¨€é£Žæ ¼) = " << format(r,"C") << ";" << endl << endl;
+	//æ­¤æ®µä»£ç çš„OpenCV3ç‰ˆä¸ºï¼š
+	cout << "r (OpenCVé»˜è®¤é£Žæ ¼) = " << r << ";" << endl << endl;
+	cout << "r (Pythoné£Žæ ¼) = " << format(r, Formatter::FMT_PYTHON) << ";" << endl << endl;
+	cout << "r (Numpyé£Žæ ¼) = " <<  format(r, Formatter::FMT_NUMPY )<< ";" << endl << endl;
+	cout << "r (é€—å·åˆ†éš”é£Žæ ¼) = " << format(r, Formatter::FMT_CSV   )<< ";" << endl<< endl;
+	cout << "r (Cè¯­è¨€é£Žæ ¼) = " <<  format(r, Formatter::FMT_C     ) << ";" << endl << endl;
 
 
 	Point2f p(6, 2);
-	cout << "¡¾2Î¬µã¡¿p = " << p << ";\n" << endl;
+	cout << "ã€2ç»´ç‚¹ã€‘p = " << p << ";\n" << endl;
 
 	Point3f p3f(8, 2, 0);
-	cout << "¡¾3Î¬µã¡¿p3f = " << p3f << ";\n" << endl;
+	cout << "ã€3ç»´ç‚¹ã€‘p3f = " << p3f << ";\n" << endl;
 
 	vector<float> v;
 	v.push_back(3);
 	v.push_back(5);
 	v.push_back(7);
 
-	cout << "¡¾»ùÓÚMatµÄvector¡¿shortvec = " << Mat(v) << ";\n"<<endl;
+	cout << "ã€åŸºäºŽMatçš„vectorã€‘shortvec = " << Mat(v) << ";\n"<<endl;
 
 	vector<Point2f> points(20);
 	for (size_t i = 0; i < points.size(); ++i)
 		points[i] = Point2f((float)(i * 5), (float)(i % 7));
 
-	cout << "¡¾¶þÎ¬µãÏòÁ¿¡¿points = " << points<<";";
+	cout << "ã€äºŒç»´ç‚¹å‘é‡ã€‘points = " << points<<";";
 
-	getchar();//°´ÈÎÒâ¼üÍË³ö
+	getchar();//æŒ‰ä»»æ„é”®é€€å‡º
 
 	return 0;
 

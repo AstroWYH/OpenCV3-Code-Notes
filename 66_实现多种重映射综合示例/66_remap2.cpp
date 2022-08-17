@@ -1,17 +1,17 @@
-//--------------------------------------¡¾³ÌÐòËµÃ÷¡¿-------------------------------------------
-//		³ÌÐòËµÃ÷£º¡¶OpenCV3±à³ÌÈëÃÅ¡·OpenCV3°æÊé±¾ÅäÌ×Ê¾Àý³ÌÐò66
-//		³ÌÐòÃèÊö£ºÊµÏÖ¶àÖÖÖØÓ³Éä×ÛºÏÊ¾Àý
-//		¿ª·¢²âÊÔËùÓÃ²Ù×÷ÏµÍ³£º Windows 7 64bit
-//		¿ª·¢²âÊÔËùÓÃIDE°æ±¾£ºVisual Studio 2010
-//		¿ª·¢²âÊÔËùÓÃOpenCV°æ±¾£º	3.0 beta
-//		2014Äê11ÔÂ Created by @Ç³Ä«_Ã«ÐÇÔÆ
-//		2014Äê12ÔÂ Revised by @Ç³Ä«_Ã«ÐÇÔÆ
+//--------------------------------------ã€ç¨‹åºè¯´æ˜Žã€‘-------------------------------------------
+//		ç¨‹åºè¯´æ˜Žï¼šã€ŠOpenCV3ç¼–ç¨‹å…¥é—¨ã€‹OpenCV3ç‰ˆä¹¦æœ¬é…å¥—ç¤ºä¾‹ç¨‹åº66
+//		ç¨‹åºæè¿°ï¼šå®žçŽ°å¤šç§é‡æ˜ å°„ç»¼åˆç¤ºä¾‹
+//		å¼€å‘æµ‹è¯•æ‰€ç”¨æ“ä½œç³»ç»Ÿï¼š Windows 7 64bit
+//		å¼€å‘æµ‹è¯•æ‰€ç”¨IDEç‰ˆæœ¬ï¼šVisual Studio 2010
+//		å¼€å‘æµ‹è¯•æ‰€ç”¨OpenCVç‰ˆæœ¬ï¼š	3.0 beta
+//		2014å¹´11æœˆ Created by @æµ…å¢¨_æ¯›æ˜Ÿäº‘
+//		2014å¹´12æœˆ Revised by @æµ…å¢¨_æ¯›æ˜Ÿäº‘
 //------------------------------------------------------------------------------------------------
 
 
 
-//---------------------------------¡¾Í·ÎÄ¼þ¡¢ÃüÃû¿Õ¼ä°üº¬²¿·Ö¡¿----------------------------
-//		ÃèÊö£º°üº¬³ÌÐòËùÊ¹ÓÃµÄÍ·ÎÄ¼þºÍÃüÃû¿Õ¼ä
+//---------------------------------ã€å¤´æ–‡ä»¶ã€å‘½åç©ºé—´åŒ…å«éƒ¨åˆ†ã€‘----------------------------
+//		æè¿°ï¼šåŒ…å«ç¨‹åºæ‰€ä½¿ç”¨çš„å¤´æ–‡ä»¶å’Œå‘½åç©ºé—´
 //------------------------------------------------------------------------------------------------
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
@@ -20,89 +20,89 @@ using namespace cv;
 using namespace std;
 
 
-//-----------------------------------¡¾ºê¶¨Òå²¿·Ö¡¿-------------------------------------------- 
-//  ÃèÊö£º¶¨ÒåÒ»Ð©¸¨Öúºê 
+//-----------------------------------ã€å®å®šä¹‰éƒ¨åˆ†ã€‘-------------------------------------------- 
+//  æè¿°ï¼šå®šä¹‰ä¸€äº›è¾…åŠ©å® 
 //------------------------------------------------------------------------------------------------ 
-#define WINDOW_NAME "¡¾³ÌÐò´°¿Ú¡¿"        //Îª´°¿Ú±êÌâ¶¨ÒåµÄºê 
+#define WINDOW_NAME "ã€ç¨‹åºçª—å£ã€‘"        //ä¸ºçª—å£æ ‡é¢˜å®šä¹‰çš„å® 
 
 
-//-----------------------------------¡¾È«¾Ö±äÁ¿ÉùÃ÷²¿·Ö¡¿--------------------------------------
-//          ÃèÊö£ºÈ«¾Ö±äÁ¿µÄÉùÃ÷
+//-----------------------------------ã€å…¨å±€å˜é‡å£°æ˜Žéƒ¨åˆ†ã€‘--------------------------------------
+//          æè¿°ï¼šå…¨å±€å˜é‡çš„å£°æ˜Ž
 //-----------------------------------------------------------------------------------------------
 Mat g_srcImage, g_dstImage;
 Mat g_map_x, g_map_y;
 
 
-//-----------------------------------¡¾È«¾Öº¯ÊýÉùÃ÷²¿·Ö¡¿--------------------------------------
-//          ÃèÊö£ºÈ«¾Öº¯ÊýµÄÉùÃ÷
+//-----------------------------------ã€å…¨å±€å‡½æ•°å£°æ˜Žéƒ¨åˆ†ã€‘--------------------------------------
+//          æè¿°ï¼šå…¨å±€å‡½æ•°çš„å£°æ˜Ž
 //-----------------------------------------------------------------------------------------------
 int update_map( int key);
-static void ShowHelpText( );//Êä³ö°ïÖúÎÄ×Ö
+static void ShowHelpText( );//è¾“å‡ºå¸®åŠ©æ–‡å­—
 
-//-----------------------------------¡¾main( )º¯Êý¡¿--------------------------------------------
-//          ÃèÊö£º¿ØÖÆÌ¨Ó¦ÓÃ³ÌÐòµÄÈë¿Úº¯Êý£¬ÎÒÃÇµÄ³ÌÐò´ÓÕâÀï¿ªÊ¼Ö´ÐÐ
+//-----------------------------------ã€main( )å‡½æ•°ã€‘--------------------------------------------
+//          æè¿°ï¼šæŽ§åˆ¶å°åº”ç”¨ç¨‹åºçš„å…¥å£å‡½æ•°ï¼Œæˆ‘ä»¬çš„ç¨‹åºä»Žè¿™é‡Œå¼€å§‹æ‰§è¡Œ
 //-----------------------------------------------------------------------------------------------
 int main( int argc, char** argv )
 {
-	//¸Ä±äconsole×ÖÌåÑÕÉ«
+	//æ”¹å˜consoleå­—ä½“é¢œè‰²
 	system("color 5F"); 
 
-	//ÏÔÊ¾°ïÖúÎÄ×Ö
+	//æ˜¾ç¤ºå¸®åŠ©æ–‡å­—
 	ShowHelpText();
 
-	//¡¾1¡¿ÔØÈëÔ­Ê¼Í¼
+	//ã€1ã€‘è½½å…¥åŽŸå§‹å›¾
 	g_srcImage = imread( "1.jpg", 1 );
-	if(!g_srcImage.data ) { printf("¶ÁÈ¡Í¼Æ¬´íÎó£¬ÇëÈ·¶¨Ä¿Â¼ÏÂÊÇ·ñÓÐimreadº¯ÊýÖ¸¶¨µÄÍ¼Æ¬´æÔÚ~£¡ \n"); return false; }  
-	imshow("Ô­Ê¼Í¼",g_srcImage);
+	if(!g_srcImage.data ) { printf("è¯»å–å›¾ç‰‡é”™è¯¯ï¼Œè¯·ç¡®å®šç›®å½•ä¸‹æ˜¯å¦æœ‰imreadå‡½æ•°æŒ‡å®šçš„å›¾ç‰‡å­˜åœ¨~ï¼ \n"); return false; }  
+	imshow("åŽŸå§‹å›¾",g_srcImage);
 
-	//¡¾2¡¿´´½¨ºÍÔ­Ê¼Í¼Ò»ÑùµÄÐ§¹ûÍ¼£¬xÖØÓ³ÉäÍ¼£¬yÖØÓ³ÉäÍ¼
+	//ã€2ã€‘åˆ›å»ºå’ŒåŽŸå§‹å›¾ä¸€æ ·çš„æ•ˆæžœå›¾ï¼Œxé‡æ˜ å°„å›¾ï¼Œyé‡æ˜ å°„å›¾
 	g_dstImage.create( g_srcImage.size(), g_srcImage.type() );
 	g_map_x.create( g_srcImage.size(), CV_32FC1 );
 	g_map_y.create( g_srcImage.size(), CV_32FC1 );
 
-	//¡¾3¡¿´´½¨´°¿Ú²¢ÏÔÊ¾
+	//ã€3ã€‘åˆ›å»ºçª—å£å¹¶æ˜¾ç¤º
 	namedWindow( WINDOW_NAME, WINDOW_AUTOSIZE );
 	imshow(WINDOW_NAME,g_srcImage);
 
-	//¡¾4¡¿ÂÖÑ¯°´¼ü£¬¸üÐÂmap_xºÍmap_yµÄÖµ£¬½øÐÐÖØÓ³Éä²Ù×÷²¢ÏÔÊ¾Ð§¹ûÍ¼
+	//ã€4ã€‘è½®è¯¢æŒ‰é”®ï¼Œæ›´æ–°map_xå’Œmap_yçš„å€¼ï¼Œè¿›è¡Œé‡æ˜ å°„æ“ä½œå¹¶æ˜¾ç¤ºæ•ˆæžœå›¾
 	while( 1 )
 	{
-		//»ñÈ¡¼üÅÌ°´¼ü  
+		//èŽ·å–é”®ç›˜æŒ‰é”®  
 		int key = waitKey(0);  
 
-		//ÅÐ¶ÏESCÊÇ·ñ°´ÏÂ£¬Èô°´ÏÂ±ãÍË³ö  
+		//åˆ¤æ–­ESCæ˜¯å¦æŒ‰ä¸‹ï¼Œè‹¥æŒ‰ä¸‹ä¾¿é€€å‡º  
 		if( (key & 255) == 27 )  
 		{  
-			cout << "³ÌÐòÍË³ö...........\n";  
+			cout << "ç¨‹åºé€€å‡º...........\n";  
 			break;  
 		}  
 
-		//¸ù¾Ý°´ÏÂµÄ¼üÅÌ°´¼üÀ´¸üÐÂ map_x & map_yµÄÖµ. È»ºóµ÷ÓÃremap( )½øÐÐÖØÓ³Éä
+		//æ ¹æ®æŒ‰ä¸‹çš„é”®ç›˜æŒ‰é”®æ¥æ›´æ–° map_x & map_yçš„å€¼. ç„¶åŽè°ƒç”¨remap( )è¿›è¡Œé‡æ˜ å°„
 		update_map(key);
-		//´Ë¾ä´úÂëµÄOpenCV2°æÎª£º
+		//æ­¤å¥ä»£ç çš„OpenCV2ç‰ˆä¸ºï¼š
 		//remap( g_srcImage, g_dstImage, g_map_x, g_map_y, CV_INTER_LINEAR, BORDER_CONSTANT, Scalar(0,0, 0) );
-		//´Ë¾ä´úÂëµÄOpenCV3°æÎª£º
+		//æ­¤å¥ä»£ç çš„OpenCV3ç‰ˆä¸ºï¼š
 		remap( g_srcImage, g_dstImage, g_map_x, g_map_y, INTER_LINEAR, BORDER_CONSTANT, Scalar(0,0, 0) );
 
-		//ÏÔÊ¾Ð§¹ûÍ¼
+		//æ˜¾ç¤ºæ•ˆæžœå›¾
 		imshow( WINDOW_NAME, g_dstImage );
 	}
 	return 0;
 }
 
-//-----------------------------------¡¾update_map( )º¯Êý¡¿--------------------------------
-//          ÃèÊö£º¸ù¾Ý°´¼üÀ´¸üÐÂmap_xÓëmap_xµÄÖµ
+//-----------------------------------ã€update_map( )å‡½æ•°ã€‘--------------------------------
+//          æè¿°ï¼šæ ¹æ®æŒ‰é”®æ¥æ›´æ–°map_xä¸Žmap_xçš„å€¼
 //----------------------------------------------------------------------------------------------
 int update_map( int key )
 {
-	//Ë«²ãÑ­»·£¬±éÀúÃ¿Ò»¸öÏñËØµã
+	//åŒå±‚å¾ªçŽ¯ï¼ŒéåŽ†æ¯ä¸€ä¸ªåƒç´ ç‚¹
 	for( int j = 0; j < g_srcImage.rows;j++)
 	{ 
 		for( int i = 0; i < g_srcImage.cols;i++)
 		{
 			switch(key)
 			{
-			case '1': // ¼üÅÌ¡¾1¡¿¼ü°´ÏÂ£¬½øÐÐµÚÒ»ÖÖÖØÓ³Éä²Ù×÷
+			case '1': // é”®ç›˜ã€1ã€‘é”®æŒ‰ä¸‹ï¼Œè¿›è¡Œç¬¬ä¸€ç§é‡æ˜ å°„æ“ä½œ
 				if( i > g_srcImage.cols*0.25 && i < g_srcImage.cols*0.75 && j > g_srcImage.rows*0.25 && j < g_srcImage.rows*0.75)
 				{
 					g_map_x.at<float>(j,i) = static_cast<float>(2*( i - g_srcImage.cols*0.25 ) + 0.5);
@@ -114,15 +114,15 @@ int update_map( int key )
 					g_map_y.at<float>(j,i) = 0;
 				}
 				break;
-			case '2':// ¼üÅÌ¡¾2¡¿¼ü°´ÏÂ£¬½øÐÐµÚ¶þÖÖÖØÓ³Éä²Ù×÷
+			case '2':// é”®ç›˜ã€2ã€‘é”®æŒ‰ä¸‹ï¼Œè¿›è¡Œç¬¬äºŒç§é‡æ˜ å°„æ“ä½œ
 				g_map_x.at<float>(j,i) = static_cast<float>(i);
 				g_map_y.at<float>(j,i) = static_cast<float>(g_srcImage.rows - j);
 				break;
-			case '3':// ¼üÅÌ¡¾3¡¿¼ü°´ÏÂ£¬½øÐÐµÚÈýÖÖÖØÓ³Éä²Ù×÷
+			case '3':// é”®ç›˜ã€3ã€‘é”®æŒ‰ä¸‹ï¼Œè¿›è¡Œç¬¬ä¸‰ç§é‡æ˜ å°„æ“ä½œ
 				g_map_x.at<float>(j,i) = static_cast<float>(g_srcImage.cols - i);
 				g_map_y.at<float>(j,i) = static_cast<float>(j);
 				break;
-			case '4':// ¼üÅÌ¡¾4¡¿¼ü°´ÏÂ£¬½øÐÐµÚËÄÖÖÖØÓ³Éä²Ù×÷
+			case '4':// é”®ç›˜ã€4ã€‘é”®æŒ‰ä¸‹ï¼Œè¿›è¡Œç¬¬å››ç§é‡æ˜ å°„æ“ä½œ
 				g_map_x.at<float>(j,i) = static_cast<float>(g_srcImage.cols - i);
 				g_map_y.at<float>(j,i) = static_cast<float>(g_srcImage.rows - j);
 				break;
@@ -132,22 +132,22 @@ int update_map( int key )
 	return 1;
 }
 
-//-----------------------------------¡¾ShowHelpText( )º¯Êý¡¿----------------------------------  
-//      ÃèÊö£ºÊä³öÒ»Ð©°ïÖúÐÅÏ¢  
+//-----------------------------------ã€ShowHelpText( )å‡½æ•°ã€‘----------------------------------  
+//      æè¿°ï¼šè¾“å‡ºä¸€äº›å¸®åŠ©ä¿¡æ¯  
 //----------------------------------------------------------------------------------------------  
 static void ShowHelpText()  
 {  
-	//Êä³ö»¶Ó­ÐÅÏ¢ºÍOpenCV°æ±¾
-	printf("\n\n\t\t\t·Ç³£¸ÐÐ»¹ºÂò¡¶OpenCV3±à³ÌÈëÃÅ¡·Ò»Êé£¡\n");
-	printf("\n\n\t\t\t´ËÎª±¾ÊéOpenCV3°æµÄµÚ66¸öÅäÌ×Ê¾Àý³ÌÐò\n");
-	printf("\n\n\t\t\t   µ±Ç°Ê¹ÓÃµÄOpenCV°æ±¾Îª£º" CV_VERSION );
+	//è¾“å‡ºæ¬¢è¿Žä¿¡æ¯å’ŒOpenCVç‰ˆæœ¬
+	printf("\n\n\t\t\téžå¸¸æ„Ÿè°¢è´­ä¹°ã€ŠOpenCV3ç¼–ç¨‹å…¥é—¨ã€‹ä¸€ä¹¦ï¼\n");
+	printf("\n\n\t\t\tæ­¤ä¸ºæœ¬ä¹¦OpenCV3ç‰ˆçš„ç¬¬66ä¸ªé…å¥—ç¤ºä¾‹ç¨‹åº\n");
+	printf("\n\n\t\t\t   å½“å‰ä½¿ç”¨çš„OpenCVç‰ˆæœ¬ä¸ºï¼š" CV_VERSION );
 	printf("\n\n  ----------------------------------------------------------------------------\n");
-	//Êä³öÒ»Ð©°ïÖúÐÅÏ¢  
-	printf("\n\t»¶Ó­À´µ½ÖØÓ³ÉäÊ¾Àý³ÌÐò~\n\n");  
-	printf( "\n\t°´¼ü²Ù×÷ËµÃ÷: \n\n"  
-		"\t\t¼üÅÌ°´¼ü¡¾ESC¡¿- ÍË³ö³ÌÐò\n"  
-		"\t\t¼üÅÌ°´¼ü¡¾1¡¿-  µÚÒ»ÖÖÓ³Éä·½Ê½\n"  
-		"\t\t¼üÅÌ°´¼ü¡¾2¡¿- µÚ¶þÖÖÓ³Éä·½Ê½\n"  
-		"\t\t¼üÅÌ°´¼ü¡¾3¡¿- µÚÈýÖÖÓ³Éä·½Ê½\n"  
-		"\t\t¼üÅÌ°´¼ü¡¾4¡¿- µÚËÄÖÖÓ³Éä·½Ê½\n" 	 );  
+	//è¾“å‡ºä¸€äº›å¸®åŠ©ä¿¡æ¯  
+	printf("\n\tæ¬¢è¿Žæ¥åˆ°é‡æ˜ å°„ç¤ºä¾‹ç¨‹åº~\n\n");  
+	printf( "\n\tæŒ‰é”®æ“ä½œè¯´æ˜Ž: \n\n"  
+		"\t\té”®ç›˜æŒ‰é”®ã€ESCã€‘- é€€å‡ºç¨‹åº\n"  
+		"\t\té”®ç›˜æŒ‰é”®ã€1ã€‘-  ç¬¬ä¸€ç§æ˜ å°„æ–¹å¼\n"  
+		"\t\té”®ç›˜æŒ‰é”®ã€2ã€‘- ç¬¬äºŒç§æ˜ å°„æ–¹å¼\n"  
+		"\t\té”®ç›˜æŒ‰é”®ã€3ã€‘- ç¬¬ä¸‰ç§æ˜ å°„æ–¹å¼\n"  
+		"\t\té”®ç›˜æŒ‰é”®ã€4ã€‘- ç¬¬å››ç§æ˜ å°„æ–¹å¼\n" 	 );  
 }  

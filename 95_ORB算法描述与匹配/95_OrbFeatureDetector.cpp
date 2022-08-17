@@ -7,89 +7,89 @@ using namespace std;
 
 
 
-//-----------------------------------¡¾ShowHelpText( )º¯Êı¡¿----------------------------------
-//          ÃèÊö£ºÊä³öÒ»Ğ©°ïÖúĞÅÏ¢
+//-----------------------------------ã€ShowHelpText( )å‡½æ•°ã€‘----------------------------------
+//          æè¿°ï¼šè¾“å‡ºä¸€äº›å¸®åŠ©ä¿¡æ¯
 //----------------------------------------------------------------------------------------------
 static void ShowHelpText()
 {
-	//Êä³ö»¶Ó­ĞÅÏ¢ºÍOpenCV°æ±¾
-	printf("\n\n\t\t\t·Ç³£¸ĞĞ»¹ºÂò¡¶OpenCV3±à³ÌÈëÃÅ¡·Ò»Êé£¡\n");
-	printf("\n\n\t\t\t´ËÎª±¾ÊéOpenCV2°æµÄµÚ72¸öÅäÌ×Ê¾Àı³ÌĞò\n");
-	printf("\n\n\t\t\t   µ±Ç°Ê¹ÓÃµÄOpenCV°æ±¾Îª£º" CV_VERSION );
+	//è¾“å‡ºæ¬¢è¿ä¿¡æ¯å’ŒOpenCVç‰ˆæœ¬
+	printf("\n\n\t\t\téå¸¸æ„Ÿè°¢è´­ä¹°ã€ŠOpenCV3ç¼–ç¨‹å…¥é—¨ã€‹ä¸€ä¹¦ï¼\n");
+	printf("\n\n\t\t\tæ­¤ä¸ºæœ¬ä¹¦OpenCV2ç‰ˆçš„ç¬¬72ä¸ªé…å¥—ç¤ºä¾‹ç¨‹åº\n");
+	printf("\n\n\t\t\t   å½“å‰ä½¿ç”¨çš„OpenCVç‰ˆæœ¬ä¸ºï¼š" CV_VERSION );
 	printf("\n\n  ----------------------------------------------------------------------------\n");
-	//Êä³öÒ»Ğ©°ïÖúĞÅÏ¢
-	printf("\n\t»¶Ó­À´µ½¡¾ORBËã·¨ÃèÊöÌáÈ¡£¬ÅäºÏFLANN-LSH½øĞĞÆ¥Åä¡¿Ê¾Àı³ÌĞò\n"); 
-	printf( "\n\n\t°´¼ü²Ù×÷ËµÃ÷: \n\n" 
-		"\t\t¼üÅÌ°´¼ü¡¾ESC¡¿- ÍË³ö³ÌĞò\n" );
+	//è¾“å‡ºä¸€äº›å¸®åŠ©ä¿¡æ¯
+	printf("\n\tæ¬¢è¿æ¥åˆ°ã€ORBç®—æ³•æè¿°æå–ï¼Œé…åˆFLANN-LSHè¿›è¡ŒåŒ¹é…ã€‘ç¤ºä¾‹ç¨‹åº\n"); 
+	printf( "\n\n\tæŒ‰é”®æ“ä½œè¯´æ˜: \n\n" 
+		"\t\té”®ç›˜æŒ‰é”®ã€ESCã€‘- é€€å‡ºç¨‹åº\n" );
 }
 
 
-//--------------------------------------¡¾main( )º¯Êı¡¿-----------------------------------------
-//          ÃèÊö£º¿ØÖÆÌ¨Ó¦ÓÃ³ÌĞòµÄÈë¿Úº¯Êı£¬ÎÒÃÇµÄ³ÌĞò´ÓÕâÀï¿ªÊ¼Ö´ĞĞ
+//--------------------------------------ã€main( )å‡½æ•°ã€‘-----------------------------------------
+//          æè¿°ï¼šæ§åˆ¶å°åº”ç”¨ç¨‹åºçš„å…¥å£å‡½æ•°ï¼Œæˆ‘ä»¬çš„ç¨‹åºä»è¿™é‡Œå¼€å§‹æ‰§è¡Œ
 //-----------------------------------------------------------------------------------------------
 int main(	) 
 {
-	//¡¾0¡¿¸Ä±äconsole×ÖÌåÑÕÉ«
+	//ã€0ã€‘æ”¹å˜consoleå­—ä½“é¢œè‰²
 	system("color 2F"); 
 
-	//¡¾0¡¿ÏÔÊ¾°ïÖúÎÄ×Ö
+	//ã€0ã€‘æ˜¾ç¤ºå¸®åŠ©æ–‡å­—
 	ShowHelpText();
 
-	//¡¾0¡¿ÔØÈëÔ´Í¼£¬ÏÔÊ¾²¢×ª»¯Îª»Ò¶ÈÍ¼
+	//ã€0ã€‘è½½å…¥æºå›¾ï¼Œæ˜¾ç¤ºå¹¶è½¬åŒ–ä¸ºç°åº¦å›¾
 	Mat srcImage = imread("1.jpg");
-	imshow("Ô­Ê¼Í¼",srcImage);
+	imshow("åŸå§‹å›¾",srcImage);
 	Mat grayImage;
 	cvtColor(srcImage, grayImage, CV_BGR2GRAY);
 
-	//------------------¼ì²âSIFTÌØÕ÷µã²¢ÔÚÍ¼ÏñÖĞÌáÈ¡ÎïÌåµÄÃèÊö·û----------------------
+	//------------------æ£€æµ‹SIFTç‰¹å¾ç‚¹å¹¶åœ¨å›¾åƒä¸­æå–ç‰©ä½“çš„æè¿°ç¬¦----------------------
 
-	//¡¾1¡¿²ÎÊı¶¨Òå
+	//ã€1ã€‘å‚æ•°å®šä¹‰
 	OrbFeatureDetector featureDetector;
 	vector<KeyPoint> keyPoints;
 	Mat descriptors;
 
-	//¡¾2¡¿µ÷ÓÃdetectº¯Êı¼ì²â³öÌØÕ÷¹Ø¼üµã£¬±£´æÔÚvectorÈİÆ÷ÖĞ
+	//ã€2ã€‘è°ƒç”¨detectå‡½æ•°æ£€æµ‹å‡ºç‰¹å¾å…³é”®ç‚¹ï¼Œä¿å­˜åœ¨vectorå®¹å™¨ä¸­
 	featureDetector.detect(grayImage, keyPoints);
 
-	//¡¾3¡¿¼ÆËãÃèÊö·û£¨ÌØÕ÷ÏòÁ¿£©
+	//ã€3ã€‘è®¡ç®—æè¿°ç¬¦ï¼ˆç‰¹å¾å‘é‡ï¼‰
 	OrbDescriptorExtractor featureExtractor;
 	featureExtractor.compute(grayImage, keyPoints, descriptors);
 
-	//¡¾4¡¿»ùÓÚFLANNµÄÃèÊö·û¶ÔÏóÆ¥Åä
+	//ã€4ã€‘åŸºäºFLANNçš„æè¿°ç¬¦å¯¹è±¡åŒ¹é…
 	flann::Index flannIndex(descriptors, flann::LshIndexParams(12, 20, 2), cvflann::FLANN_DIST_HAMMING);
 
-	//¡¾5¡¿³õÊ¼»¯ÊÓÆµ²É¼¯¶ÔÏó
+	//ã€5ã€‘åˆå§‹åŒ–è§†é¢‘é‡‡é›†å¯¹è±¡
 	VideoCapture cap(0);
 
-	unsigned int frameCount = 0;//Ö¡Êı
+	unsigned int frameCount = 0;//å¸§æ•°
 
-	//¡¾6¡¿ÂÖÑ¯£¬Ö±µ½°´ÏÂESC¼üÍË³öÑ­»·
+	//ã€6ã€‘è½®è¯¢ï¼Œç›´åˆ°æŒ‰ä¸‹ESCé”®é€€å‡ºå¾ªç¯
 	while(1)
 	{
-		double time0 = static_cast<double>(getTickCount( ));//¼ÇÂ¼ÆğÊ¼Ê±¼ä
-		Mat  captureImage, captureImage_gray;//¶¨ÒåÁ½¸öMat±äÁ¿£¬ÓÃÓÚÊÓÆµ²É¼¯
-		cap >>  captureImage;//²É¼¯ÊÓÆµÖ¡
-		if( captureImage.empty())//²É¼¯Îª¿ÕµÄ´¦Àí
+		double time0 = static_cast<double>(getTickCount( ));//è®°å½•èµ·å§‹æ—¶é—´
+		Mat  captureImage, captureImage_gray;//å®šä¹‰ä¸¤ä¸ªMatå˜é‡ï¼Œç”¨äºè§†é¢‘é‡‡é›†
+		cap >>  captureImage;//é‡‡é›†è§†é¢‘å¸§
+		if( captureImage.empty())//é‡‡é›†ä¸ºç©ºçš„å¤„ç†
 			continue;
 
-		//×ª»¯Í¼Ïñµ½»Ò¶È
-		cvtColor( captureImage, captureImage_gray, CV_BGR2GRAY);//²É¼¯µÄÊÓÆµÖ¡×ª»¯Îª»Ò¶ÈÍ¼
+		//è½¬åŒ–å›¾åƒåˆ°ç°åº¦
+		cvtColor( captureImage, captureImage_gray, CV_BGR2GRAY);//é‡‡é›†çš„è§†é¢‘å¸§è½¬åŒ–ä¸ºç°åº¦å›¾
 
-		//¡¾7¡¿¼ì²âSIFT¹Ø¼üµã²¢ÌáÈ¡²âÊÔÍ¼ÏñÖĞµÄÃèÊö·û
+		//ã€7ã€‘æ£€æµ‹SIFTå…³é”®ç‚¹å¹¶æå–æµ‹è¯•å›¾åƒä¸­çš„æè¿°ç¬¦
 		vector<KeyPoint> captureKeyPoints;
 		Mat captureDescription;
 
-		//¡¾8¡¿µ÷ÓÃdetectº¯Êı¼ì²â³öÌØÕ÷¹Ø¼üµã£¬±£´æÔÚvectorÈİÆ÷ÖĞ
+		//ã€8ã€‘è°ƒç”¨detectå‡½æ•°æ£€æµ‹å‡ºç‰¹å¾å…³é”®ç‚¹ï¼Œä¿å­˜åœ¨vectorå®¹å™¨ä¸­
 		featureDetector.detect(captureImage_gray, captureKeyPoints);
 
-		//¡¾9¡¿¼ÆËãÃèÊö·û
+		//ã€9ã€‘è®¡ç®—æè¿°ç¬¦
 		featureExtractor.compute(captureImage_gray, captureKeyPoints, captureDescription);
 
-		//¡¾10¡¿Æ¥ÅäºÍ²âÊÔÃèÊö·û£¬»ñÈ¡Á½¸ö×îÁÚ½üµÄÃèÊö·û
+		//ã€10ã€‘åŒ¹é…å’Œæµ‹è¯•æè¿°ç¬¦ï¼Œè·å–ä¸¤ä¸ªæœ€é‚»è¿‘çš„æè¿°ç¬¦
 		Mat matchIndex(captureDescription.rows, 2, CV_32SC1), matchDistance(captureDescription.rows, 2, CV_32FC1);
-		flannIndex.knnSearch(captureDescription, matchIndex, matchDistance, 2, flann::SearchParams());//µ÷ÓÃKÁÚ½üËã·¨
+		flannIndex.knnSearch(captureDescription, matchIndex, matchDistance, 2, flann::SearchParams());//è°ƒç”¨Ké‚»è¿‘ç®—æ³•
 
-		//¡¾11¡¿¸ù¾İÀÍÊÏËã·¨£¨Lowe's algorithm£©Ñ¡³öÓÅĞãµÄÆ¥Åä
+		//ã€11ã€‘æ ¹æ®åŠ³æ°ç®—æ³•ï¼ˆLowe's algorithmï¼‰é€‰å‡ºä¼˜ç§€çš„åŒ¹é…
 		vector<DMatch> goodMatches;
 		for(int i = 0; i < matchDistance.rows; i++) 
 		{
@@ -100,15 +100,15 @@ int main(	)
 			}
 		}
 
-		//¡¾12¡¿»æÖÆ²¢ÏÔÊ¾Æ¥Åä´°¿Ú
+		//ã€12ã€‘ç»˜åˆ¶å¹¶æ˜¾ç¤ºåŒ¹é…çª—å£
 		Mat resultImage;
 		drawMatches( captureImage, captureKeyPoints, srcImage, keyPoints, goodMatches, resultImage);
-		imshow("Æ¥Åä´°¿Ú", resultImage);
+		imshow("åŒ¹é…çª—å£", resultImage);
 
-		//¡¾13¡¿ÏÔÊ¾Ö¡ÂÊ
-		cout << ">Ö¡ÂÊ= " << getTickFrequency() / (getTickCount() - time0) << endl;
+		//ã€13ã€‘æ˜¾ç¤ºå¸§ç‡
+		cout << ">å¸§ç‡= " << getTickFrequency() / (getTickCount() - time0) << endl;
 
-		//°´ÏÂESC¼ü£¬Ôò³ÌĞòÍË³ö
+		//æŒ‰ä¸‹ESCé”®ï¼Œåˆ™ç¨‹åºé€€å‡º
 		if(char(waitKey(1)) == 27) break;
 	}
 

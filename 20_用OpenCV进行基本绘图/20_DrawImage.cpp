@@ -1,87 +1,87 @@
-//--------------------------------------¡¾³ÌÐòËµÃ÷¡¿-------------------------------------------
-//		³ÌÐòËµÃ÷£º¡¶OpenCV3±à³ÌÈëÃÅ¡·OpenCV3°æÊé±¾ÅäÌ×Ê¾Àý³ÌÐò20
-//		³ÌÐòÃèÊö£ºÊ¹ÓÃOpenCV½øÐÐ»ù±¾µÄ»æÍ¼²Ù×÷
-//		¿ª·¢²âÊÔËùÓÃ²Ù×÷ÏµÍ³£º Windows 7 64bit
-//		¿ª·¢²âÊÔËùÓÃIDE°æ±¾£ºVisual Studio 2010
-//		¿ª·¢²âÊÔËùÓÃOpenCV°æ±¾£º	3.0 beta
-//		2014Äê11ÔÂ Created by @Ç³Ä«_Ã«ÐÇÔÆ
-//		2014Äê12ÔÂ Revised by @Ç³Ä«_Ã«ÐÇÔÆ
+//--------------------------------------ã€ç¨‹åºè¯´æ˜Žã€‘-------------------------------------------
+//		ç¨‹åºè¯´æ˜Žï¼šã€ŠOpenCV3ç¼–ç¨‹å…¥é—¨ã€‹OpenCV3ç‰ˆä¹¦æœ¬é…å¥—ç¤ºä¾‹ç¨‹åº20
+//		ç¨‹åºæè¿°ï¼šä½¿ç”¨OpenCVè¿›è¡ŒåŸºæœ¬çš„ç»˜å›¾æ“ä½œ
+//		å¼€å‘æµ‹è¯•æ‰€ç”¨æ“ä½œç³»ç»Ÿï¼š Windows 7 64bit
+//		å¼€å‘æµ‹è¯•æ‰€ç”¨IDEç‰ˆæœ¬ï¼šVisual Studio 2010
+//		å¼€å‘æµ‹è¯•æ‰€ç”¨OpenCVç‰ˆæœ¬ï¼š	3.0 beta
+//		2014å¹´11æœˆ Created by @æµ…å¢¨_æ¯›æ˜Ÿäº‘
+//		2014å¹´12æœˆ Revised by @æµ…å¢¨_æ¯›æ˜Ÿäº‘
 //------------------------------------------------------------------------------------------------
 
 
-//---------------------------------¡¾Í·ÎÄ¼þ¡¢ÃüÃû¿Õ¼ä°üº¬²¿·Ö¡¿----------------------------
-//          ÃèÊö£º°üº¬³ÌÐòËùÊ¹ÓÃµÄÍ·ÎÄ¼þºÍÃüÃû¿Õ¼ä
+//---------------------------------ã€å¤´æ–‡ä»¶ã€å‘½åç©ºé—´åŒ…å«éƒ¨åˆ†ã€‘----------------------------
+//          æè¿°ï¼šåŒ…å«ç¨‹åºæ‰€ä½¿ç”¨çš„å¤´æ–‡ä»¶å’Œå‘½åç©ºé—´
 //------------------------------------------------------------------------------------------------
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 using namespace cv;
 
-//´Ë³ÌÐò¶ÔÓÚOpenCV3°æÐèÒª¶îÍâ°üº¬Í·ÎÄ¼þ£º
+//æ­¤ç¨‹åºå¯¹äºŽOpenCV3ç‰ˆéœ€è¦é¢å¤–åŒ…å«å¤´æ–‡ä»¶ï¼š
 #include <opencv2/imgproc/imgproc.hpp>
 
 
 
-//-----------------------------------¡¾ºê¶¨Òå²¿·Ö¡¿-------------------------------------------- 
-//		ÃèÊö£º¶¨ÒåÒ»Ð©¸¨Öúºê 
+//-----------------------------------ã€å®å®šä¹‰éƒ¨åˆ†ã€‘-------------------------------------------- 
+//		æè¿°ï¼šå®šä¹‰ä¸€äº›è¾…åŠ©å® 
 //------------------------------------------------------------------------------------------------ 
-#define WINDOW_NAME1 "¡¾»æÖÆÍ¼1¡¿"        //Îª´°¿Ú±êÌâ¶¨ÒåµÄºê 
-#define WINDOW_NAME2 "¡¾»æÖÆÍ¼2¡¿"        //Îª´°¿Ú±êÌâ¶¨ÒåµÄºê 
-#define WINDOW_WIDTH 600//¶¨Òå´°¿Ú´óÐ¡µÄºê
+#define WINDOW_NAME1 "ã€ç»˜åˆ¶å›¾1ã€‘"        //ä¸ºçª—å£æ ‡é¢˜å®šä¹‰çš„å® 
+#define WINDOW_NAME2 "ã€ç»˜åˆ¶å›¾2ã€‘"        //ä¸ºçª—å£æ ‡é¢˜å®šä¹‰çš„å® 
+#define WINDOW_WIDTH 600//å®šä¹‰çª—å£å¤§å°çš„å®
 
 
 
-//--------------------------------¡¾È«¾Öº¯ÊýÉùÃ÷²¿·Ö¡¿-------------------------------------
-//		ÃèÊö£ºÈ«¾Öº¯ÊýÉùÃ÷
+//--------------------------------ã€å…¨å±€å‡½æ•°å£°æ˜Žéƒ¨åˆ†ã€‘-------------------------------------
+//		æè¿°ï¼šå…¨å±€å‡½æ•°å£°æ˜Ž
 //-----------------------------------------------------------------------------------------------
-void DrawEllipse( Mat img, double angle );//»æÖÆÍÖÔ²
-void DrawFilledCircle( Mat img, Point center );//»æÖÆÔ²
-void DrawPolygon( Mat img );//»æÖÆ¶à±ßÐÎ
-void DrawLine( Mat img, Point start, Point end );//»æÖÆÏß¶Î
+void DrawEllipse( Mat img, double angle );//ç»˜åˆ¶æ¤­åœ†
+void DrawFilledCircle( Mat img, Point center );//ç»˜åˆ¶åœ†
+void DrawPolygon( Mat img );//ç»˜åˆ¶å¤šè¾¹å½¢
+void DrawLine( Mat img, Point start, Point end );//ç»˜åˆ¶çº¿æ®µ
 
 
 
-//-----------------------------------¡¾ShowHelpText( )º¯Êý¡¿----------------------------------
-//          ÃèÊö£ºÊä³öÒ»Ð©°ïÖúÐÅÏ¢
+//-----------------------------------ã€ShowHelpText( )å‡½æ•°ã€‘----------------------------------
+//          æè¿°ï¼šè¾“å‡ºä¸€äº›å¸®åŠ©ä¿¡æ¯
 //----------------------------------------------------------------------------------------------
 void ShowHelpText()
 {
-	//Êä³ö»¶Ó­ÐÅÏ¢ºÍOpenCV°æ±¾
-	printf("\n\n\t\t\t·Ç³£¸ÐÐ»¹ºÂò¡¶OpenCV3±à³ÌÈëÃÅ¡·Ò»Êé£¡\n");
-	printf("\n\n\t\t\t´ËÎª±¾ÊéOpenCV3°æµÄµÚ20¸öÅäÌ×Ê¾Àý³ÌÐò\n");
-	printf("\n\n\t\t\t   µ±Ç°Ê¹ÓÃµÄOpenCV°æ±¾Îª£º" CV_VERSION );
+	//è¾“å‡ºæ¬¢è¿Žä¿¡æ¯å’ŒOpenCVç‰ˆæœ¬
+	printf("\n\n\t\t\téžå¸¸æ„Ÿè°¢è´­ä¹°ã€ŠOpenCV3ç¼–ç¨‹å…¥é—¨ã€‹ä¸€ä¹¦ï¼\n");
+	printf("\n\n\t\t\tæ­¤ä¸ºæœ¬ä¹¦OpenCV3ç‰ˆçš„ç¬¬20ä¸ªé…å¥—ç¤ºä¾‹ç¨‹åº\n");
+	printf("\n\n\t\t\t   å½“å‰ä½¿ç”¨çš„OpenCVç‰ˆæœ¬ä¸ºï¼š" CV_VERSION );
 	printf("\n\n  ----------------------------------------------------------------------------\n");
 }
 
 
 
 
-//---------------------------------------¡¾main( )º¯Êý¡¿--------------------------------------
-//		ÃèÊö£º¿ØÖÆÌ¨Ó¦ÓÃ³ÌÐòµÄÈë¿Úº¯Êý£¬ÎÒÃÇµÄ³ÌÐò´ÓÕâÀï¿ªÊ¼Ö´ÐÐ
+//---------------------------------------ã€main( )å‡½æ•°ã€‘--------------------------------------
+//		æè¿°ï¼šæŽ§åˆ¶å°åº”ç”¨ç¨‹åºçš„å…¥å£å‡½æ•°ï¼Œæˆ‘ä»¬çš„ç¨‹åºä»Žè¿™é‡Œå¼€å§‹æ‰§è¡Œ
 //-----------------------------------------------------------------------------------------------
 int main( void )
 {
 
-	// ´´½¨¿Õ°×µÄMatÍ¼Ïñ
+	// åˆ›å»ºç©ºç™½çš„Matå›¾åƒ
 	Mat atomImage = Mat::zeros( WINDOW_WIDTH, WINDOW_WIDTH, CV_8UC3 );
 	Mat rookImage = Mat::zeros( WINDOW_WIDTH, WINDOW_WIDTH, CV_8UC3 );
 
 	ShowHelpText();
-	// ---------------------<1>»æÖÆ»¯Ñ§ÖÐµÄÔ­×ÓÊ¾ÀýÍ¼------------------------
+	// ---------------------<1>ç»˜åˆ¶åŒ–å­¦ä¸­çš„åŽŸå­ç¤ºä¾‹å›¾------------------------
 
-	//¡¾1.1¡¿ÏÈ»æÖÆ³öÍÖÔ²
+	//ã€1.1ã€‘å…ˆç»˜åˆ¶å‡ºæ¤­åœ†
 	DrawEllipse( atomImage, 90 );
 	DrawEllipse( atomImage, 0 );
 	DrawEllipse( atomImage, 45 );
 	DrawEllipse( atomImage, -45 );
 
-	//¡¾1.2¡¿ÔÙ»æÖÆÔ²ÐÄ
+	//ã€1.2ã€‘å†ç»˜åˆ¶åœ†å¿ƒ
 	DrawFilledCircle( atomImage, Point( WINDOW_WIDTH/2, WINDOW_WIDTH/2) );
 
-	// ----------------------------<2>»æÖÆ×éºÏÍ¼-----------------------------
-	//¡¾2.1¡¿ÏÈ»æÖÆ³öÍÖÔ²
+	// ----------------------------<2>ç»˜åˆ¶ç»„åˆå›¾-----------------------------
+	//ã€2.1ã€‘å…ˆç»˜åˆ¶å‡ºæ¤­åœ†
 	DrawPolygon( rookImage );
 
-	// ¡¾2.2¡¿»æÖÆ¾ØÐÎ
+	// ã€2.2ã€‘ç»˜åˆ¶çŸ©å½¢
 	rectangle( rookImage,
 		Point( 0, 7*WINDOW_WIDTH/8 ),
 		Point( WINDOW_WIDTH, WINDOW_WIDTH),
@@ -89,13 +89,13 @@ int main( void )
 		-1,
 		8 );
 
-	// ¡¾2.3¡¿»æÖÆÒ»Ð©Ïß¶Î
+	// ã€2.3ã€‘ç»˜åˆ¶ä¸€äº›çº¿æ®µ
 	DrawLine( rookImage, Point( 0, 15*WINDOW_WIDTH/16 ), Point( WINDOW_WIDTH, 15*WINDOW_WIDTH/16 ) );
 	DrawLine( rookImage, Point( WINDOW_WIDTH/4, 7*WINDOW_WIDTH/8 ), Point( WINDOW_WIDTH/4, WINDOW_WIDTH ) );
 	DrawLine( rookImage, Point( WINDOW_WIDTH/2, 7*WINDOW_WIDTH/8 ), Point( WINDOW_WIDTH/2, WINDOW_WIDTH ) );
 	DrawLine( rookImage, Point( 3*WINDOW_WIDTH/4, 7*WINDOW_WIDTH/8 ), Point( 3*WINDOW_WIDTH/4, WINDOW_WIDTH ) );
 
-	// ---------------------------<3>ÏÔÊ¾»æÖÆ³öµÄÍ¼Ïñ------------------------
+	// ---------------------------<3>æ˜¾ç¤ºç»˜åˆ¶å‡ºçš„å›¾åƒ------------------------
 	imshow( WINDOW_NAME1, atomImage );
 	moveWindow( WINDOW_NAME1, 0, 200 );
 	imshow( WINDOW_NAME2, rookImage );
@@ -107,8 +107,8 @@ int main( void )
 
 
 
-//-------------------------------¡¾DrawEllipse( )º¯Êý¡¿--------------------------------
-//		ÃèÊö£º×Ô¶¨ÒåµÄ»æÖÆº¯Êý£¬ÊµÏÖÁË»æÖÆ²»Í¬½Ç¶È¡¢ÏàÍ¬³ß´çµÄÍÖÔ²
+//-------------------------------ã€DrawEllipse( )å‡½æ•°ã€‘--------------------------------
+//		æè¿°ï¼šè‡ªå®šä¹‰çš„ç»˜åˆ¶å‡½æ•°ï¼Œå®žçŽ°äº†ç»˜åˆ¶ä¸åŒè§’åº¦ã€ç›¸åŒå°ºå¯¸çš„æ¤­åœ†
 //-----------------------------------------------------------------------------------------
 void DrawEllipse( Mat img, double angle )
 {
@@ -127,8 +127,8 @@ void DrawEllipse( Mat img, double angle )
 }
 
 
-//-----------------------------------¡¾DrawFilledCircle( )º¯Êý¡¿---------------------------
-//		ÃèÊö£º×Ô¶¨ÒåµÄ»æÖÆº¯Êý£¬ÊµÏÖÁËÊµÐÄÔ²µÄ»æÖÆ
+//-----------------------------------ã€DrawFilledCircle( )å‡½æ•°ã€‘---------------------------
+//		æè¿°ï¼šè‡ªå®šä¹‰çš„ç»˜åˆ¶å‡½æ•°ï¼Œå®žçŽ°äº†å®žå¿ƒåœ†çš„ç»˜åˆ¶
 //-----------------------------------------------------------------------------------------
 void DrawFilledCircle( Mat img, Point center )
 {
@@ -144,14 +144,14 @@ void DrawFilledCircle( Mat img, Point center )
 }
 
 
-//-----------------------------------¡¾DrawPolygon( )º¯Êý¡¿--------------------------
-//		ÃèÊö£º×Ô¶¨ÒåµÄ»æÖÆº¯Êý£¬ÊµÏÖÁË°¼¶à±ßÐÎµÄ»æÖÆ
+//-----------------------------------ã€DrawPolygon( )å‡½æ•°ã€‘--------------------------
+//		æè¿°ï¼šè‡ªå®šä¹‰çš„ç»˜åˆ¶å‡½æ•°ï¼Œå®žçŽ°äº†å‡¹å¤šè¾¹å½¢çš„ç»˜åˆ¶
 //--------------------------------------------------------------------------------------
 void DrawPolygon( Mat img )
 {
 	int lineType = 8;
 
-	//´´½¨Ò»Ð©µã
+	//åˆ›å»ºä¸€äº›ç‚¹
 	Point rookPoints[1][20];
 	rookPoints[0][0]  = Point(    WINDOW_WIDTH/4,   7*WINDOW_WIDTH/8 );
 	rookPoints[0][1]  = Point(  3*WINDOW_WIDTH/4,   7*WINDOW_WIDTH/8 );
@@ -186,8 +186,8 @@ void DrawPolygon( Mat img )
 }
 
 
-//-----------------------------------¡¾DrawLine( )º¯Êý¡¿--------------------------
-//		ÃèÊö£º×Ô¶¨ÒåµÄ»æÖÆº¯Êý£¬ÊµÏÖÁËÏßµÄ»æÖÆ
+//-----------------------------------ã€DrawLine( )å‡½æ•°ã€‘--------------------------
+//		æè¿°ï¼šè‡ªå®šä¹‰çš„ç»˜åˆ¶å‡½æ•°ï¼Œå®žçŽ°äº†çº¿çš„ç»˜åˆ¶
 //---------------------------------------------------------------------------------
 void DrawLine( Mat img, Point start, Point end )
 {

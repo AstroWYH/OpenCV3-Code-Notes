@@ -8,59 +8,59 @@ using namespace cv;
 using namespace std;
 
 
-//-----------------------------------¡¾È«¾Öº¯ÊıÉùÃ÷²¿·Ö¡¿--------------------------------------    
-//      ÃèÊö£ºÈ«¾Öº¯ÊıÉùÃ÷    
+//-----------------------------------ã€å…¨å±€å‡½æ•°å£°æ˜éƒ¨åˆ†ã€‘--------------------------------------    
+//      æè¿°ï¼šå…¨å±€å‡½æ•°å£°æ˜    
 //----------------------------------------------------------------------------------------------- 
 static void ShowHelpText( );
 
 
-//-----------------------------------¡¾main( )º¯Êı¡¿--------------------------------------------
-//   ÃèÊö£º¿ØÖÆÌ¨Ó¦ÓÃ³ÌĞòµÄÈë¿Úº¯Êı£¬ÎÒÃÇµÄ³ÌĞò´ÓÕâÀï¿ªÊ¼Ö´ĞĞ
+//-----------------------------------ã€main( )å‡½æ•°ã€‘--------------------------------------------
+//   æè¿°ï¼šæ§åˆ¶å°åº”ç”¨ç¨‹åºçš„å…¥å£å‡½æ•°ï¼Œæˆ‘ä»¬çš„ç¨‹åºä»è¿™é‡Œå¼€å§‹æ‰§è¡Œ
 //-----------------------------------------------------------------------------------------------
 int main( int argc, char** argv )
 {
-	//¡¾0¡¿¸Ä±äconsole×ÖÌåÑÕÉ«    
+	//ã€0ã€‘æ”¹å˜consoleå­—ä½“é¢œè‰²    
 	system("color 4F");    
 
-	//¡¾0¡¿ÏÔÊ¾°ïÖúÎÄ×Ö  
+	//ã€0ã€‘æ˜¾ç¤ºå¸®åŠ©æ–‡å­—  
 	ShowHelpText();  
 
-	//¡¾1¡¿ÔØÈëÔ´Í¼Æ¬
+	//ã€1ã€‘è½½å…¥æºå›¾ç‰‡
 	Mat img_1 = imread("1.jpg", 1 );
 	Mat img_2 = imread( "2.jpg", 1 );
-	if( !img_1.data || !img_2.data ) { printf("¶ÁÈ¡Í¼Æ¬image0´íÎó~£¡ \n"); return false; }  
+	if( !img_1.data || !img_2.data ) { printf("è¯»å–å›¾ç‰‡image0é”™è¯¯~ï¼ \n"); return false; }  
 
-	//¡¾2¡¿ÀûÓÃSURF¼ì²âÆ÷¼ì²âµÄ¹Ø¼üµã
+	//ã€2ã€‘åˆ©ç”¨SURFæ£€æµ‹å™¨æ£€æµ‹çš„å…³é”®ç‚¹
 	int minHessian = 300;
 	SURF detector( minHessian );
 	std::vector<KeyPoint> keypoints_1, keypoints_2;
 	detector.detect( img_1, keypoints_1 );
 	detector.detect( img_2, keypoints_2 );
 
-	//¡¾3¡¿¼ÆËãÃèÊö·û£¨ÌØÕ÷ÏòÁ¿£©
+	//ã€3ã€‘è®¡ç®—æè¿°ç¬¦ï¼ˆç‰¹å¾å‘é‡ï¼‰
 	SURF extractor;
 	Mat descriptors_1, descriptors_2;
 	extractor.compute( img_1, keypoints_1, descriptors_1 );
 	extractor.compute( img_2, keypoints_2, descriptors_2 );
 
-	//¡¾4¡¿²ÉÓÃFLANNËã·¨Æ¥ÅäÃèÊö·ûÏòÁ¿
+	//ã€4ã€‘é‡‡ç”¨FLANNç®—æ³•åŒ¹é…æè¿°ç¬¦å‘é‡
 	FlannBasedMatcher matcher;
 	std::vector< DMatch > matches;
 	matcher.match( descriptors_1, descriptors_2, matches );
 	double max_dist = 0; double min_dist = 100;
 
-	//¡¾5¡¿¿ìËÙ¼ÆËã¹Ø¼üµãÖ®¼äµÄ×î´óºÍ×îĞ¡¾àÀë
+	//ã€5ã€‘å¿«é€Ÿè®¡ç®—å…³é”®ç‚¹ä¹‹é—´çš„æœ€å¤§å’Œæœ€å°è·ç¦»
 	for( int i = 0; i < descriptors_1.rows; i++ )
 	{
 		double dist = matches[i].distance;
 		if( dist < min_dist ) min_dist = dist;
 		if( dist > max_dist ) max_dist = dist;
 	}
-	//Êä³ö¾àÀëĞÅÏ¢
-	printf("> ×î´ó¾àÀë£¨Max dist£© : %f \n", max_dist );
-	printf("> ×îĞ¡¾àÀë£¨Min dist£© : %f \n", min_dist );
+	//è¾“å‡ºè·ç¦»ä¿¡æ¯
+	printf("> æœ€å¤§è·ç¦»ï¼ˆMax distï¼‰ : %f \n", max_dist );
+	printf("> æœ€å°è·ç¦»ï¼ˆMin distï¼‰ : %f \n", min_dist );
 
-	//¡¾6¡¿´æÏÂ·ûºÏÌõ¼şµÄÆ¥Åä½á¹û£¨¼´Æä¾àÀëĞ¡ÓÚ2* min_distµÄ£©£¬Ê¹ÓÃradiusMatchÍ¬Ñù¿ÉĞĞ
+	//ã€6ã€‘å­˜ä¸‹ç¬¦åˆæ¡ä»¶çš„åŒ¹é…ç»“æœï¼ˆå³å…¶è·ç¦»å°äº2* min_distçš„ï¼‰ï¼Œä½¿ç”¨radiusMatchåŒæ ·å¯è¡Œ
 	std::vector< DMatch > good_matches;
 	for( int i = 0; i < descriptors_1.rows; i++ )
 	{ 
@@ -68,37 +68,37 @@ int main( int argc, char** argv )
 		{ good_matches.push_back( matches[i]); }
 	}
 
-	//¡¾7¡¿»æÖÆ³ö·ûºÏÌõ¼şµÄÆ¥Åäµã
+	//ã€7ã€‘ç»˜åˆ¶å‡ºç¬¦åˆæ¡ä»¶çš„åŒ¹é…ç‚¹
 	Mat img_matches;
 	drawMatches( img_1, keypoints_1, img_2, keypoints_2,
 		good_matches, img_matches, Scalar::all(-1), Scalar::all(-1),
 		vector<char>(), DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS );
 
-	//¡¾8¡¿Êä³öÏà¹ØÆ¥ÅäµãĞÅÏ¢
+	//ã€8ã€‘è¾“å‡ºç›¸å…³åŒ¹é…ç‚¹ä¿¡æ¯
 	for( int i = 0; i < good_matches.size(); i++ )
-	{ printf( ">·ûºÏÌõ¼şµÄÆ¥Åäµã [%d] ÌØÕ÷µã1: %d  -- ÌØÕ÷µã2: %d  \n", i, good_matches[i].queryIdx, good_matches[i].trainIdx ); }
+	{ printf( ">ç¬¦åˆæ¡ä»¶çš„åŒ¹é…ç‚¹ [%d] ç‰¹å¾ç‚¹1: %d  -- ç‰¹å¾ç‚¹2: %d  \n", i, good_matches[i].queryIdx, good_matches[i].trainIdx ); }
 
-	//¡¾9¡¿ÏÔÊ¾Ğ§¹ûÍ¼
-	imshow( "Æ¥ÅäĞ§¹ûÍ¼", img_matches );
+	//ã€9ã€‘æ˜¾ç¤ºæ•ˆæœå›¾
+	imshow( "åŒ¹é…æ•ˆæœå›¾", img_matches );
 
-	//°´ÈÎÒâ¼üÍË³ö³ÌĞò
+	//æŒ‰ä»»æ„é”®é€€å‡ºç¨‹åº
 	waitKey(0);
 	return 0;
 }
 
-//-----------------------------------¡¾ShowHelpText( )º¯Êı¡¿----------------------------------
-//          ÃèÊö£ºÊä³öÒ»Ğ©°ïÖúĞÅÏ¢
+//-----------------------------------ã€ShowHelpText( )å‡½æ•°ã€‘----------------------------------
+//          æè¿°ï¼šè¾“å‡ºä¸€äº›å¸®åŠ©ä¿¡æ¯
 //----------------------------------------------------------------------------------------------
 void ShowHelpText()
 { 
-	//Êä³ö»¶Ó­ĞÅÏ¢ºÍOpenCV°æ±¾
-	printf("\n\n\t\t\t·Ç³£¸ĞĞ»¹ºÂò¡¶OpenCV3±à³ÌÈëÃÅ¡·Ò»Êé£¡\n");
-	printf("\n\n\t\t\t´ËÎª±¾ÊéOpenCV2°æµÄµÚ91¸öÅäÌ×Ê¾Àı³ÌĞò\n");
-	printf("\n\n\t\t\t   µ±Ç°Ê¹ÓÃµÄOpenCV°æ±¾Îª£º" CV_VERSION );
+	//è¾“å‡ºæ¬¢è¿ä¿¡æ¯å’ŒOpenCVç‰ˆæœ¬
+	printf("\n\n\t\t\téå¸¸æ„Ÿè°¢è´­ä¹°ã€ŠOpenCV3ç¼–ç¨‹å…¥é—¨ã€‹ä¸€ä¹¦ï¼\n");
+	printf("\n\n\t\t\tæ­¤ä¸ºæœ¬ä¹¦OpenCV2ç‰ˆçš„ç¬¬91ä¸ªé…å¥—ç¤ºä¾‹ç¨‹åº\n");
+	printf("\n\n\t\t\t   å½“å‰ä½¿ç”¨çš„OpenCVç‰ˆæœ¬ä¸ºï¼š" CV_VERSION );
 	printf("\n\n  ----------------------------------------------------------------------------\n");
-	//Êä³öÒ»Ğ©°ïÖúĞÅÏ¢  
-	printf("\n\t»¶Ó­À´µ½¡¾FLNNÌØÕ÷Æ¥Åä¡¿Ê¾Àı³ÌĞò\n\n");    
-	printf( "\n\n\t°´¼ü²Ù×÷ËµÃ÷: \n\n"     
-		"\t\t¼üÅÌ°´¼üÈÎÒâ¼ü- ÍË³ö³ÌĞò\n\n" );
+	//è¾“å‡ºä¸€äº›å¸®åŠ©ä¿¡æ¯  
+	printf("\n\tæ¬¢è¿æ¥åˆ°ã€FLNNç‰¹å¾åŒ¹é…ã€‘ç¤ºä¾‹ç¨‹åº\n\n");    
+	printf( "\n\n\tæŒ‰é”®æ“ä½œè¯´æ˜: \n\n"     
+		"\t\té”®ç›˜æŒ‰é”®ä»»æ„é”®- é€€å‡ºç¨‹åº\n\n" );
 
 }

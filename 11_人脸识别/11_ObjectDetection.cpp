@@ -1,10 +1,10 @@
-//--------------------------------------¡¾³ÌĞòËµÃ÷¡¿-------------------------------------------
-//		³ÌĞòËµÃ÷£º¡¶OpenCV3±à³ÌÈëÃÅ¡·OpenCV3°æÊé±¾ÅäÌ×Ê¾Àı³ÌĞò11
-//		³ÌĞòÃèÊö£ºÀ´×ÔOpenCV°²×°Ä¿Â¼ÏÂSamplesÎÄ¼ş¼ĞÖĞµÄ¹Ù·½Ê¾Àı³ÌĞò-ÈËÁ³Ê¶±ğ
-//		²âÊÔËùÓÃ²Ù×÷ÏµÍ³£º Windows 7 64bit
-//		²âÊÔËùÓÃIDE°æ±¾£ºVisual Studio 2010
-//		²âÊÔËùÓÃOpenCV°æ±¾£º	3.0 beta
-//		2014Äê11ÔÂ Revised by @Ç³Ä«_Ã«ĞÇÔÆ
+//--------------------------------------ã€ç¨‹åºè¯´æ˜ã€‘-------------------------------------------
+//		ç¨‹åºè¯´æ˜ï¼šã€ŠOpenCV3ç¼–ç¨‹å…¥é—¨ã€‹OpenCV3ç‰ˆä¹¦æœ¬é…å¥—ç¤ºä¾‹ç¨‹åº11
+//		ç¨‹åºæè¿°ï¼šæ¥è‡ªOpenCVå®‰è£…ç›®å½•ä¸‹Samplesæ–‡ä»¶å¤¹ä¸­çš„å®˜æ–¹ç¤ºä¾‹ç¨‹åº-äººè„¸è¯†åˆ«
+//		æµ‹è¯•æ‰€ç”¨æ“ä½œç³»ç»Ÿï¼š Windows 7 64bit
+//		æµ‹è¯•æ‰€ç”¨IDEç‰ˆæœ¬ï¼šVisual Studio 2010
+//		æµ‹è¯•æ‰€ç”¨OpenCVç‰ˆæœ¬ï¼š	3.0 beta
+//		2014å¹´11æœˆ Revised by @æµ…å¢¨_æ¯›æ˜Ÿäº‘
 //------------------------------------------------------------------------------------------------
 
 
@@ -14,8 +14,8 @@
  * @brief A simplified version of facedetect.cpp, show how to load a cascade classifier and how to find objects (Face + eyes) in a video stream
  */
 
-//---------------------------------¡¾Í·ÎÄ¼ş¡¢ÃüÃû¿Õ¼ä°üº¬²¿·Ö¡¿----------------------------
-//		ÃèÊö£º°üº¬³ÌĞòËùÊ¹ÓÃµÄÍ·ÎÄ¼şºÍÃüÃû¿Õ¼ä
+//---------------------------------ã€å¤´æ–‡ä»¶ã€å‘½åç©ºé—´åŒ…å«éƒ¨åˆ†ã€‘----------------------------
+//		æè¿°ï¼šåŒ…å«ç¨‹åºæ‰€ä½¿ç”¨çš„å¤´æ–‡ä»¶å’Œå‘½åç©ºé—´
 //-------------------------------------------------------------------------------------------------
 #include "opencv2/objdetect/objdetect.hpp"
 #include "opencv2/highgui/highgui.hpp"
@@ -32,10 +32,10 @@ using namespace cv;
 
 void detectAndDisplay( Mat frame );
 
-//--------------------------------¡¾È«¾Ö±äÁ¿ÉùÃ÷¡¿----------------------------------------------
-//		ÃèÊö£ºÉùÃ÷È«¾Ö±äÁ¿
+//--------------------------------ã€å…¨å±€å˜é‡å£°æ˜ã€‘----------------------------------------------
+//		æè¿°ï¼šå£°æ˜å…¨å±€å˜é‡
 //-------------------------------------------------------------------------------------------------
-//×¢Òâ£¬ĞèÒª°Ñ"haarcascade_frontalface_alt.xml"ºÍ"haarcascade_eye_tree_eyeglasses.xml"ÕâÁ½¸öÎÄ¼ş¸´ÖÆµ½¹¤³ÌÂ·¾¶ÏÂ
+//æ³¨æ„ï¼Œéœ€è¦æŠŠ"haarcascade_frontalface_alt.xml"å’Œ"haarcascade_eye_tree_eyeglasses.xml"è¿™ä¸¤ä¸ªæ–‡ä»¶å¤åˆ¶åˆ°å·¥ç¨‹è·¯å¾„ä¸‹
 String face_cascade_name = "haarcascade_frontalface_alt.xml";
 String eyes_cascade_name = "haarcascade_eye_tree_eyeglasses.xml";
 CascadeClassifier face_cascade;
@@ -44,21 +44,21 @@ string window_name = "Capture - Face detection";
 RNG rng(12345);
 
 
-//--------------------------------¡¾help( )º¯Êı¡¿----------------------------------------------
-//		ÃèÊö£ºÊä³ö°ïÖúĞÅÏ¢
+//--------------------------------ã€help( )å‡½æ•°ã€‘----------------------------------------------
+//		æè¿°ï¼šè¾“å‡ºå¸®åŠ©ä¿¡æ¯
 //-------------------------------------------------------------------------------------------------
 static void ShowHelpText()
 {
-	//Êä³ö»¶Ó­ĞÅÏ¢ºÍOpenCV°æ±¾
-	cout <<"\n\n\t\t\t·Ç³£¸ĞĞ»¹ºÂò¡¶OpenCV3±à³ÌÈëÃÅ¡·Ò»Êé£¡\n"
-		<<"\n\n\t\t\t´ËÎª±¾ÊéOpenCV3°æµÄµÚ11¸öÅäÌ×Ê¾Àı³ÌĞò\n"
-		<<	"\n\n\t\t\t   µ±Ç°Ê¹ÓÃµÄOpenCV°æ±¾Îª£º" << CV_VERSION 
+	//è¾“å‡ºæ¬¢è¿ä¿¡æ¯å’ŒOpenCVç‰ˆæœ¬
+	cout <<"\n\n\t\t\téå¸¸æ„Ÿè°¢è´­ä¹°ã€ŠOpenCV3ç¼–ç¨‹å…¥é—¨ã€‹ä¸€ä¹¦ï¼\n"
+		<<"\n\n\t\t\tæ­¤ä¸ºæœ¬ä¹¦OpenCV3ç‰ˆçš„ç¬¬11ä¸ªé…å¥—ç¤ºä¾‹ç¨‹åº\n"
+		<<	"\n\n\t\t\t   å½“å‰ä½¿ç”¨çš„OpenCVç‰ˆæœ¬ä¸ºï¼š" << CV_VERSION 
 		<<"\n\n  ----------------------------------------------------------------------------" ;
 }
 
 
-//-----------------------------------¡¾main( )º¯Êı¡¿--------------------------------------------
-//		ÃèÊö£º¿ØÖÆÌ¨Ó¦ÓÃ³ÌĞòµÄÈë¿Úº¯Êı£¬ÎÒÃÇµÄ³ÌĞò´ÓÕâÀï¿ªÊ¼
+//-----------------------------------ã€main( )å‡½æ•°ã€‘--------------------------------------------
+//		æè¿°ï¼šæ§åˆ¶å°åº”ç”¨ç¨‹åºçš„å…¥å£å‡½æ•°ï¼Œæˆ‘ä»¬çš„ç¨‹åºä»è¿™é‡Œå¼€å§‹
 //-------------------------------------------------------------------------------------------------
 int main( void )
 {
@@ -66,11 +66,11 @@ int main( void )
   Mat frame;
 
 
-  //-- 1. ¼ÓÔØ¼¶Áª£¨cascades£©
+  //-- 1. åŠ è½½çº§è”ï¼ˆcascadesï¼‰
   if( !face_cascade.load( face_cascade_name ) ){ printf("--(!)Error loading\n"); return -1; };
   if( !eyes_cascade.load( eyes_cascade_name ) ){ printf("--(!)Error loading\n"); return -1; };
 
-  //-- 2. ¶ÁÈ¡ÊÓÆµ
+  //-- 2. è¯»å–è§†é¢‘
   capture.open(0);
   ShowHelpText();
   if( capture.isOpened() )
@@ -79,7 +79,7 @@ int main( void )
     {
       capture >> frame;
 
-      //-- 3. ¶Ôµ±Ç°Ö¡Ê¹ÓÃ·ÖÀàÆ÷£¨Apply the classifier to the frame£©
+      //-- 3. å¯¹å½“å‰å¸§ä½¿ç”¨åˆ†ç±»å™¨ï¼ˆApply the classifier to the frameï¼‰
       if( !frame.empty() )
        { detectAndDisplay( frame ); }
       else
@@ -102,10 +102,10 @@ void detectAndDisplay( Mat frame )
    cvtColor( frame, frame_gray, COLOR_BGR2GRAY );
    equalizeHist( frame_gray, frame_gray );
 
-   //-- ÈËÁ³¼ì²â
-   //´Ë¾ä´úÂëµÄOpenCV2°æÎª£º
+   //-- äººè„¸æ£€æµ‹
+   //æ­¤å¥ä»£ç çš„OpenCV2ç‰ˆä¸ºï¼š
   //face_cascade.detectMultiScale( frame_gray, faces, 1.1, 2, 0|CV_HAAR_SCALE_IMAGE, Size(30, 30) );
-   //´Ë¾ä´úÂëµÄOpenCV3°æÎª£º
+   //æ­¤å¥ä»£ç çš„OpenCV3ç‰ˆä¸ºï¼š
    face_cascade.detectMultiScale( frame_gray, faces, 1.1, 2, 0|CASCADE_SCALE_IMAGE, Size(30, 30) );
 
 
@@ -117,10 +117,10 @@ void detectAndDisplay( Mat frame )
       Mat faceROI = frame_gray( faces[i] );
       std::vector<Rect> eyes;
 
-      //-- ÔÚÁ³ÖĞ¼ì²âÑÛ¾¦
-	  //´Ë¾ä´úÂëµÄOpenCV2°æÎª£º
+      //-- åœ¨è„¸ä¸­æ£€æµ‹çœ¼ç›
+	  //æ­¤å¥ä»£ç çš„OpenCV2ç‰ˆä¸ºï¼š
      // eyes_cascade.detectMultiScale( faceROI, eyes, 1.1, 2, 0 |CV_HAAR_SCALE_IMAGE, Size(30, 30) );
-	  //´Ë¾ä´úÂëµÄOpenCV3°æÎª£º
+	  //æ­¤å¥ä»£ç çš„OpenCV3ç‰ˆä¸ºï¼š
 	  eyes_cascade.detectMultiScale( faceROI, eyes, 1.1, 2, 0|CASCADE_SCALE_IMAGE, Size(30, 30) );
 
       for( size_t j = 0; j < eyes.size(); j++ )
@@ -130,6 +130,6 @@ void detectAndDisplay( Mat frame )
          circle( frame, eye_center, radius, Scalar( 255, 0, 0 ), 3, 8, 0 );
        }
     }
-   //-- ÏÔÊ¾×îÖÕĞ§¹ûÍ¼
+   //-- æ˜¾ç¤ºæœ€ç»ˆæ•ˆæœå›¾
    imshow( window_name, frame );
 }

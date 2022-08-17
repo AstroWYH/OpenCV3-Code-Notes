@@ -1,18 +1,18 @@
 
-//--------------------------------------¡¾³ÌĞòËµÃ÷¡¿-------------------------------------------
-//		³ÌĞòËµÃ÷£º¡¶OpenCV3±à³ÌÈëÃÅ¡·OpenCV3°æÊé±¾ÅäÌ×Ê¾Àı³ÌĞò48
-//		³ÌĞòÃèÊö£ºĞÎÌ¬Ñ§Í¼Ïñ´¦Àí¡ª¡ª¿ªÔËËã¡¢±ÕÔËËã¡¢ĞÎÌ¬Ñ§Ìİ¶È¡¢¶¥Ã±¡¢ºÚÃ±
-//		¿ª·¢²âÊÔËùÓÃ²Ù×÷ÏµÍ³£º Windows 7 64bit
-//		¿ª·¢²âÊÔËùÓÃIDE°æ±¾£ºVisual Studio 2010
-//		¿ª·¢²âÊÔËùÓÃOpenCV°æ±¾£º	3.0 beta
-//		2014Äê11ÔÂ Created by @Ç³Ä«_Ã«ĞÇÔÆ
-//		2014Äê12ÔÂ Revised by @Ç³Ä«_Ã«ĞÇÔÆ
+//--------------------------------------ã€ç¨‹åºè¯´æ˜ã€‘-------------------------------------------
+//		ç¨‹åºè¯´æ˜ï¼šã€ŠOpenCV3ç¼–ç¨‹å…¥é—¨ã€‹OpenCV3ç‰ˆä¹¦æœ¬é…å¥—ç¤ºä¾‹ç¨‹åº48
+//		ç¨‹åºæè¿°ï¼šå½¢æ€å­¦å›¾åƒå¤„ç†â€”â€”å¼€è¿ç®—ã€é—­è¿ç®—ã€å½¢æ€å­¦æ¢¯åº¦ã€é¡¶å¸½ã€é»‘å¸½
+//		å¼€å‘æµ‹è¯•æ‰€ç”¨æ“ä½œç³»ç»Ÿï¼š Windows 7 64bit
+//		å¼€å‘æµ‹è¯•æ‰€ç”¨IDEç‰ˆæœ¬ï¼šVisual Studio 2010
+//		å¼€å‘æµ‹è¯•æ‰€ç”¨OpenCVç‰ˆæœ¬ï¼š	3.0 beta
+//		2014å¹´11æœˆ Created by @æµ…å¢¨_æ¯›æ˜Ÿäº‘
+//		2014å¹´12æœˆ Revised by @æµ…å¢¨_æ¯›æ˜Ÿäº‘
 //------------------------------------------------------------------------------------------------
 
 
 
-//---------------------------------¡¾Í·ÎÄ¼ş¡¢ÃüÃû¿Õ¼ä°üº¬²¿·Ö¡¿----------------------------
-//		ÃèÊö£º°üº¬³ÌĞòËùÊ¹ÓÃµÄÍ·ÎÄ¼şºÍÃüÃû¿Õ¼ä
+//---------------------------------ã€å¤´æ–‡ä»¶ã€å‘½åç©ºé—´åŒ…å«éƒ¨åˆ†ã€‘----------------------------
+//		æè¿°ï¼šåŒ…å«ç¨‹åºæ‰€ä½¿ç”¨çš„å¤´æ–‡ä»¶å’Œå‘½åç©ºé—´
 //------------------------------------------------------------------------------------------------
 #include <opencv2/opencv.hpp>
 #include <opencv2/highgui/highgui.hpp>
@@ -21,13 +21,13 @@ using namespace std;
 using namespace cv;
 
 
-//-----------------------------------¡¾È«¾Ö±äÁ¿ÉùÃ÷²¿·Ö¡¿-----------------------------------
-//		ÃèÊö£ºÈ«¾Ö±äÁ¿ÉùÃ÷
+//-----------------------------------ã€å…¨å±€å˜é‡å£°æ˜éƒ¨åˆ†ã€‘-----------------------------------
+//		æè¿°ï¼šå…¨å±€å˜é‡å£°æ˜
 //-----------------------------------------------------------------------------------------------
-Mat g_srcImage, g_dstImage;//Ô­Ê¼Í¼ºÍĞ§¹ûÍ¼
-int g_nElementShape = MORPH_RECT;//ÔªËØ½á¹¹µÄĞÎ×´
+Mat g_srcImage, g_dstImage;//åŸå§‹å›¾å’Œæ•ˆæœå›¾
+int g_nElementShape = MORPH_RECT;//å…ƒç´ ç»“æ„çš„å½¢çŠ¶
 
-//±äÁ¿½ÓÊÕµÄTrackBarÎ»ÖÃ²ÎÊı
+//å˜é‡æ¥æ”¶çš„TrackBarä½ç½®å‚æ•°
 int g_nMaxIterationNum = 10;
 int g_nOpenCloseNum = 0;
 int g_nErodeDilateNum = 0;
@@ -35,74 +35,74 @@ int g_nTopBlackHatNum = 0;
 
 
 
-//-----------------------------------¡¾È«¾Öº¯ÊıÉùÃ÷²¿·Ö¡¿--------------------------------------
-//		ÃèÊö£ºÈ«¾Öº¯ÊıÉùÃ÷
+//-----------------------------------ã€å…¨å±€å‡½æ•°å£°æ˜éƒ¨åˆ†ã€‘--------------------------------------
+//		æè¿°ï¼šå…¨å±€å‡½æ•°å£°æ˜
 //-----------------------------------------------------------------------------------------------
-static void on_OpenClose(int, void*);//»Øµ÷º¯Êı
-static void on_ErodeDilate(int, void*);//»Øµ÷º¯Êı
-static void on_TopBlackHat(int, void*);//»Øµ÷º¯Êı
+static void on_OpenClose(int, void*);//å›è°ƒå‡½æ•°
+static void on_ErodeDilate(int, void*);//å›è°ƒå‡½æ•°
+static void on_TopBlackHat(int, void*);//å›è°ƒå‡½æ•°
 static void ShowHelpText();
 
 
-//-----------------------------------¡¾main( )º¯Êı¡¿--------------------------------------------
-//		ÃèÊö£º¿ØÖÆÌ¨Ó¦ÓÃ³ÌĞòµÄÈë¿Úº¯Êı£¬ÎÒÃÇµÄ³ÌĞò´ÓÕâÀï¿ªÊ¼
+//-----------------------------------ã€main( )å‡½æ•°ã€‘--------------------------------------------
+//		æè¿°ï¼šæ§åˆ¶å°åº”ç”¨ç¨‹åºçš„å…¥å£å‡½æ•°ï¼Œæˆ‘ä»¬çš„ç¨‹åºä»è¿™é‡Œå¼€å§‹
 //-----------------------------------------------------------------------------------------------
 int main( )
 {
-	//¸Ä±äconsole×ÖÌåÑÕÉ«
+	//æ”¹å˜consoleå­—ä½“é¢œè‰²
 	system("color 2F");  
 
 	ShowHelpText();
 
-	//ÔØÈëÔ­Í¼
+	//è½½å…¥åŸå›¾
 	g_srcImage = imread("1.jpg");
-	if( !g_srcImage.data ) { printf("Oh£¬no£¬¶ÁÈ¡srcImage´íÎó~£¡ \n"); return false; }
+	if( !g_srcImage.data ) { printf("Ohï¼Œnoï¼Œè¯»å–srcImageé”™è¯¯~ï¼ \n"); return false; }
 
-	//ÏÔÊ¾Ô­Ê¼Í¼
-	namedWindow("¡¾Ô­Ê¼Í¼¡¿");
-	imshow("¡¾Ô­Ê¼Í¼¡¿", g_srcImage);
+	//æ˜¾ç¤ºåŸå§‹å›¾
+	namedWindow("ã€åŸå§‹å›¾ã€‘");
+	imshow("ã€åŸå§‹å›¾ã€‘", g_srcImage);
 
-	//´´½¨Èı¸ö´°¿Ú
-	namedWindow("¡¾¿ªÔËËã/±ÕÔËËã¡¿",1);
-	namedWindow("¡¾¸¯Ê´/ÅòÕÍ¡¿",1);
-	namedWindow("¡¾¶¥Ã±/ºÚÃ±¡¿",1);
+	//åˆ›å»ºä¸‰ä¸ªçª—å£
+	namedWindow("ã€å¼€è¿ç®—/é—­è¿ç®—ã€‘",1);
+	namedWindow("ã€è…èš€/è†¨èƒ€ã€‘",1);
+	namedWindow("ã€é¡¶å¸½/é»‘å¸½ã€‘",1);
 
-	//²ÎÊı¸³Öµ
+	//å‚æ•°èµ‹å€¼
 	g_nOpenCloseNum=9;
 	g_nErodeDilateNum=9;
 	g_nTopBlackHatNum=2;
 
-	//·Ö±ğÎªÈı¸ö´°¿Ú´´½¨¹ö¶¯Ìõ
-	createTrackbar("µü´úÖµ", "¡¾¿ªÔËËã/±ÕÔËËã¡¿",&g_nOpenCloseNum,g_nMaxIterationNum*2+1,on_OpenClose);
-	createTrackbar("µü´úÖµ", "¡¾¸¯Ê´/ÅòÕÍ¡¿",&g_nErodeDilateNum,g_nMaxIterationNum*2+1,on_ErodeDilate);
-	createTrackbar("µü´úÖµ", "¡¾¶¥Ã±/ºÚÃ±¡¿",&g_nTopBlackHatNum,g_nMaxIterationNum*2+1,on_TopBlackHat);
+	//åˆ†åˆ«ä¸ºä¸‰ä¸ªçª—å£åˆ›å»ºæ»šåŠ¨æ¡
+	createTrackbar("è¿­ä»£å€¼", "ã€å¼€è¿ç®—/é—­è¿ç®—ã€‘",&g_nOpenCloseNum,g_nMaxIterationNum*2+1,on_OpenClose);
+	createTrackbar("è¿­ä»£å€¼", "ã€è…èš€/è†¨èƒ€ã€‘",&g_nErodeDilateNum,g_nMaxIterationNum*2+1,on_ErodeDilate);
+	createTrackbar("è¿­ä»£å€¼", "ã€é¡¶å¸½/é»‘å¸½ã€‘",&g_nTopBlackHatNum,g_nMaxIterationNum*2+1,on_TopBlackHat);
 
-	//ÂÖÑ¯»ñÈ¡°´¼üĞÅÏ¢
+	//è½®è¯¢è·å–æŒ‰é”®ä¿¡æ¯
 	while(1)
 	{
 		int c;
 
-		//Ö´ĞĞ»Øµ÷º¯Êı
+		//æ‰§è¡Œå›è°ƒå‡½æ•°
 		on_OpenClose(g_nOpenCloseNum, 0);
 		on_ErodeDilate(g_nErodeDilateNum, 0);
 		on_TopBlackHat(g_nTopBlackHatNum,0);
 
-		//»ñÈ¡°´¼ü
+		//è·å–æŒ‰é”®
 		c = waitKey(0);
 
-		//°´ÏÂ¼üÅÌ°´¼üQ»òÕßESC£¬³ÌĞòÍË³ö
+		//æŒ‰ä¸‹é”®ç›˜æŒ‰é”®Qæˆ–è€…ESCï¼Œç¨‹åºé€€å‡º
 		if( (char)c == 'q'||(char)c == 27 )
 			break;
-		//°´ÏÂ¼üÅÌ°´¼ü1£¬Ê¹ÓÃÍÖÔ²(Elliptic)½á¹¹ÔªËØ½á¹¹ÔªËØMORPH_ELLIPSE
-		if( (char)c == 49 )//¼üÅÌ°´¼ü1µÄASIIÂëÎª49
+		//æŒ‰ä¸‹é”®ç›˜æŒ‰é”®1ï¼Œä½¿ç”¨æ¤­åœ†(Elliptic)ç»“æ„å…ƒç´ ç»“æ„å…ƒç´ MORPH_ELLIPSE
+		if( (char)c == 49 )//é”®ç›˜æŒ‰é”®1çš„ASIIç ä¸º49
 			g_nElementShape = MORPH_ELLIPSE;
-		//°´ÏÂ¼üÅÌ°´¼ü2£¬Ê¹ÓÃ¾ØĞÎ(Rectangle)½á¹¹ÔªËØMORPH_RECT
-		else if( (char)c == 50 )//¼üÅÌ°´¼ü2µÄASIIÂëÎª50
+		//æŒ‰ä¸‹é”®ç›˜æŒ‰é”®2ï¼Œä½¿ç”¨çŸ©å½¢(Rectangle)ç»“æ„å…ƒç´ MORPH_RECT
+		else if( (char)c == 50 )//é”®ç›˜æŒ‰é”®2çš„ASIIç ä¸º50
 			g_nElementShape = MORPH_RECT;
-		//°´ÏÂ¼üÅÌ°´¼ü3£¬Ê¹ÓÃÊ®×ÖĞÎ(Cross-shaped)½á¹¹ÔªËØMORPH_CROSS
-		else if( (char)c == 51 )//¼üÅÌ°´¼ü3µÄASIIÂëÎª51
+		//æŒ‰ä¸‹é”®ç›˜æŒ‰é”®3ï¼Œä½¿ç”¨åå­—å½¢(Cross-shaped)ç»“æ„å…ƒç´ MORPH_CROSS
+		else if( (char)c == 51 )//é”®ç›˜æŒ‰é”®3çš„ASIIç ä¸º51
 			g_nElementShape = MORPH_CROSS;
-		//°´ÏÂ¼üÅÌ°´¼üspace£¬ÔÚ¾ØĞÎ¡¢ÍÖÔ²¡¢Ê®×ÖĞÎ½á¹¹ÔªËØÖĞÑ­»·
+		//æŒ‰ä¸‹é”®ç›˜æŒ‰é”®spaceï¼Œåœ¨çŸ©å½¢ã€æ¤­åœ†ã€åå­—å½¢ç»“æ„å…ƒç´ ä¸­å¾ªç¯
 		else if( (char)c == ' ' )
 			g_nElementShape = (g_nElementShape + 1) % 3;
 	}
@@ -111,91 +111,91 @@ int main( )
 }
 
 
-//-----------------------------------¡¾on_OpenClose( )º¯Êı¡¿----------------------------------
-//		ÃèÊö£º¡¾¿ªÔËËã/±ÕÔËËã¡¿´°¿ÚµÄ»Øµ÷º¯Êı
+//-----------------------------------ã€on_OpenClose( )å‡½æ•°ã€‘----------------------------------
+//		æè¿°ï¼šã€å¼€è¿ç®—/é—­è¿ç®—ã€‘çª—å£çš„å›è°ƒå‡½æ•°
 //-----------------------------------------------------------------------------------------------
 static void on_OpenClose(int, void*)
 {
-	//Æ«ÒÆÁ¿µÄ¶¨Òå
-	int offset = g_nOpenCloseNum - g_nMaxIterationNum;//Æ«ÒÆÁ¿
-	int Absolute_offset = offset > 0 ? offset : -offset;//Æ«ÒÆÁ¿¾ø¶ÔÖµ
-	//×Ô¶¨ÒåºË
+	//åç§»é‡çš„å®šä¹‰
+	int offset = g_nOpenCloseNum - g_nMaxIterationNum;//åç§»é‡
+	int Absolute_offset = offset > 0 ? offset : -offset;//åç§»é‡ç»å¯¹å€¼
+	//è‡ªå®šä¹‰æ ¸
 	Mat element = getStructuringElement(g_nElementShape, Size(Absolute_offset*2+1, Absolute_offset*2+1), Point(Absolute_offset, Absolute_offset) );
-	//½øĞĞ²Ù×÷
+	//è¿›è¡Œæ“ä½œ
 	if( offset < 0 )
-		//´Ë¾ä´úÂëµÄOpenCV2°æÎª£º
+		//æ­¤å¥ä»£ç çš„OpenCV2ç‰ˆä¸ºï¼š
 		//morphologyEx(g_srcImage, g_dstImage, CV_MOP_OPEN, element);
-		//´Ë¾ä´úÂëµÄOpenCV3°æÎª:
+		//æ­¤å¥ä»£ç çš„OpenCV3ç‰ˆä¸º:
 		morphologyEx(g_srcImage, g_dstImage, MORPH_OPEN, element);
 	else
-		//´Ë¾ä´úÂëµÄOpenCV2°æÎª£º
+		//æ­¤å¥ä»£ç çš„OpenCV2ç‰ˆä¸ºï¼š
 		//morphologyEx(g_srcImage, g_dstImage, CV_MOP_CLOSE, element);
-		//´Ë¾ä´úÂëµÄOpenCV3°æÎª:
+		//æ­¤å¥ä»£ç çš„OpenCV3ç‰ˆä¸º:
 		morphologyEx(g_srcImage, g_dstImage, MORPH_CLOSE, element);
 		
 
 
-	//ÏÔÊ¾Í¼Ïñ
-	imshow("¡¾¿ªÔËËã/±ÕÔËËã¡¿",g_dstImage);
+	//æ˜¾ç¤ºå›¾åƒ
+	imshow("ã€å¼€è¿ç®—/é—­è¿ç®—ã€‘",g_dstImage);
 }
 
 
-//-----------------------------------¡¾on_ErodeDilate( )º¯Êı¡¿----------------------------------
-//		ÃèÊö£º¡¾¸¯Ê´/ÅòÕÍ¡¿´°¿ÚµÄ»Øµ÷º¯Êı
+//-----------------------------------ã€on_ErodeDilate( )å‡½æ•°ã€‘----------------------------------
+//		æè¿°ï¼šã€è…èš€/è†¨èƒ€ã€‘çª—å£çš„å›è°ƒå‡½æ•°
 //-----------------------------------------------------------------------------------------------
 static void on_ErodeDilate(int, void*)
 {
-	//Æ«ÒÆÁ¿µÄ¶¨Òå
-	int offset = g_nErodeDilateNum - g_nMaxIterationNum;	//Æ«ÒÆÁ¿
-	int Absolute_offset = offset > 0 ? offset : -offset;//Æ«ÒÆÁ¿¾ø¶ÔÖµ
-	//×Ô¶¨ÒåºË
+	//åç§»é‡çš„å®šä¹‰
+	int offset = g_nErodeDilateNum - g_nMaxIterationNum;	//åç§»é‡
+	int Absolute_offset = offset > 0 ? offset : -offset;//åç§»é‡ç»å¯¹å€¼
+	//è‡ªå®šä¹‰æ ¸
 	Mat element = getStructuringElement(g_nElementShape, Size(Absolute_offset*2+1, Absolute_offset*2+1), Point(Absolute_offset, Absolute_offset) );
-	//½øĞĞ²Ù×÷
+	//è¿›è¡Œæ“ä½œ
 	if( offset < 0 )
 		erode(g_srcImage, g_dstImage, element);
 	else
 		dilate(g_srcImage, g_dstImage, element);
-	//ÏÔÊ¾Í¼Ïñ
-	imshow("¡¾¸¯Ê´/ÅòÕÍ¡¿",g_dstImage);
+	//æ˜¾ç¤ºå›¾åƒ
+	imshow("ã€è…èš€/è†¨èƒ€ã€‘",g_dstImage);
 }
 
 
-//-----------------------------------¡¾on_TopBlackHat( )º¯Êı¡¿--------------------------------
-//		ÃèÊö£º¡¾¶¥Ã±ÔËËã/ºÚÃ±ÔËËã¡¿´°¿ÚµÄ»Øµ÷º¯Êı
+//-----------------------------------ã€on_TopBlackHat( )å‡½æ•°ã€‘--------------------------------
+//		æè¿°ï¼šã€é¡¶å¸½è¿ç®—/é»‘å¸½è¿ç®—ã€‘çª—å£çš„å›è°ƒå‡½æ•°
 //----------------------------------------------------------------------------------------------
 static void on_TopBlackHat(int, void*)
 {
-	//Æ«ÒÆÁ¿µÄ¶¨Òå
-	int offset = g_nTopBlackHatNum - g_nMaxIterationNum;//Æ«ÒÆÁ¿
-	int Absolute_offset = offset > 0 ? offset : -offset;//Æ«ÒÆÁ¿¾ø¶ÔÖµ
-	//×Ô¶¨ÒåºË
+	//åç§»é‡çš„å®šä¹‰
+	int offset = g_nTopBlackHatNum - g_nMaxIterationNum;//åç§»é‡
+	int Absolute_offset = offset > 0 ? offset : -offset;//åç§»é‡ç»å¯¹å€¼
+	//è‡ªå®šä¹‰æ ¸
 	Mat element = getStructuringElement(g_nElementShape, Size(Absolute_offset*2+1, Absolute_offset*2+1), Point(Absolute_offset, Absolute_offset) );
-	//½øĞĞ²Ù×÷
+	//è¿›è¡Œæ“ä½œ
 	if( offset < 0 )
 		morphologyEx(g_srcImage, g_dstImage, MORPH_TOPHAT , element);
 	else
 		morphologyEx(g_srcImage, g_dstImage, MORPH_BLACKHAT, element);
-	//ÏÔÊ¾Í¼Ïñ
-	imshow("¡¾¶¥Ã±/ºÚÃ±¡¿",g_dstImage);
+	//æ˜¾ç¤ºå›¾åƒ
+	imshow("ã€é¡¶å¸½/é»‘å¸½ã€‘",g_dstImage);
 }
 
-//-----------------------------------¡¾ShowHelpText( )º¯Êı¡¿----------------------------------
-//		ÃèÊö£ºÊä³öÒ»Ğ©°ïÖúĞÅÏ¢
+//-----------------------------------ã€ShowHelpText( )å‡½æ•°ã€‘----------------------------------
+//		æè¿°ï¼šè¾“å‡ºä¸€äº›å¸®åŠ©ä¿¡æ¯
 //----------------------------------------------------------------------------------------------
 static void ShowHelpText()
 {
-	//Êä³ö»¶Ó­ĞÅÏ¢ºÍOpenCV°æ±¾
-	printf("\n\n\t\t\t·Ç³£¸ĞĞ»¹ºÂò¡¶OpenCV3±à³ÌÈëÃÅ¡·Ò»Êé£¡\n");
-	printf("\n\n\t\t\t´ËÎª±¾ÊéOpenCV3°æµÄµÚ48¸öÅäÌ×Ê¾Àı³ÌĞò\n");
-	printf("\n\n\t\t\t   µ±Ç°Ê¹ÓÃµÄOpenCV°æ±¾Îª£º" CV_VERSION );
+	//è¾“å‡ºæ¬¢è¿ä¿¡æ¯å’ŒOpenCVç‰ˆæœ¬
+	printf("\n\n\t\t\téå¸¸æ„Ÿè°¢è´­ä¹°ã€ŠOpenCV3ç¼–ç¨‹å…¥é—¨ã€‹ä¸€ä¹¦ï¼\n");
+	printf("\n\n\t\t\tæ­¤ä¸ºæœ¬ä¹¦OpenCV3ç‰ˆçš„ç¬¬48ä¸ªé…å¥—ç¤ºä¾‹ç¨‹åº\n");
+	printf("\n\n\t\t\t   å½“å‰ä½¿ç”¨çš„OpenCVç‰ˆæœ¬ä¸ºï¼š" CV_VERSION );
 	printf("\n\n  ----------------------------------------------------------------------------\n");
 
-	//Êä³öÒ»Ğ©°ïÖúĞÅÏ¢
-	printf("\n\tÇëµ÷Õû¹ö¶¯Ìõ¹Û²ìÍ¼ÏñĞ§¹û\n\n");
-	printf( "\n\t°´¼ü²Ù×÷ËµÃ÷: \n\n"
-		"\t\t¼üÅÌ°´¼ü¡¾ESC¡¿»òÕß¡¾Q¡¿- ÍË³ö³ÌĞò\n"
-		"\t\t¼üÅÌ°´¼ü¡¾1¡¿- Ê¹ÓÃÍÖÔ²(Elliptic)½á¹¹ÔªËØ\n"
-		"\t\t¼üÅÌ°´¼ü¡¾2¡¿- Ê¹ÓÃ¾ØĞÎ(Rectangle )½á¹¹ÔªËØ\n"
-		"\t\t¼üÅÌ°´¼ü¡¾3¡¿- Ê¹ÓÃÊ®×ÖĞÍ(Cross-shaped)½á¹¹ÔªËØ\n"
-		"\t\t¼üÅÌ°´¼ü¡¾¿Õ¸ñSPACE¡¿- ÔÚ¾ØĞÎ¡¢ÍÖÔ²¡¢Ê®×ÖĞÎ½á¹¹ÔªËØÖĞÑ­»·\n"	);
+	//è¾“å‡ºä¸€äº›å¸®åŠ©ä¿¡æ¯
+	printf("\n\tè¯·è°ƒæ•´æ»šåŠ¨æ¡è§‚å¯Ÿå›¾åƒæ•ˆæœ\n\n");
+	printf( "\n\tæŒ‰é”®æ“ä½œè¯´æ˜: \n\n"
+		"\t\té”®ç›˜æŒ‰é”®ã€ESCã€‘æˆ–è€…ã€Qã€‘- é€€å‡ºç¨‹åº\n"
+		"\t\té”®ç›˜æŒ‰é”®ã€1ã€‘- ä½¿ç”¨æ¤­åœ†(Elliptic)ç»“æ„å…ƒç´ \n"
+		"\t\té”®ç›˜æŒ‰é”®ã€2ã€‘- ä½¿ç”¨çŸ©å½¢(Rectangle )ç»“æ„å…ƒç´ \n"
+		"\t\té”®ç›˜æŒ‰é”®ã€3ã€‘- ä½¿ç”¨åå­—å‹(Cross-shaped)ç»“æ„å…ƒç´ \n"
+		"\t\té”®ç›˜æŒ‰é”®ã€ç©ºæ ¼SPACEã€‘- åœ¨çŸ©å½¢ã€æ¤­åœ†ã€åå­—å½¢ç»“æ„å…ƒç´ ä¸­å¾ªç¯\n"	);
 }

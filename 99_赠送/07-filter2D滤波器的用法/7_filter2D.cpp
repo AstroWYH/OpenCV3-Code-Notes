@@ -6,8 +6,8 @@ using namespace cv;
 
 
 
-//-----------------------------------¡¾main( )º¯Êı¡¿--------------------------------------------
-//		ÃèÊö£º¿ØÖÆÌ¨Ó¦ÓÃ³ÌĞòµÄÈë¿Úº¯Êı£¬ÎÒÃÇµÄ³ÌĞò´ÓÕâÀï¿ªÊ¼
+//-----------------------------------ã€main( )å‡½æ•°ã€‘--------------------------------------------
+//		æè¿°ï¼šæ§åˆ¶å°åº”ç”¨ç¨‹åºçš„å…¥å£å‡½æ•°ï¼Œæˆ‘ä»¬çš„ç¨‹åºä»è¿™é‡Œå¼€å§‹
 //-------------------------------------------------------------------------------------------------
 int main() 
 {
@@ -15,15 +15,15 @@ int main()
 	//Mat img = imread("image.jpg", CV_LOAD_IMAGE_GRAYSCALE), img_filtered;
 	Mat img = imread("1.jpg"), img_filtered;
 
-	// ÂË²¨Æ÷ÄÚºË£¬ÓÃÓÚ¼ì²â´¹Ö±±ßÔµ(Filter kernel for detecting vertical edges )
+	// æ»¤æ³¢å™¨å†…æ ¸ï¼Œç”¨äºæ£€æµ‹å‚ç›´è¾¹ç¼˜(Filter kernel for detecting vertical edges )
 	float vertical_fk[5][5] = {{0,0,0,0,0}, {0,0,0,0,0}, {-1,-2,6,-2,-1}, {0,0,0,0,0}, {0,0,0,0,0}};
 
-	// ÂË²¨Æ÷ÄÚºË£¬ÓÃÓÚ¼ì²âË®Æ½±ßÔµ(Filter kernel for detecting horizontal edges )
+	// æ»¤æ³¢å™¨å†…æ ¸ï¼Œç”¨äºæ£€æµ‹æ°´å¹³è¾¹ç¼˜(Filter kernel for detecting horizontal edges )
 	float horizontal_fk[5][5] = {{0,0,-1,0,0}, {0,0,-2,0,0}, {0,0,6,0,0}, {0,0,-2,0,0}, {0,0,-1,0,0}};
 
 	Mat filter_kernel = Mat(5, 5, CV_32FC1, vertical_fk);
 
-	//Ó¦ÓÃÂË²¨Æ÷
+	//åº”ç”¨æ»¤æ³¢å™¨
 	filter2D(img, img_filtered, -1, filter_kernel);
 
 	namedWindow("Image");

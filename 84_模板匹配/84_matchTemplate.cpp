@@ -1,64 +1,64 @@
-//--------------------------------------¡¾³ÌÐòËµÃ÷¡¿-------------------------------------------
-//		³ÌÐòËµÃ÷£º¡¶OpenCV3±à³ÌÈëÃÅ¡·OpenCV3°æÊé±¾ÅäÌ×Ê¾Àý³ÌÐò84
-//		³ÌÐòÃèÊö£ºÄ£°åÆ¥ÅäÊ¾Àý
-//		¿ª·¢²âÊÔËùÓÃ²Ù×÷ÏµÍ³£º Windows 7 64bit
-//		¿ª·¢²âÊÔËùÓÃIDE°æ±¾£ºVisual Studio 2010
-//		¿ª·¢²âÊÔËùÓÃOpenCV°æ±¾£º	3.0 beta
-//		2014Äê11ÔÂ Created by @Ç³Ä«_Ã«ÐÇÔÆ
-//		2014Äê12ÔÂ Revised by @Ç³Ä«_Ã«ÐÇÔÆ
+//--------------------------------------ã€ç¨‹åºè¯´æ˜Žã€‘-------------------------------------------
+//		ç¨‹åºè¯´æ˜Žï¼šã€ŠOpenCV3ç¼–ç¨‹å…¥é—¨ã€‹OpenCV3ç‰ˆä¹¦æœ¬é…å¥—ç¤ºä¾‹ç¨‹åº84
+//		ç¨‹åºæè¿°ï¼šæ¨¡æ¿åŒ¹é…ç¤ºä¾‹
+//		å¼€å‘æµ‹è¯•æ‰€ç”¨æ“ä½œç³»ç»Ÿï¼š Windows 7 64bit
+//		å¼€å‘æµ‹è¯•æ‰€ç”¨IDEç‰ˆæœ¬ï¼šVisual Studio 2010
+//		å¼€å‘æµ‹è¯•æ‰€ç”¨OpenCVç‰ˆæœ¬ï¼š	3.0 beta
+//		2014å¹´11æœˆ Created by @æµ…å¢¨_æ¯›æ˜Ÿäº‘
+//		2014å¹´12æœˆ Revised by @æµ…å¢¨_æ¯›æ˜Ÿäº‘
 //------------------------------------------------------------------------------------------------
 
 
 
-//---------------------------------¡¾Í·ÎÄ¼þ¡¢ÃüÃû¿Õ¼ä°üº¬²¿·Ö¡¿----------------------------
-//		ÃèÊö£º°üº¬³ÌÐòËùÊ¹ÓÃµÄÍ·ÎÄ¼þºÍÃüÃû¿Õ¼ä
+//---------------------------------ã€å¤´æ–‡ä»¶ã€å‘½åç©ºé—´åŒ…å«éƒ¨åˆ†ã€‘----------------------------
+//		æè¿°ï¼šåŒ…å«ç¨‹åºæ‰€ä½¿ç”¨çš„å¤´æ–‡ä»¶å’Œå‘½åç©ºé—´
 //------------------------------------------------------------------------------------------------
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 using namespace cv;
 
 
-//-----------------------------------¡¾ºê¶¨Òå²¿·Ö¡¿-------------------------------------------- 
-//  ÃèÊö£º¶¨ÒåÒ»Ð©¸¨Öúºê 
+//-----------------------------------ã€å®å®šä¹‰éƒ¨åˆ†ã€‘-------------------------------------------- 
+//  æè¿°ï¼šå®šä¹‰ä¸€äº›è¾…åŠ©å® 
 //------------------------------------------------------------------------------------------------ 
-#define WINDOW_NAME1 "¡¾Ô­Ê¼Í¼Æ¬¡¿"        //Îª´°¿Ú±êÌâ¶¨ÒåµÄºê 
-#define WINDOW_NAME2 "¡¾Æ¥Åä´°¿Ú¡¿"        //Îª´°¿Ú±êÌâ¶¨ÒåµÄºê 
+#define WINDOW_NAME1 "ã€åŽŸå§‹å›¾ç‰‡ã€‘"        //ä¸ºçª—å£æ ‡é¢˜å®šä¹‰çš„å® 
+#define WINDOW_NAME2 "ã€åŒ¹é…çª—å£ã€‘"        //ä¸ºçª—å£æ ‡é¢˜å®šä¹‰çš„å® 
 
-//-----------------------------------¡¾È«¾Ö±äÁ¿ÉùÃ÷²¿·Ö¡¿------------------------------------
-//          ÃèÊö£ºÈ«¾Ö±äÁ¿µÄÉùÃ÷
+//-----------------------------------ã€å…¨å±€å˜é‡å£°æ˜Žéƒ¨åˆ†ã€‘------------------------------------
+//          æè¿°ï¼šå…¨å±€å˜é‡çš„å£°æ˜Ž
 //-----------------------------------------------------------------------------------------------
 Mat g_srcImage; Mat g_templateImage; Mat g_resultImage;
 int g_nMatchMethod;
 int g_nMaxTrackbarNum = 5;
 
-//-----------------------------------¡¾È«¾Öº¯ÊýÉùÃ÷²¿·Ö¡¿--------------------------------------
-//          ÃèÊö£ºÈ«¾Öº¯ÊýµÄÉùÃ÷
+//-----------------------------------ã€å…¨å±€å‡½æ•°å£°æ˜Žéƒ¨åˆ†ã€‘--------------------------------------
+//          æè¿°ï¼šå…¨å±€å‡½æ•°çš„å£°æ˜Ž
 //-----------------------------------------------------------------------------------------------
 void on_Matching( int, void* );
 static void ShowHelpText( );
 
 
-//-----------------------------------¡¾main( )º¯Êý¡¿--------------------------------------------
-//          ÃèÊö£º¿ØÖÆÌ¨Ó¦ÓÃ³ÌÐòµÄÈë¿Úº¯Êý£¬ÎÒÃÇµÄ³ÌÐò´ÓÕâÀï¿ªÊ¼Ö´ÐÐ
+//-----------------------------------ã€main( )å‡½æ•°ã€‘--------------------------------------------
+//          æè¿°ï¼šæŽ§åˆ¶å°åº”ç”¨ç¨‹åºçš„å…¥å£å‡½æ•°ï¼Œæˆ‘ä»¬çš„ç¨‹åºä»Žè¿™é‡Œå¼€å§‹æ‰§è¡Œ
 //-----------------------------------------------------------------------------------------------
 int main(  )
 {
-	//¡¾0¡¿¸Ä±äconsole×ÖÌåÑÕÉ«
+	//ã€0ã€‘æ”¹å˜consoleå­—ä½“é¢œè‰²
 	system("color 1F"); 
 
-	//¡¾0¡¿ÏÔÊ¾°ïÖúÎÄ×Ö
+	//ã€0ã€‘æ˜¾ç¤ºå¸®åŠ©æ–‡å­—
 	ShowHelpText();
 
-	//¡¾1¡¿ÔØÈëÔ­Í¼ÏñºÍÄ£°å¿é
+	//ã€1ã€‘è½½å…¥åŽŸå›¾åƒå’Œæ¨¡æ¿å—
 	g_srcImage = imread( "1.jpg", 1 );
 	g_templateImage = imread( "2.jpg", 1 );
 
-	//¡¾2¡¿´´½¨´°¿Ú
+	//ã€2ã€‘åˆ›å»ºçª—å£
 	namedWindow( WINDOW_NAME1, WINDOW_AUTOSIZE );
 	namedWindow( WINDOW_NAME2, WINDOW_AUTOSIZE );
 
-	//¡¾3¡¿´´½¨»¬¶¯Ìõ²¢½øÐÐÒ»´Î³õÊ¼»¯
-	createTrackbar( "·½·¨", WINDOW_NAME1, &g_nMatchMethod, g_nMaxTrackbarNum, on_Matching );
+	//ã€3ã€‘åˆ›å»ºæ»‘åŠ¨æ¡å¹¶è¿›è¡Œä¸€æ¬¡åˆå§‹åŒ–
+	createTrackbar( "æ–¹æ³•", WINDOW_NAME1, &g_nMatchMethod, g_nMaxTrackbarNum, on_Matching );
 	on_Matching( 0, 0 );
 
 	waitKey(0);
@@ -66,39 +66,39 @@ int main(  )
 
 }
 
-//-----------------------------------¡¾on_Matching( )º¯Êý¡¿--------------------------------
-//          ÃèÊö£º»Øµ÷º¯Êý
+//-----------------------------------ã€on_Matching( )å‡½æ•°ã€‘--------------------------------
+//          æè¿°ï¼šå›žè°ƒå‡½æ•°
 //-------------------------------------------------------------------------------------------
 void on_Matching( int, void* )
 {
-	//¡¾1¡¿¸ø¾Ö²¿±äÁ¿³õÊ¼»¯
+	//ã€1ã€‘ç»™å±€éƒ¨å˜é‡åˆå§‹åŒ–
 	Mat srcImage;
 	g_srcImage.copyTo( srcImage );
 
-	//¡¾2¡¿³õÊ¼»¯ÓÃÓÚ½á¹ûÊä³öµÄ¾ØÕó
+	//ã€2ã€‘åˆå§‹åŒ–ç”¨äºŽç»“æžœè¾“å‡ºçš„çŸ©é˜µ
 	int resultImage_rows = g_srcImage.rows - g_templateImage.rows + 1;
 	int resultImage_cols =  g_srcImage.cols - g_templateImage.cols + 1;
 	g_resultImage.create(resultImage_rows,resultImage_cols, CV_32FC1);
 
-	//¡¾3¡¿½øÐÐÆ¥ÅäºÍ±ê×¼»¯
+	//ã€3ã€‘è¿›è¡ŒåŒ¹é…å’Œæ ‡å‡†åŒ–
 	matchTemplate( g_srcImage, g_templateImage, g_resultImage, g_nMatchMethod );
 	normalize( g_resultImage, g_resultImage, 0, 1, NORM_MINMAX, -1, Mat() );
 
-	//¡¾4¡¿Í¨¹ýº¯Êý minMaxLoc ¶¨Î»×îÆ¥ÅäµÄÎ»ÖÃ
+	//ã€4ã€‘é€šè¿‡å‡½æ•° minMaxLoc å®šä½æœ€åŒ¹é…çš„ä½ç½®
 	double minValue; double maxValue; Point minLocation; Point maxLocation;
 	Point matchLocation;
 	minMaxLoc( g_resultImage, &minValue, &maxValue, &minLocation, &maxLocation, Mat() );
 
-	//¡¾5¡¿¶ÔÓÚ·½·¨ SQDIFF ºÍ SQDIFF_NORMED, Ô½Ð¡µÄÊýÖµÓÐ×Å¸ü¸ßµÄÆ¥Åä½á¹û. ¶øÆäÓàµÄ·½·¨, ÊýÖµÔ½´óÆ¥ÅäÐ§¹ûÔ½ºÃ
-	//´Ë¾ä´úÂëµÄOpenCV2°æÎª£º
+	//ã€5ã€‘å¯¹äºŽæ–¹æ³• SQDIFF å’Œ SQDIFF_NORMED, è¶Šå°çš„æ•°å€¼æœ‰ç€æ›´é«˜çš„åŒ¹é…ç»“æžœ. è€Œå…¶ä½™çš„æ–¹æ³•, æ•°å€¼è¶Šå¤§åŒ¹é…æ•ˆæžœè¶Šå¥½
+	//æ­¤å¥ä»£ç çš„OpenCV2ç‰ˆä¸ºï¼š
 	//if( g_nMatchMethod  == CV_TM_SQDIFF || g_nMatchMethod == CV_TM_SQDIFF_NORMED )
-	//´Ë¾ä´úÂëµÄOpenCV3°æÎª£º
+	//æ­¤å¥ä»£ç çš„OpenCV3ç‰ˆä¸ºï¼š
 	if( g_nMatchMethod  == TM_SQDIFF || g_nMatchMethod == TM_SQDIFF_NORMED )
 	{ matchLocation = minLocation; }
 	else
 	{ matchLocation = maxLocation; }
 
-	//¡¾6¡¿»æÖÆ³ö¾ØÐÎ£¬²¢ÏÔÊ¾×îÖÕ½á¹û
+	//ã€6ã€‘ç»˜åˆ¶å‡ºçŸ©å½¢ï¼Œå¹¶æ˜¾ç¤ºæœ€ç»ˆç»“æžœ
 	rectangle( srcImage, matchLocation, Point( matchLocation.x + g_templateImage.cols , matchLocation.y + g_templateImage.rows ), Scalar(0,0,255), 2, 8, 0 );
 	rectangle( g_resultImage, matchLocation, Point( matchLocation.x + g_templateImage.cols , matchLocation.y + g_templateImage.rows ), Scalar(0,0,255), 2, 8, 0 );
 
@@ -109,24 +109,24 @@ void on_Matching( int, void* )
 
 
 
-//-----------------------------------¡¾ShowHelpText( )º¯Êý¡¿----------------------------------
-//          ÃèÊö£ºÊä³öÒ»Ð©°ïÖúÐÅÏ¢
+//-----------------------------------ã€ShowHelpText( )å‡½æ•°ã€‘----------------------------------
+//          æè¿°ï¼šè¾“å‡ºä¸€äº›å¸®åŠ©ä¿¡æ¯
 //----------------------------------------------------------------------------------------------
 static void ShowHelpText()
 {
-	//Êä³ö»¶Ó­ÐÅÏ¢ºÍOpenCV°æ±¾
-	printf("\n\n\t\t\t·Ç³£¸ÐÐ»¹ºÂò¡¶OpenCV3±à³ÌÈëÃÅ¡·Ò»Êé£¡\n");
-	printf("\n\n\t\t\t´ËÎª±¾ÊéOpenCV3°æµÄµÚ84¸öÅäÌ×Ê¾Àý³ÌÐò\n");
-	printf("\n\n\t\t\t   µ±Ç°Ê¹ÓÃµÄOpenCV°æ±¾Îª£º" CV_VERSION );
+	//è¾“å‡ºæ¬¢è¿Žä¿¡æ¯å’ŒOpenCVç‰ˆæœ¬
+	printf("\n\n\t\t\téžå¸¸æ„Ÿè°¢è´­ä¹°ã€ŠOpenCV3ç¼–ç¨‹å…¥é—¨ã€‹ä¸€ä¹¦ï¼\n");
+	printf("\n\n\t\t\tæ­¤ä¸ºæœ¬ä¹¦OpenCV3ç‰ˆçš„ç¬¬84ä¸ªé…å¥—ç¤ºä¾‹ç¨‹åº\n");
+	printf("\n\n\t\t\t   å½“å‰ä½¿ç”¨çš„OpenCVç‰ˆæœ¬ä¸ºï¼š" CV_VERSION );
 	printf("\n\n  ----------------------------------------------------------------------------\n");
-	//Êä³öÒ»Ð©°ïÖúÐÅÏ¢
-	printf("\t»¶Ó­À´µ½¡¾Ä£°åÆ¥Åä¡¿Ê¾Àý³ÌÐò~\n"); 
-	printf("\n\n\tÇëµ÷Õû»¬¶¯Ìõ¹Û²ìÍ¼ÏñÐ§¹û\n\n");
-	printf(  "\n\t»¬¶¯Ìõ¶ÔÓ¦µÄ·½·¨ÊýÖµËµÃ÷: \n\n" 
-		"\t\t·½·¨¡¾0¡¿- Æ½·½²îÆ¥Åä·¨(SQDIFF)\n" 
-		"\t\t·½·¨¡¾1¡¿- ¹éÒ»»¯Æ½·½²îÆ¥Åä·¨(SQDIFF NORMED)\n" 
-		"\t\t·½·¨¡¾2¡¿- Ïà¹ØÆ¥Åä·¨(TM CCORR)\n" 
-		"\t\t·½·¨¡¾3¡¿- ¹éÒ»»¯Ïà¹ØÆ¥Åä·¨(TM CCORR NORMED)\n" 
-		"\t\t·½·¨¡¾4¡¿- Ïà¹ØÏµÊýÆ¥Åä·¨(TM COEFF)\n" 
-		"\t\t·½·¨¡¾5¡¿- ¹éÒ»»¯Ïà¹ØÏµÊýÆ¥Åä·¨(TM COEFF NORMED)\n" );  
+	//è¾“å‡ºä¸€äº›å¸®åŠ©ä¿¡æ¯
+	printf("\tæ¬¢è¿Žæ¥åˆ°ã€æ¨¡æ¿åŒ¹é…ã€‘ç¤ºä¾‹ç¨‹åº~\n"); 
+	printf("\n\n\tè¯·è°ƒæ•´æ»‘åŠ¨æ¡è§‚å¯Ÿå›¾åƒæ•ˆæžœ\n\n");
+	printf(  "\n\tæ»‘åŠ¨æ¡å¯¹åº”çš„æ–¹æ³•æ•°å€¼è¯´æ˜Ž: \n\n" 
+		"\t\tæ–¹æ³•ã€0ã€‘- å¹³æ–¹å·®åŒ¹é…æ³•(SQDIFF)\n" 
+		"\t\tæ–¹æ³•ã€1ã€‘- å½’ä¸€åŒ–å¹³æ–¹å·®åŒ¹é…æ³•(SQDIFF NORMED)\n" 
+		"\t\tæ–¹æ³•ã€2ã€‘- ç›¸å…³åŒ¹é…æ³•(TM CCORR)\n" 
+		"\t\tæ–¹æ³•ã€3ã€‘- å½’ä¸€åŒ–ç›¸å…³åŒ¹é…æ³•(TM CCORR NORMED)\n" 
+		"\t\tæ–¹æ³•ã€4ã€‘- ç›¸å…³ç³»æ•°åŒ¹é…æ³•(TM COEFF)\n" 
+		"\t\tæ–¹æ³•ã€5ã€‘- å½’ä¸€åŒ–ç›¸å…³ç³»æ•°åŒ¹é…æ³•(TM COEFF NORMED)\n" );  
 }

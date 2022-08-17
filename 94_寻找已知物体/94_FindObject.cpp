@@ -7,50 +7,50 @@
 using namespace cv;
 using namespace std;
 
-//-----------------------------------¡¾È«¾Öº¯ÊıÉùÃ÷²¿·Ö¡¿--------------------------------------
-//		ÃèÊö£ºÈ«¾Öº¯ÊıµÄÉùÃ÷
+//-----------------------------------ã€å…¨å±€å‡½æ•°å£°æ˜éƒ¨åˆ†ã€‘--------------------------------------
+//		æè¿°ï¼šå…¨å±€å‡½æ•°çš„å£°æ˜
 //-----------------------------------------------------------------------------------------------
-static void ShowHelpText( );//Êä³ö°ïÖúÎÄ×Ö
+static void ShowHelpText( );//è¾“å‡ºå¸®åŠ©æ–‡å­—
 
-//-----------------------------------¡¾main( )º¯Êı¡¿--------------------------------------------
-//		ÃèÊö£º¿ØÖÆÌ¨Ó¦ÓÃ³ÌĞòµÄÈë¿Úº¯Êı£¬ÎÒÃÇµÄ³ÌĞò´ÓÕâÀï¿ªÊ¼Ö´ĞĞ
+//-----------------------------------ã€main( )å‡½æ•°ã€‘--------------------------------------------
+//		æè¿°ï¼šæ§åˆ¶å°åº”ç”¨ç¨‹åºçš„å…¥å£å‡½æ•°ï¼Œæˆ‘ä»¬çš„ç¨‹åºä»è¿™é‡Œå¼€å§‹æ‰§è¡Œ
 //-----------------------------------------------------------------------------------------------
 int main(  )
 {
-	//¡¾0¡¿¸Ä±äconsole×ÖÌåÑÕÉ«
+	//ã€0ã€‘æ”¹å˜consoleå­—ä½“é¢œè‰²
 	system("color 1F"); 
 
-	//¡¾0¡¿ÏÔÊ¾»¶Ó­ºÍ°ïÖúÎÄ×Ö
+	//ã€0ã€‘æ˜¾ç¤ºæ¬¢è¿å’Œå¸®åŠ©æ–‡å­—
 	ShowHelpText( );
 
-	//¡¾1¡¿ÔØÈëÔ­Ê¼Í¼Æ¬
+	//ã€1ã€‘è½½å…¥åŸå§‹å›¾ç‰‡
 	Mat srcImage1 = imread( "1.jpg", 1 );
 	Mat srcImage2 = imread( "2.jpg", 1 );
 	if( !srcImage1.data || !srcImage2.data )
-	{ printf("¶ÁÈ¡Í¼Æ¬´íÎó£¬ÇëÈ·¶¨Ä¿Â¼ÏÂÊÇ·ñÓĞimreadº¯ÊıÖ¸¶¨µÄÍ¼Æ¬´æÔÚ~£¡ \n"); return false; }  
+	{ printf("è¯»å–å›¾ç‰‡é”™è¯¯ï¼Œè¯·ç¡®å®šç›®å½•ä¸‹æ˜¯å¦æœ‰imreadå‡½æ•°æŒ‡å®šçš„å›¾ç‰‡å­˜åœ¨~ï¼ \n"); return false; }  
 
-	//¡¾2¡¿Ê¹ÓÃSURFËã×Ó¼ì²â¹Ø¼üµã
-	int minHessian = 400;//SURFËã·¨ÖĞµÄhessianãĞÖµ
-	SurfFeatureDetector detector( minHessian );//¶¨ÒåÒ»¸öSurfFeatureDetector£¨SURF£© ÌØÕ÷¼ì²âÀà¶ÔÏó  
-	vector<KeyPoint> keypoints_object, keypoints_scene;//vectorÄ£°åÀà£¬´æ·ÅÈÎÒâÀàĞÍµÄ¶¯Ì¬Êı×é
+	//ã€2ã€‘ä½¿ç”¨SURFç®—å­æ£€æµ‹å…³é”®ç‚¹
+	int minHessian = 400;//SURFç®—æ³•ä¸­çš„hessiané˜ˆå€¼
+	SurfFeatureDetector detector( minHessian );//å®šä¹‰ä¸€ä¸ªSurfFeatureDetectorï¼ˆSURFï¼‰ ç‰¹å¾æ£€æµ‹ç±»å¯¹è±¡  
+	vector<KeyPoint> keypoints_object, keypoints_scene;//vectoræ¨¡æ¿ç±»ï¼Œå­˜æ”¾ä»»æ„ç±»å‹çš„åŠ¨æ€æ•°ç»„
 
-	//¡¾3¡¿µ÷ÓÃdetectº¯Êı¼ì²â³öSURFÌØÕ÷¹Ø¼üµã£¬±£´æÔÚvectorÈİÆ÷ÖĞ
+	//ã€3ã€‘è°ƒç”¨detectå‡½æ•°æ£€æµ‹å‡ºSURFç‰¹å¾å…³é”®ç‚¹ï¼Œä¿å­˜åœ¨vectorå®¹å™¨ä¸­
 	detector.detect( srcImage1, keypoints_object );
 	detector.detect( srcImage2, keypoints_scene );
 
-	//¡¾4¡¿¼ÆËãÃèÊö·û£¨ÌØÕ÷ÏòÁ¿£©
+	//ã€4ã€‘è®¡ç®—æè¿°ç¬¦ï¼ˆç‰¹å¾å‘é‡ï¼‰
 	SurfDescriptorExtractor extractor;
 	Mat descriptors_object, descriptors_scene;
 	extractor.compute( srcImage1, keypoints_object, descriptors_object );
 	extractor.compute( srcImage2, keypoints_scene, descriptors_scene );
 
-	//¡¾5¡¿Ê¹ÓÃFLANNÆ¥ÅäËã×Ó½øĞĞÆ¥Åä
+	//ã€5ã€‘ä½¿ç”¨FLANNåŒ¹é…ç®—å­è¿›è¡ŒåŒ¹é…
 	FlannBasedMatcher matcher;
 	vector< DMatch > matches;
 	matcher.match( descriptors_object, descriptors_scene, matches );
-	double max_dist = 0; double min_dist = 100;//×îĞ¡¾àÀëºÍ×î´ó¾àÀë
+	double max_dist = 0; double min_dist = 100;//æœ€å°è·ç¦»å’Œæœ€å¤§è·ç¦»
 
-	//¡¾6¡¿¼ÆËã³ö¹Ø¼üµãÖ®¼ä¾àÀëµÄ×î´óÖµºÍ×îĞ¡Öµ
+	//ã€6ã€‘è®¡ç®—å‡ºå…³é”®ç‚¹ä¹‹é—´è·ç¦»çš„æœ€å¤§å€¼å’Œæœ€å°å€¼
 	for( int i = 0; i < descriptors_object.rows; i++ )
 	{ 
 		double dist = matches[i].distance;
@@ -58,10 +58,10 @@ int main(  )
 		if( dist > max_dist ) max_dist = dist;
 	}
 
-	printf(">Max dist ×î´ó¾àÀë : %f \n", max_dist );
-	printf(">Min dist ×îĞ¡¾àÀë : %f \n", min_dist );
+	printf(">Max dist æœ€å¤§è·ç¦» : %f \n", max_dist );
+	printf(">Min dist æœ€å°è·ç¦» : %f \n", min_dist );
 
-	//¡¾7¡¿´æÏÂÆ¥Åä¾àÀëĞ¡ÓÚ3*min_distµÄµã¶Ô
+	//ã€7ã€‘å­˜ä¸‹åŒ¹é…è·ç¦»å°äº3*min_distçš„ç‚¹å¯¹
 	std::vector< DMatch > good_matches;
 	for( int i = 0; i < descriptors_object.rows; i++ )
 	{ 
@@ -71,42 +71,42 @@ int main(  )
 		}
 	}
 
-	//»æÖÆ³öÆ¥Åäµ½µÄ¹Ø¼üµã
+	//ç»˜åˆ¶å‡ºåŒ¹é…åˆ°çš„å…³é”®ç‚¹
 	Mat img_matches;
 	drawMatches( srcImage1, keypoints_object, srcImage2, keypoints_scene,
 		good_matches, img_matches, Scalar::all(-1), Scalar::all(-1),
 		vector<char>(), DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS );
 
-	//¶¨ÒåÁ½¸ö¾Ö²¿±äÁ¿
+	//å®šä¹‰ä¸¤ä¸ªå±€éƒ¨å˜é‡
 	vector<Point2f> obj;
 	vector<Point2f> scene;
 
-	//´ÓÆ¥Åä³É¹¦µÄÆ¥Åä¶ÔÖĞ»ñÈ¡¹Ø¼üµã
+	//ä»åŒ¹é…æˆåŠŸçš„åŒ¹é…å¯¹ä¸­è·å–å…³é”®ç‚¹
 	for( unsigned int i = 0; i < good_matches.size(); i++ )
 	{
 		obj.push_back( keypoints_object[ good_matches[i].queryIdx ].pt );
 		scene.push_back( keypoints_scene[ good_matches[i].trainIdx ].pt );
 	}
 
-	Mat H = findHomography( obj, scene, CV_RANSAC );//¼ÆËãÍ¸ÊÓ±ä»» 
+	Mat H = findHomography( obj, scene, CV_RANSAC );//è®¡ç®—é€è§†å˜æ¢ 
 
-	//´Ó´ı²âÍ¼Æ¬ÖĞ»ñÈ¡½Çµã
+	//ä»å¾…æµ‹å›¾ç‰‡ä¸­è·å–è§’ç‚¹
 	vector<Point2f> obj_corners(4);
 	obj_corners[0] = cvPoint(0,0); obj_corners[1] = cvPoint( srcImage1.cols, 0 );
 	obj_corners[2] = cvPoint( srcImage1.cols, srcImage1.rows ); obj_corners[3] = cvPoint( 0, srcImage1.rows );
 	vector<Point2f> scene_corners(4);
 
-	//½øĞĞÍ¸ÊÓ±ä»»
+	//è¿›è¡Œé€è§†å˜æ¢
 	perspectiveTransform( obj_corners, scene_corners, H);
 
-	//»æÖÆ³ö½ÇµãÖ®¼äµÄÖ±Ïß
+	//ç»˜åˆ¶å‡ºè§’ç‚¹ä¹‹é—´çš„ç›´çº¿
 	line( img_matches, scene_corners[0] + Point2f( static_cast<float>(srcImage1.cols), 0), scene_corners[1] + Point2f( static_cast<float>(srcImage1.cols), 0), Scalar(255, 0, 123), 4 );
 	line( img_matches, scene_corners[1] + Point2f( static_cast<float>(srcImage1.cols), 0), scene_corners[2] + Point2f( static_cast<float>(srcImage1.cols), 0), Scalar( 255, 0, 123), 4 );
 	line( img_matches, scene_corners[2] + Point2f( static_cast<float>(srcImage1.cols), 0), scene_corners[3] + Point2f( static_cast<float>(srcImage1.cols), 0), Scalar( 255, 0, 123), 4 );
 	line( img_matches, scene_corners[3] + Point2f( static_cast<float>(srcImage1.cols), 0), scene_corners[0] + Point2f( static_cast<float>(srcImage1.cols), 0), Scalar( 255, 0, 123), 4 );
 
-	//ÏÔÊ¾×îÖÕ½á¹û
-	imshow( "Ğ§¹ûÍ¼", img_matches );
+	//æ˜¾ç¤ºæœ€ç»ˆç»“æœ
+	imshow( "æ•ˆæœå›¾", img_matches );
 
 	waitKey(0);
 	return 0;
@@ -114,16 +114,16 @@ int main(  )
 
 
 
-//-----------------------------------¡¾ShowHelpText( )º¯Êı¡¿----------------------------------  
-//      ÃèÊö£ºÊä³öÒ»Ğ©°ïÖúĞÅÏ¢  
+//-----------------------------------ã€ShowHelpText( )å‡½æ•°ã€‘----------------------------------  
+//      æè¿°ï¼šè¾“å‡ºä¸€äº›å¸®åŠ©ä¿¡æ¯  
 //----------------------------------------------------------------------------------------------  
 static void ShowHelpText()  
 {  
-	//Êä³ö»¶Ó­ĞÅÏ¢ºÍOpenCV°æ±¾
-	printf("\n\n\t\t\t·Ç³£¸ĞĞ»¹ºÂò¡¶OpenCV3±à³ÌÈëÃÅ¡·Ò»Êé£¡\n");
-	printf("\n\n\t\t\t´ËÎª±¾ÊéOpenCV2°æµÄµÚ94¸öÅäÌ×Ê¾Àı³ÌĞò\n");
-	printf("\n\n\t\t\t   µ±Ç°Ê¹ÓÃµÄOpenCV°æ±¾Îª£º" CV_VERSION );
+	//è¾“å‡ºæ¬¢è¿ä¿¡æ¯å’ŒOpenCVç‰ˆæœ¬
+	printf("\n\n\t\t\téå¸¸æ„Ÿè°¢è´­ä¹°ã€ŠOpenCV3ç¼–ç¨‹å…¥é—¨ã€‹ä¸€ä¹¦ï¼\n");
+	printf("\n\n\t\t\tæ­¤ä¸ºæœ¬ä¹¦OpenCV2ç‰ˆçš„ç¬¬94ä¸ªé…å¥—ç¤ºä¾‹ç¨‹åº\n");
+	printf("\n\n\t\t\t   å½“å‰ä½¿ç”¨çš„OpenCVç‰ˆæœ¬ä¸ºï¼š" CV_VERSION );
 	printf("\n\n  ----------------------------------------------------------------------------\n");
-	//Êä³öÒ»Ğ©°ïÖúĞÅÏ¢  
-	printf(  "\n\t»¶Ó­À´µ½¡¾feature2DÅäºÏµ¥Ó³ÉäÑ°ÕÒÒÑÖªµã¡¿Ê¾Àı³ÌĞò\n\n");  
+	//è¾“å‡ºä¸€äº›å¸®åŠ©ä¿¡æ¯  
+	printf(  "\n\tæ¬¢è¿æ¥åˆ°ã€feature2Dé…åˆå•æ˜ å°„å¯»æ‰¾å·²çŸ¥ç‚¹ã€‘ç¤ºä¾‹ç¨‹åº\n\n");  
 }  

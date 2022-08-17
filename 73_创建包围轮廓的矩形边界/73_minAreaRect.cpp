@@ -1,6 +1,6 @@
-//--------------------------------------¡¾³ÌÐòËµÃ÷¡¿-------------------------------------------
-//		³ÌÐòËµÃ÷£º¡¶OpenCV3±à³ÌÈëÃÅ¡·OpenCV3°æÊé±¾ÅäÌ×Ê¾Àý³ÌÐò73
-//		³ÌÐòÃèÊö£º´´½¨°üÎ§ÂÖÀªµÄ¾ØÐÎ±ß½ç
+//--------------------------------------ã€ç¨‹åºè¯´æ˜Žã€‘-------------------------------------------
+//		ç¨‹åºè¯´æ˜Žï¼šã€ŠOpenCV3ç¼–ç¨‹å…¥é—¨ã€‹OpenCV3ç‰ˆä¹¦æœ¬é…å¥—ç¤ºä¾‹ç¨‹åº73
+//		ç¨‹åºæè¿°ï¼šåˆ›å»ºåŒ…å›´è½®å»“çš„çŸ©å½¢è¾¹ç•Œ
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 using namespace cv;
@@ -8,43 +8,43 @@ using namespace std;
 
 
 
-//-----------------------------------¡¾ShowHelpText( )º¯Êý¡¿-----------------------------
-//          ÃèÊö£ºÊä³öÒ»Ð©°ïÖúÐÅÏ¢
+//-----------------------------------ã€ShowHelpText( )å‡½æ•°ã€‘-----------------------------
+//          æè¿°ï¼šè¾“å‡ºä¸€äº›å¸®åŠ©ä¿¡æ¯
 //----------------------------------------------------------------------------------------------
 static void ShowHelpText()
 {
 
-	//Êä³ö»¶Ó­ÐÅÏ¢ºÍOpenCV°æ±¾
-	printf("\n\n\t\t\t·Ç³£¸ÐÐ»¹ºÂò¡¶OpenCV3±à³ÌÈëÃÅ¡·Ò»Êé£¡\n");
-	printf("\n\n\t\t\t´ËÎª±¾ÊéOpenCV3°æµÄµÚ73¸öÅäÌ×Ê¾Àý³ÌÐò\n");
-	printf("\n\n\t\t\t   µ±Ç°Ê¹ÓÃµÄOpenCV°æ±¾Îª£º" CV_VERSION );
+	//è¾“å‡ºæ¬¢è¿Žä¿¡æ¯å’ŒOpenCVç‰ˆæœ¬
+	printf("\n\n\t\t\téžå¸¸æ„Ÿè°¢è´­ä¹°ã€ŠOpenCV3ç¼–ç¨‹å…¥é—¨ã€‹ä¸€ä¹¦ï¼\n");
+	printf("\n\n\t\t\tæ­¤ä¸ºæœ¬ä¹¦OpenCV3ç‰ˆçš„ç¬¬73ä¸ªé…å¥—ç¤ºä¾‹ç¨‹åº\n");
+	printf("\n\n\t\t\t   å½“å‰ä½¿ç”¨çš„OpenCVç‰ˆæœ¬ä¸ºï¼š" CV_VERSION );
 	printf("\n\n  ----------------------------------------------------------------------------\n");
 
-	//Êä³öÒ»Ð©°ïÖúÐÅÏ¢
-	printf("\n\n\n\t\t\t»¶Ó­À´µ½¡¾¾ØÐÎ°üÎ§Ê¾Àý¡¿Ê¾Àý³ÌÐò~\n\n"); 
-	printf("\n\n\t°´¼ü²Ù×÷ËµÃ÷: \n\n" 
-		"\t\t¼üÅÌ°´¼ü¡¾ESC¡¿¡¢¡¾Q¡¿¡¢¡¾q¡¿- ÍË³ö³ÌÐò\n\n" 
-		"\t\t¼üÅÌ°´¼üÈÎÒâ¼ü - ÖØÐÂÉú³ÉËæ»úµã£¬²¢Ñ°ÕÒ×îÐ¡Ãæ»ýµÄ°üÎ§¾ØÐÎ\n" );  
+	//è¾“å‡ºä¸€äº›å¸®åŠ©ä¿¡æ¯
+	printf("\n\n\n\t\t\tæ¬¢è¿Žæ¥åˆ°ã€çŸ©å½¢åŒ…å›´ç¤ºä¾‹ã€‘ç¤ºä¾‹ç¨‹åº~\n\n"); 
+	printf("\n\n\tæŒ‰é”®æ“ä½œè¯´æ˜Ž: \n\n" 
+		"\t\té”®ç›˜æŒ‰é”®ã€ESCã€‘ã€ã€Qã€‘ã€ã€qã€‘- é€€å‡ºç¨‹åº\n\n" 
+		"\t\té”®ç›˜æŒ‰é”®ä»»æ„é”® - é‡æ–°ç”Ÿæˆéšæœºç‚¹ï¼Œå¹¶å¯»æ‰¾æœ€å°é¢ç§¯çš„åŒ…å›´çŸ©å½¢\n" );  
 }
 
 int main(  )
 {
-	//¸Ä±äconsole×ÖÌåÑÕÉ«
+	//æ”¹å˜consoleå­—ä½“é¢œè‰²
 	system("color 1F"); 
 
-	//ÏÔÊ¾°ïÖúÎÄ×Ö
+	//æ˜¾ç¤ºå¸®åŠ©æ–‡å­—
 	ShowHelpText();
 
-	//³õÊ¼»¯±äÁ¿ºÍËæ»úÖµ
+	//åˆå§‹åŒ–å˜é‡å’Œéšæœºå€¼
 	Mat image(600, 600, CV_8UC3);
 	RNG& rng = theRNG();
 	
-	//Ñ­»·£¬°´ÏÂESC,Q,q¼ü³ÌÐòÍË³ö£¬·ñÔòÓÐ¼ü°´ÏÂ±ãÒ»Ö±¸üÐÂ
+	//å¾ªçŽ¯ï¼ŒæŒ‰ä¸‹ESC,Q,qé”®ç¨‹åºé€€å‡ºï¼Œå¦åˆ™æœ‰é”®æŒ‰ä¸‹ä¾¿ä¸€ç›´æ›´æ–°
 	while(1)
 	{
-		//²ÎÊý³õÊ¼»¯
-		//1.	Ëæ»úÉú³ÉµãµÄÊýÁ¿
-		//2.	Ëæ»úÉú³Éµã×ø±ê
+		//å‚æ•°åˆå§‹åŒ–
+		//1.	éšæœºç”Ÿæˆç‚¹çš„æ•°é‡
+		//2.	éšæœºç”Ÿæˆç‚¹åæ ‡
 		int count = rng.uniform(3, 103);
 		vector<Point> points;
 		for(int  i = 0; i < count; i++ )
@@ -56,25 +56,25 @@ int main(  )
 			points.push_back(point);
 		}
 
-		//¶Ô¸ø¶¨µÄ 2D µã¼¯£¬Ñ°ÕÒ×îÐ¡Ãæ»ýµÄ°üÎ§¾ØÐÎ
+		//å¯¹ç»™å®šçš„ 2D ç‚¹é›†ï¼Œå¯»æ‰¾æœ€å°é¢ç§¯çš„åŒ…å›´çŸ©å½¢
 		RotatedRect box = minAreaRect(Mat(points));
 		Point2f vertex[4];
-		box.points(vertex);		//´æ´¢boxµÄ¶¨µã
+		box.points(vertex);		//å­˜å‚¨boxçš„å®šç‚¹
 
-		//»æÖÆ³öËæ»úµãµÄÑÕÉ«
+		//ç»˜åˆ¶å‡ºéšæœºç‚¹çš„é¢œè‰²
 		image = Scalar::all(0);
 		for( int i = 0; i < count; i++ )
 			circle( image, points[i], 3, Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255)), FILLED, LINE_AA );
 
 
-		//»æÖÆ³ö×îÐ¡Ãæ»ýµÄ°üÎ§¾ØÐÎ
+		//ç»˜åˆ¶å‡ºæœ€å°é¢ç§¯çš„åŒ…å›´çŸ©å½¢
 		for( int i = 0; i < 4; i++ )
 			line(image, vertex[i], vertex[(i+1)%4], Scalar(100, 200, 211), 2, LINE_AA);
 
-		//ÏÔÊ¾´°¿Ú
-		imshow( "¾ØÐÎ°üÎ§Ê¾Àý", image );
+		//æ˜¾ç¤ºçª—å£
+		imshow( "çŸ©å½¢åŒ…å›´ç¤ºä¾‹", image );
 
-		//°´ÏÂESC,Q,»òÕßq£¬³ÌÐòÍË³ö
+		//æŒ‰ä¸‹ESC,Q,æˆ–è€…qï¼Œç¨‹åºé€€å‡º
 		char key = (char)waitKey();
 		if( key == 27 || key == 'q' || key == 'Q' ) // 'ESC'
 			break;

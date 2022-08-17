@@ -1,23 +1,23 @@
-//--------------------------------------¡¾³ÌÐòËµÃ÷¡¿-------------------------------------------
-//		³ÌÐòËµÃ÷£º¡¶OpenCV3±à³ÌÈëÃÅ¡·OpenCV3°æÊé±¾ÅäÌ×Ê¾Àý³ÌÐò02
-//		³ÌÐòÃèÊö£º¼òµ¥µÄOpenCVÍ¼ÏñÏÔÊ¾
-//		¿ª·¢²âÊÔËùÓÃ²Ù×÷ÏµÍ³£º Windows 7 64bit
-//		¿ª·¢²âÊÔËùÓÃIDE°æ±¾£ºVisual Studio 2010
-//		¿ª·¢²âÊÔËùÓÃOpenCV°æ±¾£º	3.0 beta
-//		2014Äê11ÔÂ Created by @Ç³Ä«_Ã«ÐÇÔÆ
-//		2014Äê11ÔÂ Revised by @Ç³Ä«_Ã«ÐÇÔÆ
+//--------------------------------------ã€ç¨‹åºè¯´æ˜Žã€‘-------------------------------------------
+//		ç¨‹åºè¯´æ˜Žï¼šã€ŠOpenCV3ç¼–ç¨‹å…¥é—¨ã€‹OpenCV3ç‰ˆä¹¦æœ¬é…å¥—ç¤ºä¾‹ç¨‹åº02
+//		ç¨‹åºæè¿°ï¼šç®€å•çš„OpenCVå›¾åƒæ˜¾ç¤º
+//		å¼€å‘æµ‹è¯•æ‰€ç”¨æ“ä½œç³»ç»Ÿï¼š Windows 7 64bit
+//		å¼€å‘æµ‹è¯•æ‰€ç”¨IDEç‰ˆæœ¬ï¼šVisual Studio 2010
+//		å¼€å‘æµ‹è¯•æ‰€ç”¨OpenCVç‰ˆæœ¬ï¼š	3.0 beta
+//		2014å¹´11æœˆ Created by @æµ…å¢¨_æ¯›æ˜Ÿäº‘
+//		2014å¹´11æœˆ Revised by @æµ…å¢¨_æ¯›æ˜Ÿäº‘
 //------------------------------------------------------------------------------------------------
 
 
-#include <opencv2/opencv.hpp>  //Í·ÎÄ¼þ
-using namespace cv;  //°üº¬cvÃüÃû¿Õ¼ä
+#include <opencv2/opencv.hpp>  //å¤´æ–‡ä»¶
+using namespace cv;  //åŒ…å«cvå‘½åç©ºé—´
 
 int main()
 {    
-	// ¡¾1¡¿¶ÁÈëÒ»ÕÅÍ¼Æ¬£¬ÔØÈëÍ¼Ïñ
+	// ã€1ã€‘è¯»å…¥ä¸€å¼ å›¾ç‰‡ï¼Œè½½å…¥å›¾åƒ
 	Mat srcImage = imread("1.jpg");
-	// ¡¾2¡¿ÏÔÊ¾ÔØÈëµÄÍ¼Æ¬
-	imshow("¡¾Ô­Ê¼Í¼¡¿",srcImage);
-	// ¡¾3¡¿µÈ´ýÈÎÒâ°´¼ü°´ÏÂ
+	// ã€2ã€‘æ˜¾ç¤ºè½½å…¥çš„å›¾ç‰‡
+	imshow("ã€åŽŸå§‹å›¾ã€‘",srcImage);
+	// ã€3ã€‘ç­‰å¾…ä»»æ„æŒ‰é”®æŒ‰ä¸‹
 	waitKey(0);
 }  

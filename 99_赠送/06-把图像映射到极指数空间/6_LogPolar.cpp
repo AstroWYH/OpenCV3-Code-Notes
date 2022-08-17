@@ -1,10 +1,10 @@
-//--------------------------------------¡¾³ÌÐòËµÃ÷¡¿-------------------------------------------
-//		³ÌÐòËµÃ÷£º¡¶OpenCV3±à³ÌÈëÃÅ¡·OpenCV2°æÊé±¾¸½ÔùÊ¾Àý³ÌÐò06
-//		³ÌÐòÃèÊö£º°ÑÍ¼ÏñÓ³Éäµ½¼«Ö¸Êý¿Õ¼ä 
-//		²âÊÔËùÓÃ²Ù×÷ÏµÍ³£º Windows 7 64bit
-//		²âÊÔËùÓÃIDE°æ±¾£ºVisual Studio 2010
-//		²âÊÔËùÓÃOpenCV°æ±¾£º	2.4.9
-//		2014Äê11ÔÂ Revised by @Ç³Ä«_Ã«ÐÇÔÆ
+//--------------------------------------ã€ç¨‹åºè¯´æ˜Žã€‘-------------------------------------------
+//		ç¨‹åºè¯´æ˜Žï¼šã€ŠOpenCV3ç¼–ç¨‹å…¥é—¨ã€‹OpenCV2ç‰ˆä¹¦æœ¬é™„èµ ç¤ºä¾‹ç¨‹åº06
+//		ç¨‹åºæè¿°ï¼šæŠŠå›¾åƒæ˜ å°„åˆ°æžæŒ‡æ•°ç©ºé—´ 
+//		æµ‹è¯•æ‰€ç”¨æ“ä½œç³»ç»Ÿï¼š Windows 7 64bit
+//		æµ‹è¯•æ‰€ç”¨IDEç‰ˆæœ¬ï¼šVisual Studio 2010
+//		æµ‹è¯•æ‰€ç”¨OpenCVç‰ˆæœ¬ï¼š	2.4.9
+//		2014å¹´11æœˆ Revised by @æµ…å¢¨_æ¯›æ˜Ÿäº‘
 //------------------------------------------------------------------------------------------------
 
 /*Authors
@@ -15,8 +15,8 @@
 * PSPC-lab - University of Genoa
 */
 
-//---------------------------------¡¾Í·ÎÄ¼þ¡¢ÃüÃû¿Õ¼ä°üº¬²¿·Ö¡¿----------------------------
-//		ÃèÊö£º°üº¬³ÌÐòËùÊ¹ÓÃµÄÍ·ÎÄ¼þºÍÃüÃû¿Õ¼ä
+//---------------------------------ã€å¤´æ–‡ä»¶ã€å‘½åç©ºé—´åŒ…å«éƒ¨åˆ†ã€‘----------------------------
+//		æè¿°ï¼šåŒ…å«ç¨‹åºæ‰€ä½¿ç”¨çš„å¤´æ–‡ä»¶å’Œå‘½åç©ºé—´
 //------------------------------------------------------------------------------------------------
 #include "opencv2/opencv.hpp"
 #include <iostream>
@@ -25,26 +25,26 @@ using namespace cv;
 using namespace std;
 
 
-//-----------------------------------¡¾help( )º¯Êý¡¿----------------------------------------
-//		 ÃèÊö£ºÊä³öÒ»Ð©°ïÖúÐÅÏ¢
+//-----------------------------------ã€help( )å‡½æ•°ã€‘----------------------------------------
+//		 æè¿°ï¼šè¾“å‡ºä¸€äº›å¸®åŠ©ä¿¡æ¯
 //----------------------------------------------------------------------------------------------
 static void help( )
 {
-	cout << "\n\n\t´Ë³ÌÐòÓÃÓÚ°ÑÍ¼ÏñÓ³Éäµ½¼«Ö¸Êý¿Õ¼ä,ÓÐÈçÏÂËÄÖÖ·½Ê½¿ÉÑ¡£º\n"<<
-		"\n\n\t¡¾n¡¿-²ÉÓÃ×îÁÚ½üÏñËØ¼¼Êõ£¨nearest pixel technique£©"<<
-		"\n\n\t¡¾b¡¿-²ÉÓÃË«ÏßÐÔ²åÖµ¼¼Êõ£¨bilinear interpolation technique£©"<<
-		"\n\n\t¡¾o¡¿-Ê¹ÓÃÖØµþµÄÔ²ÐÎµÄ½ÓÊÜÓò£¨overlapping circular receptive fields£©"<<
-		"\n\n\t¡¾a¡¿-Ê¹ÓÃÏàÁÚµÄ½ÓÊÜÓò£¨adjacent receptive fields£©";
+	cout << "\n\n\tæ­¤ç¨‹åºç”¨äºŽæŠŠå›¾åƒæ˜ å°„åˆ°æžæŒ‡æ•°ç©ºé—´,æœ‰å¦‚ä¸‹å››ç§æ–¹å¼å¯é€‰ï¼š\n"<<
+		"\n\n\tã€nã€‘-é‡‡ç”¨æœ€é‚»è¿‘åƒç´ æŠ€æœ¯ï¼ˆnearest pixel techniqueï¼‰"<<
+		"\n\n\tã€bã€‘-é‡‡ç”¨åŒçº¿æ€§æ’å€¼æŠ€æœ¯ï¼ˆbilinear interpolation techniqueï¼‰"<<
+		"\n\n\tã€oã€‘-ä½¿ç”¨é‡å çš„åœ†å½¢çš„æŽ¥å—åŸŸï¼ˆoverlapping circular receptive fieldsï¼‰"<<
+		"\n\n\tã€aã€‘-ä½¿ç”¨ç›¸é‚»çš„æŽ¥å—åŸŸï¼ˆadjacent receptive fieldsï¼‰";
 
 }
 
 
-//-----------------------------------¡¾main( )º¯Êý¡¿--------------------------------------------
-//		ÃèÊö£º¿ØÖÆÌ¨Ó¦ÓÃ³ÌÐòµÄÈë¿Úº¯Êý£¬ÎÒÃÇµÄ³ÌÐò´ÓÕâÀï¿ªÊ¼
+//-----------------------------------ã€main( )å‡½æ•°ã€‘--------------------------------------------
+//		æè¿°ï¼šæŽ§åˆ¶å°åº”ç”¨ç¨‹åºçš„å…¥å£å‡½æ•°ï¼Œæˆ‘ä»¬çš„ç¨‹åºä»Žè¿™é‡Œå¼€å§‹
 //-------------------------------------------------------------------------------------------------
 int main(int argc, char** argv)
 {
-	//ÔØÈëÍ¼Æ¬
+	//è½½å…¥å›¾ç‰‡
 	Mat img = imread("1.jpg",1); 
 	if(img.empty()) 
 	{
@@ -56,11 +56,11 @@ int main(int argc, char** argv)
 
 	Size s=img.size();
 	int w=s.width, h=s.height;
-	int ro0=3; //°ë¾¶µÄÃ¤µã£¨radius of the blind spot£©
-	int R=120;  //»·µÄÊýÁ¿£¨number of rings£©
+	int ro0=3; //åŠå¾„çš„ç›²ç‚¹ï¼ˆradius of the blind spotï¼‰
+	int R=120;  //çŽ¯çš„æ•°é‡ï¼ˆnumber of ringsï¼‰
 
 	//Creation of the four different objects that implement the four log-polar transformations
-	//ÀëÏß¼ÆËã£¨Off-line computation£©
+	//ç¦»çº¿è®¡ç®—ï¼ˆOff-line computationï¼‰
 	Point2i center(w/2,h/2);
 	LogPolar_Interp nearest(w, h, center, R, ro0, INTER_NEAREST);
 	LogPolar_Interp bilin(w,h, center,R,ro0);
@@ -73,7 +73,7 @@ int main(int argc, char** argv)
 	int wk='n';
 	Mat Cortical, Retinal;
 
-	//ÔÚÏß¼ÆËã£¨On-line computation£©
+	//åœ¨çº¿è®¡ç®—ï¼ˆOn-line computationï¼‰
 	for(;;)
 	{
 		if(wk=='n')

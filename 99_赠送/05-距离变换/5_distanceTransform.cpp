@@ -1,11 +1,11 @@
 
-//--------------------------------------¡¾³ÌÐòËµÃ÷¡¿-------------------------------------------
-//		³ÌÐòËµÃ÷£º¡¶OpenCV3±à³ÌÈëÃÅ¡·OpenCV2°æÊé±¾¸½ÔùÊ¾Àý³ÌÐò05
-//		³ÌÐòÃèÊö£º¾àÀë±ä»»ÑÝÊ¾
-//		²âÊÔËùÓÃ²Ù×÷ÏµÍ³£º Windows 7 64bit
-//		²âÊÔËùÓÃIDE°æ±¾£ºVisual Studio 2010
-//		²âÊÔËùÓÃOpenCV°æ±¾£º	2.4.9
-//		2014Äê11ÔÂ Revised by @Ç³Ä«_Ã«ÐÇÔÆ
+//--------------------------------------ã€ç¨‹åºè¯´æ˜Žã€‘-------------------------------------------
+//		ç¨‹åºè¯´æ˜Žï¼šã€ŠOpenCV3ç¼–ç¨‹å…¥é—¨ã€‹OpenCV2ç‰ˆä¹¦æœ¬é™„èµ ç¤ºä¾‹ç¨‹åº05
+//		ç¨‹åºæè¿°ï¼šè·ç¦»å˜æ¢æ¼”ç¤º
+//		æµ‹è¯•æ‰€ç”¨æ“ä½œç³»ç»Ÿï¼š Windows 7 64bit
+//		æµ‹è¯•æ‰€ç”¨IDEç‰ˆæœ¬ï¼šVisual Studio 2010
+//		æµ‹è¯•æ‰€ç”¨OpenCVç‰ˆæœ¬ï¼š	2.4.9
+//		2014å¹´11æœˆ Revised by @æµ…å¢¨_æ¯›æ˜Ÿäº‘
 //------------------------------------------------------------------------------------------------
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
@@ -94,18 +94,18 @@ static void onTrackbar( int, void* )
 
 static void help()
 {
-	printf("\n´Ë³ÌÐòÓÃÓÚÑÝÊ¾±ßÔµÍ¼ÏñÖ®¼äµÄ¾àÀë±ä»»¡£\n"
-		"\n°´¼üËµÃ÷:\n"
-		"\t¡¾ESC¡¿ -ÍË³ö³ÌÐò\n"
-		"\t¡¾c¡¿-Ê¹ÓÃC/Inf¶ÈÁ¿\n"
-		"\t¡¾1¡¿-Ê¹ÓÃL1¶ÈÁ¿\n"
-		"\t¡¾2¡¿-Ê¹ÓÃL2¶ÈÁ¿\n"
-		"\t¡¾3¡¿- Ê¹ÓÃ3 x 3µÄÑÚÄ¤\n"
-		"\t¡¾5¡¿- Ê¹ÓÃ5 x 5µÄÑÚÄ¤\n"
-		"\t¡¾0¡¿- ²ÉÓÃ¾«È·µÄ¾àÀë±ä»»\n"
-		"\t¡¾v¡¿- ÇÐ»»µ½VoronoiÍ¼£¨Voronoi diagram£©Ä£Ê½\n"
-		"\t¡¾p¡¿ - ÇÐ»»µ½»ùÓÚÏñËØµÄVoronoiÍ¼Ä£Ê½\n"
-		"\t¡¾SPACE¡¿- ÔÚ¸÷ÖÖÄ£Ê½¼äÇÐ»»\n\n");
+	printf("\næ­¤ç¨‹åºç”¨äºŽæ¼”ç¤ºè¾¹ç¼˜å›¾åƒä¹‹é—´çš„è·ç¦»å˜æ¢ã€‚\n"
+		"\næŒ‰é”®è¯´æ˜Ž:\n"
+		"\tã€ESCã€‘ -é€€å‡ºç¨‹åº\n"
+		"\tã€cã€‘-ä½¿ç”¨C/Infåº¦é‡\n"
+		"\tã€1ã€‘-ä½¿ç”¨L1åº¦é‡\n"
+		"\tã€2ã€‘-ä½¿ç”¨L2åº¦é‡\n"
+		"\tã€3ã€‘- ä½¿ç”¨3 x 3çš„æŽ©è†œ\n"
+		"\tã€5ã€‘- ä½¿ç”¨5 x 5çš„æŽ©è†œ\n"
+		"\tã€0ã€‘- é‡‡ç”¨ç²¾ç¡®çš„è·ç¦»å˜æ¢\n"
+		"\tã€vã€‘- åˆ‡æ¢åˆ°Voronoiå›¾ï¼ˆVoronoi diagramï¼‰æ¨¡å¼\n"
+		"\tã€pã€‘ - åˆ‡æ¢åˆ°åŸºäºŽåƒç´ çš„Voronoiå›¾æ¨¡å¼\n"
+		"\tã€SPACEã€‘- åœ¨å„ç§æ¨¡å¼é—´åˆ‡æ¢\n\n");
 }
 
 const char* keys =

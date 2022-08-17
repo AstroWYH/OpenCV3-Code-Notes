@@ -1,17 +1,17 @@
-//--------------------------------------¡¾³ÌĞòËµÃ÷¡¿-------------------------------------------
-//		³ÌĞòËµÃ÷£º¡¶OpenCV3±à³ÌÈëÃÅ¡·OpenCV2°æÊé±¾ÅäÌ×Ê¾Àı³ÌĞò81
-//		³ÌĞòÃèÊö£º»æÖÆRGBÈıÉ«·ÖÁ¿µÄÖ±·½Í¼
-//		¿ª·¢²âÊÔËùÓÃ²Ù×÷ÏµÍ³£º Windows 7 64bit
-//		¿ª·¢²âÊÔËùÓÃIDE°æ±¾£ºVisual Studio 2010
-//		¿ª·¢²âÊÔËùÓÃOpenCV°æ±¾£º	3.0 beta
-//		2014Äê11ÔÂ Created by @Ç³Ä«_Ã«ĞÇÔÆ
-//		2014Äê12ÔÂ Revised by @Ç³Ä«_Ã«ĞÇÔÆ
+//--------------------------------------ã€ç¨‹åºè¯´æ˜ã€‘-------------------------------------------
+//		ç¨‹åºè¯´æ˜ï¼šã€ŠOpenCV3ç¼–ç¨‹å…¥é—¨ã€‹OpenCV2ç‰ˆä¹¦æœ¬é…å¥—ç¤ºä¾‹ç¨‹åº81
+//		ç¨‹åºæè¿°ï¼šç»˜åˆ¶RGBä¸‰è‰²åˆ†é‡çš„ç›´æ–¹å›¾
+//		å¼€å‘æµ‹è¯•æ‰€ç”¨æ“ä½œç³»ç»Ÿï¼š Windows 7 64bit
+//		å¼€å‘æµ‹è¯•æ‰€ç”¨IDEç‰ˆæœ¬ï¼šVisual Studio 2010
+//		å¼€å‘æµ‹è¯•æ‰€ç”¨OpenCVç‰ˆæœ¬ï¼š	3.0 beta
+//		2014å¹´11æœˆ Created by @æµ…å¢¨_æ¯›æ˜Ÿäº‘
+//		2014å¹´12æœˆ Revised by @æµ…å¢¨_æ¯›æ˜Ÿäº‘
 //------------------------------------------------------------------------------------------------
 
 
 
-//---------------------------------¡¾Í·ÎÄ¼ş¡¢ÃüÃû¿Õ¼ä°üº¬²¿·Ö¡¿----------------------------
-//		ÃèÊö£º°üº¬³ÌĞòËùÊ¹ÓÃµÄÍ·ÎÄ¼şºÍÃüÃû¿Õ¼ä
+//---------------------------------ã€å¤´æ–‡ä»¶ã€å‘½åç©ºé—´åŒ…å«éƒ¨åˆ†ã€‘----------------------------
+//		æè¿°ï¼šåŒ…å«ç¨‹åºæ‰€ä½¿ç”¨çš„å¤´æ–‡ä»¶å’Œå‘½åç©ºé—´
 //------------------------------------------------------------------------------------------------
 #include <opencv2/opencv.hpp>  
 #include <opencv2/imgproc/imgproc.hpp>  
@@ -19,34 +19,34 @@ using namespace cv;
 
 
 
-//-----------------------------------¡¾ShowHelpText( )º¯Êı¡¿-----------------------------
-//		 ÃèÊö£ºÊä³öÒ»Ğ©°ïÖúĞÅÏ¢
+//-----------------------------------ã€ShowHelpText( )å‡½æ•°ã€‘-----------------------------
+//		 æè¿°ï¼šè¾“å‡ºä¸€äº›å¸®åŠ©ä¿¡æ¯
 //----------------------------------------------------------------------------------------------
 void ShowHelpText()
 {
-	//Êä³ö»¶Ó­ĞÅÏ¢ºÍOpenCV°æ±¾
-	printf("\n\n\t\t\t·Ç³£¸ĞĞ»¹ºÂò¡¶OpenCV3±à³ÌÈëÃÅ¡·Ò»Êé£¡\n");
-	printf("\n\n\t\t\t´ËÎª±¾ÊéOpenCV3°æµÄµÚ81¸öÅäÌ×Ê¾Àı³ÌĞò\n");
-	printf("\n\n\t\t\t   µ±Ç°Ê¹ÓÃµÄOpenCV°æ±¾Îª£º" CV_VERSION );
+	//è¾“å‡ºæ¬¢è¿ä¿¡æ¯å’ŒOpenCVç‰ˆæœ¬
+	printf("\n\n\t\t\téå¸¸æ„Ÿè°¢è´­ä¹°ã€ŠOpenCV3ç¼–ç¨‹å…¥é—¨ã€‹ä¸€ä¹¦ï¼\n");
+	printf("\n\n\t\t\tæ­¤ä¸ºæœ¬ä¹¦OpenCV3ç‰ˆçš„ç¬¬81ä¸ªé…å¥—ç¤ºä¾‹ç¨‹åº\n");
+	printf("\n\n\t\t\t   å½“å‰ä½¿ç”¨çš„OpenCVç‰ˆæœ¬ä¸ºï¼š" CV_VERSION );
 	printf("\n\n  ----------------------------------------------------------------------------\n");
 }
 
 
-//--------------------------------------¡¾main( )º¯Êı¡¿-----------------------------------------
-//          ÃèÊö£º¿ØÖÆÌ¨Ó¦ÓÃ³ÌĞòµÄÈë¿Úº¯Êı£¬ÎÒÃÇµÄ³ÌĞò´ÓÕâÀï¿ªÊ¼Ö´ĞĞ
+//--------------------------------------ã€main( )å‡½æ•°ã€‘-----------------------------------------
+//          æè¿°ï¼šæ§åˆ¶å°åº”ç”¨ç¨‹åºçš„å…¥å£å‡½æ•°ï¼Œæˆ‘ä»¬çš„ç¨‹åºä»è¿™é‡Œå¼€å§‹æ‰§è¡Œ
 //-----------------------------------------------------------------------------------------------
 int main(  )
 {
 
-	//¡¾1¡¿ÔØÈëËØ²ÄÍ¼²¢ÏÔÊ¾
+	//ã€1ã€‘è½½å…¥ç´ æå›¾å¹¶æ˜¾ç¤º
 	Mat srcImage;
 	srcImage=imread("1.jpg");
-	imshow( "ËØ²ÄÍ¼", srcImage );
+	imshow( "ç´ æå›¾", srcImage );
 
 	system("color 3F");
 	ShowHelpText();
 
-	//¡¾2¡¿²ÎÊı×¼±¸
+	//ã€2ã€‘å‚æ•°å‡†å¤‡
 	int bins = 256;
 	int hist_size[] = {bins};
 	float range[] = { 0, 256 };
@@ -54,27 +54,27 @@ int main(  )
 	MatND redHist,grayHist,blueHist;
 	int channels_r[] = {0};
 
-	//¡¾3¡¿½øĞĞÖ±·½Í¼µÄ¼ÆËã£¨ºìÉ«·ÖÁ¿²¿·Ö£©
-	calcHist( &srcImage, 1, channels_r, Mat(), //²»Ê¹ÓÃÑÚÄ¤
+	//ã€3ã€‘è¿›è¡Œç›´æ–¹å›¾çš„è®¡ç®—ï¼ˆçº¢è‰²åˆ†é‡éƒ¨åˆ†ï¼‰
+	calcHist( &srcImage, 1, channels_r, Mat(), //ä¸ä½¿ç”¨æ©è†œ
 		redHist, 1, hist_size, ranges,
 		true, false );
 
-	//¡¾4¡¿½øĞĞÖ±·½Í¼µÄ¼ÆËã£¨ÂÌÉ«·ÖÁ¿²¿·Ö£©
+	//ã€4ã€‘è¿›è¡Œç›´æ–¹å›¾çš„è®¡ç®—ï¼ˆç»¿è‰²åˆ†é‡éƒ¨åˆ†ï¼‰
 	int channels_g[] = {1};
 	calcHist( &srcImage, 1, channels_g, Mat(), // do not use mask
 		grayHist, 1, hist_size, ranges,
 		true, // the histogram is uniform
 		false );
 
-	//¡¾5¡¿½øĞĞÖ±·½Í¼µÄ¼ÆËã£¨À¶É«·ÖÁ¿²¿·Ö£©
+	//ã€5ã€‘è¿›è¡Œç›´æ–¹å›¾çš„è®¡ç®—ï¼ˆè“è‰²åˆ†é‡éƒ¨åˆ†ï¼‰
 	int channels_b[] = {2};
 	calcHist( &srcImage, 1, channels_b, Mat(), // do not use mask
 		blueHist, 1, hist_size, ranges,
 		true, // the histogram is uniform
 		false );
 
-	//-----------------------»æÖÆ³öÈıÉ«Ö±·½Í¼------------------------
-	//²ÎÊı×¼±¸
+	//-----------------------ç»˜åˆ¶å‡ºä¸‰è‰²ç›´æ–¹å›¾------------------------
+	//å‚æ•°å‡†å¤‡
 	double maxValue_red,maxValue_green,maxValue_blue;
 	minMaxLoc(redHist, 0, &maxValue_red, 0, 0);
 	minMaxLoc(grayHist, 0, &maxValue_green, 0, 0);
@@ -83,36 +83,36 @@ int main(  )
 	int histHeight=256;
 	Mat histImage = Mat::zeros(histHeight,bins*3, CV_8UC3);
 
-	//ÕıÊ½¿ªÊ¼»æÖÆ
+	//æ­£å¼å¼€å§‹ç»˜åˆ¶
 	for(int i=0;i<bins;i++)
 	{
-		//²ÎÊı×¼±¸
+		//å‚æ•°å‡†å¤‡
 		float binValue_red = redHist.at<float>(i); 
 		float binValue_green = grayHist.at<float>(i);
 		float binValue_blue = blueHist.at<float>(i);
-		int intensity_red = cvRound(binValue_red*histHeight/maxValue_red);  //Òª»æÖÆµÄ¸ß¶È
-		int intensity_green = cvRound(binValue_green*histHeight/maxValue_green);  //Òª»æÖÆµÄ¸ß¶È
-		int intensity_blue = cvRound(binValue_blue*histHeight/maxValue_blue);  //Òª»æÖÆµÄ¸ß¶È
+		int intensity_red = cvRound(binValue_red*histHeight/maxValue_red);  //è¦ç»˜åˆ¶çš„é«˜åº¦
+		int intensity_green = cvRound(binValue_green*histHeight/maxValue_green);  //è¦ç»˜åˆ¶çš„é«˜åº¦
+		int intensity_blue = cvRound(binValue_blue*histHeight/maxValue_blue);  //è¦ç»˜åˆ¶çš„é«˜åº¦
 
-		//»æÖÆºìÉ«·ÖÁ¿µÄÖ±·½Í¼
+		//ç»˜åˆ¶çº¢è‰²åˆ†é‡çš„ç›´æ–¹å›¾
 		rectangle(histImage,Point(i*scale,histHeight-1),
 			Point((i+1)*scale - 1, histHeight - intensity_red),
 			Scalar(255,0,0));
 
-		//»æÖÆÂÌÉ«·ÖÁ¿µÄÖ±·½Í¼
+		//ç»˜åˆ¶ç»¿è‰²åˆ†é‡çš„ç›´æ–¹å›¾
 		rectangle(histImage,Point((i+bins)*scale,histHeight-1),
 			Point((i+bins+1)*scale - 1, histHeight - intensity_green),
 			Scalar(0,255,0));
 
-		//»æÖÆÀ¶É«·ÖÁ¿µÄÖ±·½Í¼
+		//ç»˜åˆ¶è“è‰²åˆ†é‡çš„ç›´æ–¹å›¾
 		rectangle(histImage,Point((i+bins*2)*scale,histHeight-1),
 			Point((i+bins*2+1)*scale - 1, histHeight - intensity_blue),
 			Scalar(0,0,255));
 
 	}
 
-	//ÔÚ´°¿ÚÖĞÏÔÊ¾³ö»æÖÆºÃµÄÖ±·½Í¼
-	imshow( "Í¼ÏñµÄRGBÖ±·½Í¼", histImage );
+	//åœ¨çª—å£ä¸­æ˜¾ç¤ºå‡ºç»˜åˆ¶å¥½çš„ç›´æ–¹å›¾
+	imshow( "å›¾åƒçš„RGBç›´æ–¹å›¾", histImage );
 	waitKey(0);
 	return 0;
 }
