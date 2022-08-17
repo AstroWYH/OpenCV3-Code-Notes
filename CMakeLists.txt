@@ -8,17 +8,23 @@ message(STATUS "OpenCV_LIBS = ${OpenCV_LIBS}")
 include_directories(${OPENCV_INCLUDE_DIRS})
 
 foreach(i RANGE 1 3 1)
-    file(GLOB src "${CMAKE_CURRENT_SOURCE_DIR}/${i}_*/*.cpp")
-    file(GLOB install "${CMAKE_CURRENT_SOURCE_DIR}/${i}_*/")
+    if(${i} LESS 10)
+    set(num 0${i})
+    else()
+        set(num ${i})
+    endif()
 
-    message("src ${i} : ${src}")
-    message("install ${i} : ${install}")
+    file(GLOB src "${CMAKE_CURRENT_SOURCE_DIR}/${num}_*/*.cpp")
+    file(GLOB install "${CMAKE_CURRENT_SOURCE_DIR}/${num}_*/")
 
-    add_executable(opencv_test_${i} ${src})
-    target_link_libraries(opencv_test_${i} ${OpenCV_LIBS})
+    message("src ${num} : ${src}")
+    message("install ${num} : ${install}")
+
+    add_executable(opencv_test_${num} ${src})
+    target_link_libraries(opencv_test_${num} ${OpenCV_LIBS})
 
     set(CMAKE_INSTALL_PREFIX ${install})
-    install(TARGETS opencv_test_${i} DESTINATION ${install})
+    install(TARGETS opencv_test_${num} DESTINATION ${install})
 endforeach(i)
 
 
