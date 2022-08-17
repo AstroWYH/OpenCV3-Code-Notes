@@ -12,7 +12,7 @@
 #include <opencv2/opencv.hpp>  //头文件
 using namespace cv;  //包含cv命名空间
 
-void main( )
+int main()
 {    
 	// 【1】读入一张图片，载入图像
 	Mat srcImage = imread("1.jpg");
