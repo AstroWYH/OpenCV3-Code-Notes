@@ -101,7 +101,7 @@ int main()
 	labels.rowRange(NTRAINING_SAMPLES, 2*NTRAINING_SAMPLES).setTo(2);  // Class 2
 
 	//------------------------ 2. 设置支持向量机的参数 --------------------
-	SVM::Params params;
+	CvSVMParams params;
 	params.svmType    = SVM::C_SVC;
 	params.C 		   = 0.1;
 	params.kernelType = SVM::LINEAR;

@@ -20,4 +20,4 @@ int main()
 	imshow("【原始图】",srcImage);
 	// 【3】等待任意按键按下
 	waitKey(0);
-}  
+}
